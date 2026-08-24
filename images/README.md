@@ -9,7 +9,7 @@ that used to live here has been removed — every `<img>` now points at a real f
 
 | File | Where | Notes |
 |---|---|---|
-| `portrait.jpg` | Homepage hero | 2023 TEDx Nashville headshot, 4:5 |
+| `portrait.jpg` | Homepage hero | 2023 TEDx Nashville headshot, 1000×1249 (4:5). Shown **whole** — see the hero warning below |
 | `teaching.jpg` | Homepage | Teaching at a board in a darkened studio |
 | `early-guitar.jpg` | About | Teenage Nathan with an electric guitar. Square. |
 | `console.jpg` | About | Younger, at a large analog desk. Square, pairs with the above. |
@@ -17,7 +17,7 @@ that used to live here has been removed — every `<img>` now points at a real f
 | `grammy-console.jpg` | About | Eight people at one desk. **Photo: Tiffany L.** |
 | `grammy-camp-group.jpg` | Credits | Full GRAMMY Camp Nashville class |
 | `grammy-speaking.jpg` | Speaking | With a mic at a GRAMMY Foundation backdrop. **Photo: Tiffany L.** |
-| `students-studio.jpg` | Credits band | Wide, used full-bleed |
+| `students-studio.jpg` | Credits band | 1600×1066 (3:2). Shown whole — faces run from the very top of the frame to the very bottom |
 
 **Work and credits**
 
@@ -63,9 +63,19 @@ Then add to the markup:
      alt="…" loading="lazy">
 ```
 
+**The hero photo — check it on a phone.** This is the one that keeps biting.
+`portrait.jpg` is 4:5, and the base `.hero-shot` rule sets a fixed
+`aspect-ratio` with `object-fit:cover`. Any photo dropped in there gets cropped
+to that box silently — for a while the live site cut the top of Nathan's head off
+on every phone, and nothing about the desktop view hinted at it. The homepage now
+overrides the box to show the image whole, but a *new* photo can still land back
+in the cropped path. Resize the browser to ~390px and look before committing.
+
 **Rules of thumb**
 
-- Full-width `.band` images need to be ~1400px or wider, or they look soft.
+- `.band` is no longer full-bleed. It shows the whole frame, capped at 1008px so
+  its edges line up with the text column. A wide crop of a group photo cuts
+  somebody's head off; that's exactly what it used to do.
 - Images in a `.plate-pair` must share an aspect ratio.
 - Every image needs real `alt` text. All of them currently have it.
 - JPEG only. If you have a PNG photo, convert rather than renaming the `src`.

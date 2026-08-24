@@ -10,9 +10,12 @@ Last updated: 24 August 2026 (Poppins; hamburger nav; visitor-first hero copy).
 
 ## What this is
 
-A four-page static site. No framework, no build step, no dependencies. Plain HTML
-plus one stylesheet. That is deliberate: Nathan publishes weekly and should never
-be blocked by a toolchain that rotted.
+A four-page static site. No framework, no build step. Plain HTML, one stylesheet,
+and one small script for the mobile menu. That is deliberate: Nathan publishes
+weekly and should never be blocked by a toolchain that rotted.
+
+The only thing fetched from outside is the Poppins webfont (Google Fonts), added
+24 Aug 2026 and detailed under **CSS conventions**. Everything else is local.
 
 ```
 index.html        Homepage — positioning, proof bar, story, newsletter signup
@@ -164,6 +167,13 @@ Layout classes, in the order they were added:
 | `.band` | Big photo, uncropped, aligned to the text column. Used once, on `credits.html` |
 | `.credit` | Photographer credit inside a caption |
 | `.topics` | Two-column grid on the speaking page |
+| `.topbar--dark` | Navy header. Homepage only |
+| `.navtoggle` | Hamburger button. Hidden above 760px |
+| `.herowrap` | Full-width navy band around the homepage hero |
+| `.hero-figure` | Portrait plus the credential line beneath it |
+| `.herocred` | Name and title under the portrait |
+| `.logostrip` | "Featured in and on stage at" wordmarks |
+| `.btn-cta` | The single orange call to action |
 
 **Pair images must share an aspect ratio** or the columns run ragged. That's why
 `early-guitar.jpg` and `console.jpg` are both square, and the Walnut House pair
@@ -227,12 +237,17 @@ when the full file is already under ~780px — pointless bytes.
 **Design direction — decided and built, 23 Aug 2026.** Nathan asked to restyle
 toward grahamcochrane.com. He chose the middle path over a full clone.
 
-Built:
+Built, over 23–24 Aug:
 
 - Dark navy top bar on the homepage only (`.topbar--dark`)
-- Full-bleed navy hero, portrait bottom-aligned and mask-faded to fake a cutout
+- Full-width navy hero band (`.herowrap`), portrait right on desktop and centred
+  on phones. The portrait originally bled off the bottom edge behind a mask; that
+  was dropped on 24 Aug when the credential line moved underneath it.
 - One loud orange CTA, `#ef8c1f` with near-black text → the newsletter anchor
 - A typographic "Featured in and on stage at" strip (`.logostrip`)
+- Poppins throughout, replacing Georgia
+- A hamburger menu below 760px (`js/nav.js`)
+- Visitor-first hero copy, with the name and title under the photo
 
 Deliberately **not** built, and the reasoning still holds if it comes up again:
 testimonial cards and the three-card offer grid. Those are sales-funnel furniture
@@ -241,6 +256,8 @@ it as a coaching launch.
 
 All new CSS is appended at the end of `site.css` under its own banner and scoped
 to `.topbar--dark` / `.herowrap` / `.logostrip`, so interior pages are untouched.
+The exceptions are deliberate and shared: the font tokens, the `.pagehead` gutter
+fix and the hamburger, all of which apply to all four pages.
 The `--cta`, `--cta-hover` and `--sky` tokens are new on `:root`.
 
 Two constraints not to undo:
