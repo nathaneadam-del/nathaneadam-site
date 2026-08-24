@@ -1,23 +1,84 @@
 # images/
 
-Four photo slots are live on the site and currently empty. Each one shows a dashed
-placeholder describing exactly what belongs there until a real file exists at the path.
+All four original placeholder slots are filled. The dashed-placeholder system
+that used to live here has been removed — every `<img>` now points at a real file.
 
-**Drop a correctly-named file in this folder and it appears. No code change needed.**
+## What's here
 
-| Filename | Where it appears | What it needs |
+**Portraits and teaching**
+
+| File | Where | Notes |
 |---|---|---|
-| `portrait.jpg` | Homepage hero | You, straight to camera. Vertical (4:5 works best). Warm, plain background. Not a studio glamour shot. |
-| `teaching.jpg` | Homepage, story section | Wide. Room visible, other people in frame. **This is the proof photo** — it does more work than any other image on the site. |
-| `grammy-camp.jpg` | About page | GRAMMY Camp or a full Belmont classroom. Students visible. |
-| `console.jpg` | About page, early-career section | Studio or edit suite. An older photo is better here. |
+| `portrait.jpg` | Homepage hero | 2023 TEDx Nashville headshot, 4:5 |
+| `teaching.jpg` | Homepage | Teaching at a board in a darkened studio |
+| `early-guitar.jpg` | About | Teenage Nathan with an electric guitar. Square. |
+| `console.jpg` | About | Younger, at a large analog desk. Square, pairs with the above. |
+| `grammy-camp.jpg` | About | Students around a console |
+| `grammy-console.jpg` | About | Eight people at one desk. **Photo: Tiffany L.** |
+| `grammy-camp-group.jpg` | Credits | Full GRAMMY Camp Nashville class |
+| `grammy-speaking.jpg` | Speaking | With a mic at a GRAMMY Foundation backdrop. **Photo: Tiffany L.** |
+| `students-studio.jpg` | Credits band | Wide, used full-bleed |
 
-## Notes
+**Work and credits**
 
-- Roughly 1600px on the long edge is plenty. Compress before committing — a 6MB photo
-  from a DSLR will make the page slow for no visible benefit.
-- `.jpg` extensions are what the HTML expects. If you have a PNG, convert it rather than
-  renaming the `src` in four places.
-- Best lead on `teaching.jpg`: TEDxNashville has high-resolution shots from your 2017 talk,
-  including you onstage in a VR headset in front of a full house. You're on the board —
-  ask whoever shot it for the originals.
+| File | Where |
+|---|---|
+| `presleys.jpg` | Presleys' Country Jubilee broadcast still |
+| `norville.jpg` | MSNBC "Singing or Synching?" segment |
+| `learn-master.jpg` | Gibson's Learn & Master Guitar boxed set |
+| `book-multi-platinum.jpg` | Multi-Platinum Pro Tools |
+| `book-mixers-toolkit.jpg` | Pro Tools 9: The Mixer's Toolkit |
+| `multi-platinum.jpg` | Multi-Platinum.com course library |
+| `grammy-pathways.jpg` | GRAMMY Career Pathways dashboard |
+| `landr-course.jpg` | LANDR course page |
+| `peter-pan.jpg` | Cathy Rigby is Peter Pan playbill |
+| `nc5-ai.jpg` | Frame from the NewsChannel 5 story |
+
+**Speaking and venue**
+
+| File | Where |
+|---|---|
+| `tedx-stage.jpg` | Onstage in the VR headset |
+| `tedx-letters.jpg` | The red TEDx letters |
+| `walnut-house.jpg`, `walnut-house-2.jpg` | The Walnut House, both 4:3 |
+
+## Conventions
+
+**`-sm` variants** are 700px wide, quality 80, referenced via `srcset`. Generate
+one whenever a new image is wider than about 780px:
+
+```python
+from PIL import Image
+im = Image.open('images/NAME.jpg').convert('RGB')
+sm = im.resize((700, int(im.height*700/im.width)), Image.LANCZOS)
+sm.save('images/NAME-sm.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+```
+
+Then add to the markup:
+
+```html
+<img src="images/NAME.jpg"
+     srcset="images/NAME-sm.jpg 700w, images/NAME.jpg 1400w"
+     sizes="(max-width:640px) 92vw, 390px"
+     alt="…" loading="lazy">
+```
+
+**Rules of thumb**
+
+- Full-width `.band` images need to be ~1400px or wider, or they look soft.
+- Images in a `.plate-pair` must share an aspect ratio.
+- Every image needs real `alt` text. All of them currently have it.
+- JPEG only. If you have a PNG photo, convert rather than renaming the `src`.
+- Credit the photographer in the caption using `<span class="credit">`.
+
+**Watch out:** files you attach in chat get copied into this folder
+automatically, originals and all. Delete strays before committing — a 3.7MB PNG
+nearly ended up in git history permanently.
+
+## Rights
+
+The Tiffany L. photographs are used with her permission; watermarks were cropped
+and she's credited on-page. The Peter Pan playbill is the production's
+promotional artwork — standard practice for illustrating a credit, but it isn't
+Nathan's image. A still from the performance video would be safer if that ever
+matters.

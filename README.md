@@ -1,67 +1,62 @@
 # nathaneadam.com
 
-Static site. Four HTML pages, one stylesheet, no build step, no dependencies.
-Edit a file, commit, push — Vercel deploys automatically.
+Static site. Four pages, one stylesheet, no build step, no dependencies.
+Edit a file, commit, push — Vercel deploys within about a minute.
 
 ```
 index.html        Homepage
 about.html        The long story
-credits.html      Production, engineering, publishing, teaching
-speaking.html     TEDx embed, topics, talk history, press, booking
+credits.html      Production, engineering, publishing, curriculum, teaching
+speaking.html     TEDx talk, topics, talk history, press, booking
 css/site.css      Every style for every page
-images/           Photo slots — see images/README.md
+images/           Photos — see images/README.md
+CLAUDE.md         Full project context, decisions, and open items
 ```
 
 ## How to change something
 
 Open the file, edit it, save. In GitHub Desktop: write a short summary, click
-**Commit to main**, then **Push origin**. Vercel builds within a minute.
+**Commit to main**, then **Push origin**. That's the whole workflow.
 
-There is no framework here on purpose. Any text editor works. Nothing to install,
+There's no framework here on purpose. Any text editor works. Nothing to install,
 nothing to keep updated, nothing that breaks in eighteen months when a dependency
 goes stale.
 
-## Two things that are easy to get wrong
+## Three things that are easy to get wrong
 
-**One stylesheet, four pages.** `css/site.css` is shared. A change to a color token or
-a base style hits every page at once — which is the point, but check more than one page
-after editing it.
+**One stylesheet, four pages.** `css/site.css` is shared. Changing a colour or a
+base style hits every page at once — that's the point, but check more than one
+page afterwards.
 
-**The photo placeholders are load-bearing.** Each `<img>` sits on top of a dashed
-placeholder describing the photo that belongs there. The image uses
-`onerror="this.remove()"`, so a missing file reveals the placeholder instead of a broken
-icon. Don't delete the `.ph` divs to "clean up" — they're how you and I both remember
-what's still missing.
+**Photo pairs need matching shapes.** Two images side by side (`.plate-pair`) run
+ragged if one is portrait and the other landscape. Crop both to the same aspect
+ratio first.
 
-## Editorial rules this site follows
+**The mobile nav.** It wraps under your name on narrow screens rather than hiding.
+It used to be hidden entirely, which meant phones had no navigation at all. Don't
+let that come back.
 
-Written down because they were expensive to work out:
+## Where everything lives
 
-- **Every claim traces to a source.** The talk list comes from the 2023 tenure &
-  promotion CV. Press links were verified live. Nothing goes on the site that can't be
-  pointed at.
-- **Conservative numbers.** "50+ GRAMMY Camps" not 60, because the real count is 53 and
-  climbing. "25 years" of teaching, counted from Labette in 2001. Published bios
-  elsewhere say 60+ and 100+; those are wrong and should be corrected at the source.
-- **Awards are attributed precisely.** The Telly for *Learn & Master Guitar* belongs to
-  Legacy Learning Systems, not to Nathan personally. (The 2023 CV says otherwise under
-  Industry Qualifications — that conflict is unresolved.)
-- **No unlinked press claims.** The *Nashville Ledger* mention is in the Belmont bio but
-  has no findable article, so it's off the site until it has a link.
+- **Repo** — `github.com/nathaneadam-del/nathaneadam-site`
+- **Host** — Vercel, deploys automatically from `main`
+- **Domain** — DNS stays at DreamHost; only the apex `A` record and `www` CNAME
+  point at Vercel, so the Google Workspace email records are never touched
 
-Open TODOs are marked `TODO (Nathan)` in the HTML. Search for that string.
+## The editorial rules this site follows
 
-## Known inconsistencies elsewhere
+Written down because they were expensive to work out.
 
-The Belmont faculty page is the upstream source most other bios copy from, and it
-currently says "over 60 GRAMMY Camps", implies a presentation at AES (it was a 2016
-*Journal* publication, not a talk), and cites the *Nashville Ledger*. Worth one email to
-whoever maintains it.
+- Every claim traces to a source. The talk list comes from the 2023 tenure and
+  promotion CV; press links were opened and checked.
+- Conservative numbers. "50+ GRAMMY Camps" (real count 53), "25 years" of teaching
+  from 2001. Bios elsewhere say 60+ and 100+ — those are wrong and should be
+  corrected at the source.
+- Awards attributed precisely. The Telly for *Learn & Master Guitar* belongs to
+  Legacy Learning Systems.
+- No unlinked press claims.
+- Photographers credited by name.
 
-## Deployment
-
-GitHub → Vercel, automatic on push to `main`.
-
-DNS stays at DreamHost. Only the apex `A` record and the `www` CNAME point at Vercel —
-nameservers are deliberately **not** delegated, because the Google Workspace `MX` record
-lives in the DreamHost zone and moving it risks the email.
+Open questions are marked `TODO (Nathan)` in the HTML. `CLAUDE.md` has the full
+list plus what's worth fixing on the Belmont faculty page and in the bio sent to
+conferences.
