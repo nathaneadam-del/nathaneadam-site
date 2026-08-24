@@ -201,7 +201,7 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
 
 /* Full-bleed-ish band used to break up long text pages */
 .band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0;}
-.band img{display:block;width:100%;height:clamp(220px,34vw,420px);object-fit:cover;}
+.band img{display:block;width:100%;height:clamp(220px,34vw,420px);object-fit:cover;object-position:center 28%;}
 .band figcaption{padding:12px 26px 16px;max-width:1060px;margin:0 auto;}
 
 /* Simple two-column meta list (education, etc.) */
