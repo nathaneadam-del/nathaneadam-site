@@ -1,0 +1,7 @@
+# nathaneadam.com
+# Everything here is meant to be found. Nothing is disallowed on purpose.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.nathaneadam.com/sitemap.xml

@@ -402,6 +402,16 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
   .logostrip li{font-size:16px;}
 }
 
+/* ---------- 404 page ----------
+   Used only by 404.html. Scoped to its own class so nothing else moves. */
+.notfound-links{list-style:none;margin:0 0 34px;padding:0;max-width:700px;}
+.notfound-links li{padding:13px 0;border-top:1px solid var(--line);font-size:17px;
+  color:var(--ink-soft);}
+.notfound-links li:last-child{border-bottom:1px solid var(--line);}
+.notfound-links a{font-family:var(--font-display);font-weight:600;
+  color:var(--deep);text-decoration:none;border-bottom:1px solid var(--line);}
+.notfound-links a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
 /* Simple two-column meta list (education, etc.) */
 .meta{list-style:none;margin:0;padding:0;max-width:700px;}
 .meta li{display:flex;gap:18px;padding:11px 0;border-top:1px solid var(--line);font-size:17px;}

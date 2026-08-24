@@ -42,6 +42,29 @@ that used to live here has been removed — every `<img>` now points at a real f
 | `tedx-letters.jpg` | The red TEDx letters |
 | `walnut-house.jpg`, `walnut-house-2.jpg` | The Walnut House, both 4:3 |
 
+**Social cards** — these two are never shown on the site. They exist only for
+`og:image`, and they are the first thing anyone sees when the site is shared.
+
+| File | Where |
+|---|---|
+| `og-card.jpg` | Homepage. Carries the hero headline. |
+| `og-card-profile.jpg` | About, Credits, Speaking, and the `Person` schema. Name and title, no campaign copy, so it doesn't go stale. |
+
+Both are 1200×630 — the size LinkedIn, X, Slack and iMessage all crop from.
+They're generated, not photographed: `portrait.jpg` flush right, a navy gradient
+over its left edge, Poppins text on `--deep`. The script that built them is in
+the 24 Aug 2026 commit message. Two things to know before regenerating:
+
+- **PIL has no Poppins SemiBold.** The site's headings are weight 600; the only
+  weights installed are Regular, Medium and Bold. The cards use Bold, which is
+  slightly heavier than the site — correct for a card viewed as a thumbnail.
+- **`og:image` must be an absolute URL** in the markup. A relative path silently
+  produces a blank card on every platform, which is the bug these fixed.
+
+Regenerate only if the hero headline changes. Keep the filenames — platforms
+cache aggressively by URL, and a new name means every previously shared link
+keeps the old card.
+
 ## Conventions
 
 **`-sm` variants** are 700px wide, quality 80, referenced via `srcset`. Generate
@@ -77,6 +100,17 @@ in the cropped path. Resize the browser to ~390px and look before committing.
   its edges line up with the text column. A wide crop of a group photo cuts
   somebody's head off; that's exactly what it used to do.
 - Images in a `.plate-pair` must share an aspect ratio.
+- **Every `<img>` needs `width` and `height` attributes** giving the *intrinsic*
+  pixel size of the file in `src` — not the display size. `img{height:auto}` in
+  site.css means the CSS still controls how big it renders; the attributes only
+  tell the browser the aspect ratio so it can reserve the space before the file
+  arrives. Without them the homepage grew 507px as images loaded and text slid
+  out from under the reader. All four pages now measure a 0px shift; adding an
+  image without these attributes puts that back.
+- **`sizes` must match the real box width**, or the browser picks the wrong
+  source file. The hero declared `400px` for a box that measures `460px`, and
+  the credits band declared `100vw` for a box capped at `1008px`. Measure with
+  `getBoundingClientRect().width` rather than guessing from the CSS.
 - Every image needs real `alt` text. All of them currently have it.
 - JPEG only. If you have a PNG photo, convert rather than renaming the `src`.
 - Credit the photographer in the caption using `<span class="credit">`.

@@ -4,7 +4,8 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 24 August 2026 (Poppins; hamburger nav; visitor-first hero copy).
+Last updated: 24 August 2026 (Poppins; hamburger nav; visitor-first hero copy;
+social cards, 404 page, image dimensions, structured data).
 
 ---
 
@@ -14,18 +15,26 @@ A four-page static site. No framework, no build step. Plain HTML, one stylesheet
 and one small script for the mobile menu. That is deliberate: Nathan publishes
 weekly and should never be blocked by a toolchain that rotted.
 
-The only thing fetched from outside is the Poppins webfont (Google Fonts), added
-24 Aug 2026 and detailed under **CSS conventions**. Everything else is local.
+The Poppins webfont (Google Fonts) and the TED embed are the only outside
+fetches; see the file list below. Everything else is local.
 
 ```
 index.html        Homepage — positioning, proof bar, story, newsletter signup
 about.html        The long story, 1999 to now
 credits.html      Production, engineering, publishing, curriculum, teaching
 speaking.html     TEDx embed, topics, talk history, press, booking
+404.html          Branded not-found page. Vercel serves it automatically.
 css/site.css      Every style for every page
 js/nav.js         Mobile menu toggle — the only script, loaded on all four pages
+sitemap.xml       Four URLs, hand-maintained. New page means a new entry here.
+robots.txt        Allows everything, points at the sitemap
 images/           See images/README.md
 ```
+
+**The only external things the browser fetches** are the Poppins webfont from
+Google Fonts (all five pages) and the TED embed iframe on `speaking.html`. The
+`og:image` files are local. Nothing else phones home — no analytics, no tag
+manager, no CDN scripts.
 
 ## Deployment
 
@@ -85,6 +94,53 @@ and the repo is public.
 
 ---
 
+## Findability and sharing — added 24 Aug 2026
+
+A visitor-perspective review found that the design was finished but the plumbing
+around it wasn't. Four things were fixed. Each is easy to undo by accident.
+
+**`og:image` — the site had none.** All four pages declared
+`twitter:card = summary_large_image` and supplied no image, so every link shared
+to LinkedIn, X, Slack or iMessage rendered as a grey box. Two 1200×630 cards now
+live in `images/` (see `images/README.md`). **The URL must be absolute.** A
+relative path is silently ignored by every platform, which is how this went
+unnoticed. Any new page needs the `og:image`, `og:image:width`, `og:image:height`
+and `twitter:image` block copied across.
+
+**Zero layout shift, and it must stay zero.** No `<img>` had `width`/`height`
+attributes, so nothing reserved space and pages grew as images loaded — the
+homepage by 507px, credits by 279, speaking by 225. Text slid out from under the
+reader mid-scroll. All 24 images now carry their intrinsic dimensions and every
+page measures **0px**. This is the easiest thing on the site to regress: one
+`<img>` added without the attributes brings it back. The check:
+
+```js
+// with the page loaded
+const before = document.body.scrollHeight;
+[...document.images].forEach(i => i.loading = 'eager');
+// wait ~1s, then
+document.body.scrollHeight - before;   // must be 0
+```
+
+**Structured data.** `index.html` carries a JSON-LD `Person` block. Most of this
+site's traffic will be people searching Nathan's name, and this is what Google
+reads to build a knowledge panel. **The editorial rules below apply to it as much
+as to visible copy** — every field traces to a source. Deliberately absent: the
+doctorate's institution (not documented anywhere pointable) and any camp or
+student count (those belong in prose, where they can be qualified). Don't put a
+claim in the schema that isn't already on the page.
+
+**External links open in a new tab.** All 15 of them (`target="_blank"
+rel="noopener"`). They used to navigate away in the same tab, which meant a
+visitor reading the proof section clicked one press link and the visit ended.
+Internal links and `mailto:` are deliberately left alone.
+
+**A note on the press links.** The Jamie Dunham interview, linked twice from
+`speaking.html`, describes Nathan as an *assistant* professor with *"more than
+100 Grammy camps"* — both of the numbers the editorial rules below exist to
+correct. Nothing to fix in the markup; it needs fixing at the source. Same for
+the Belmont faculty page. Worth re-reading a press link before adding it.
+
 ## Editorial rules
 
 These exist because the numbers in Nathan's published bios contradict each other.
@@ -132,8 +188,15 @@ Hold the line.
 
 ## CSS conventions
 
-One stylesheet, four pages. A change to a token hits every page — check more than
-one after editing.
+One stylesheet, five pages (the four content pages plus `404.html`). A change to
+a token hits every page — check more than one after editing.
+
+**`404.html` links with root-relative paths** (`/css/site.css`, `/js/nav.js`,
+`/about.html`) while the other four use relative ones. That's deliberate and must
+stay: the 404 renders at whatever path the visitor typed, so a visitor landing on
+`/projects/old/thing` would resolve `css/site.css` against `/projects/old/` and
+get an unstyled page. The old DreamHost site had a `projects/` folder, so this is
+a real path people will hit.
 
 Design tokens live on `:root`: `--ink`, `--ink-soft`, `--paper`, `--paper-2`,
 `--line`, `--deep` (navy), `--accent` (rust), `--cta` (orange), `--sky`.
@@ -144,12 +207,12 @@ sans to match grahamcochrane.com. Headings and display type use
 — every one of the eleven old `Georgia,serif` declarations now points at a token,
 so the whole site changes from one line.
 
-This is the site's **only external dependency**, loaded from Google Fonts in all
-four `<head>`s with `display=swap` and preconnects. The no-build-step rule still
-holds. The fallback stack after Poppins is the system sans, deliberately — if
-Google is unreachable the site degrades to a different sans, never back to a
-serif, so nothing about the layout shifts. Removing the dependency means deleting
-three `<link>` tags and dropping `"Poppins",` from one token.
+It is loaded from Google Fonts in all **five** `<head>`s with `display=swap` and
+preconnects. The no-build-step rule still holds. The fallback stack after Poppins
+is the system sans, deliberately — if Google is unreachable the site degrades to
+a different sans, never back to a serif, so nothing about the layout shifts.
+Removing the dependency means deleting three `<link>` tags per page and dropping
+`"Poppins",` from one token.
 
 Heading tracking is `-0.02em`, tighter than Georgia's `-0.01em`, because Poppins
 is a wide geometric face and falls apart at display sizes without it.
@@ -174,6 +237,7 @@ Layout classes, in the order they were added:
 | `.herocred` | Name and title under the portrait |
 | `.logostrip` | "Featured in and on stage at" wordmarks |
 | `.btn-cta` | The single orange call to action |
+| `.notfound-links` | The page list on `404.html`. Used nowhere else. |
 
 **Pair images must share an aspect ratio** or the columns run ragged. That's why
 `early-guitar.jpg` and `console.jpg` are both square, and the Walnut House pair
@@ -307,9 +371,14 @@ whatever you give it.
 The strip is text wordmarks, not logo files — no trademark assets, and every name
 is a verified appearance. Adding a name means adding a source.
 
-**Newsletter CTA now carries the homepage.** The hero button points at `#join`,
-which makes open item 4 below more urgent than it was — the primary call to
-action currently lands on a form that saves nothing.
+**The newsletter form is the last thing standing between this site and a
+launch.** The hero button, the nav link and the whole bottom section all funnel
+to `#join`, and that form still posts to `action="#"`. Worse than saving nothing:
+submitting it returns *"Preview mode — the form is not connected yet. Your
+address was not saved."* — on the live site, to a real visitor who just acted on
+the one thing the page asks for. Verified by submitting it against production on
+24 Aug 2026. See open item 4 below; it needs the beehiiv endpoint from Nathan and
+nothing else. Everything else found in that review has been fixed.
 
 **`TODO (Nathan)` markers in the HTML** — search for that string:
 
@@ -331,6 +400,15 @@ action currently lands on a form that saves nothing.
 
 - **His Belmont faculty page** is what other bios copy from. It says "over 60
   GRAMMY Camps", implies an AES presentation, and cites the *Nashville Ledger*.
+- **The Jamie Dunham / Brand Wise interview**, which `speaking.html` links to
+  twice as press, carries the worst version: *"assistant professor of cinema,
+  television and emerging media"* and *"more than 100 Grammy camps."* Both wrong,
+  both propagated from the conference bio. Worth asking her to correct it — the
+  site's own proof section currently routes people to it.
+- **Confirm `nathan@nathaneadam.com` actually receives mail.** The speaking
+  page's booking CTA and every footer contact link point at it, and the Google
+  Workspace MX records were the thing most at risk during the Vercel migration.
+  Never verified end to end.
 - **The bio he sends conferences** says "over 100 GRAMMY Camps" and *Assistant*
   Professor. That's where the inflated number came from.
 - **A Resolve title card** reads "The **Asessment** Pivot" — one S short. Kept off
