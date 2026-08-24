@@ -4,7 +4,7 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 24 August 2026 (Poppins; mobile hero stacking; band + pagehead alignment).
+Last updated: 24 August 2026 (Poppins; hamburger nav; visitor-first hero copy).
 
 ---
 
@@ -20,6 +20,7 @@ about.html        The long story, 1999 to now
 credits.html      Production, engineering, publishing, curriculum, teaching
 speaking.html     TEDx embed, topics, talk history, press, booking
 css/site.css      Every style for every page
+js/nav.js         Mobile menu toggle — the only script, loaded on all four pages
 images/           See images/README.md
 ```
 
@@ -198,9 +199,22 @@ Breakpoints at 820px (hero), 760px (nav), 700px (type and spacing), 640px (photo
 pairs and credit rows), 560px, 420px.
 
 **The nav is the thing to not break.** It was originally `display:none` under
-760px, which left phones with no navigation at all. It now wraps under the brand
-and the header stops being sticky on small screens. Don't reintroduce a hidden nav
-without a working replacement.
+760px, which left phones with no navigation at all.
+
+It is now a **hamburger** below 760px (added 24 Aug 2026, to match
+grahamcochrane.com), and the header stops being sticky on small screens. The
+collapse is deliberately gated on `.js-nav`, a class `js/nav.js` puts on `<html>`:
+
+- Script runs → `.js-nav` exists → nav collapses behind the button.
+- Script fails or is blocked → no `.js-nav` → the nav just stays visible and
+  wraps, exactly as before.
+
+**Never write the collapsed state as an unconditional `display:none`.** That is
+the original bug, and the gate is what stops it recurring. Verified at 390px:
+button toggles, `aria-expanded` flips, icon morphs to an X, all four links reachable.
+
+`nav.js` also closes the menu when a link is tapped, so the `#join` anchor doesn't
+scroll away underneath an open menu.
 
 Images use `srcset`/`sizes` with `-sm` variants at 700px wide, generated with
 Pillow at quality 80. Phone page weight is roughly half desktop. Skip the variant
@@ -245,8 +259,24 @@ two-column hero: the headline broke to five words-per-line and the portrait was
 crushed into a side column. Shipped live before it was caught. Every `.herowrap`
 override needs its mobile counterpart restated explicitly.
 
-The phone hero is a centred stack, matching the reference: eyebrow, headline, lede
-capped at `34ch`, full-width CTA, then the portrait whole at `min(100%,320px)`.
+The phone hero is a centred stack, matching the reference: headline, lede capped at
+`34ch`, full-width CTA, then the portrait whole at `min(100%,300px)`.
+
+**The credential line moved under the portrait** (24 Aug 2026). It used to be an
+`.eyebrow` above the headline — "DR. NATHAN ADAM · ASSOCIATE PROFESSOR OF MEDIA
+PRODUCTION, BELMONT UNIVERSITY" — which meant the first thing a visitor read was
+Nathan's job title. It is now `.herocred`, sitting beneath the photo in both
+layouts, so the headline leads. Nathan asked for this explicitly; don't move it back.
+
+The portrait also stopped bleeding off the bottom edge, because the credit line now
+occupies that space. The bottom mask is gone with it — it never worked well anyway,
+since `portrait.jpg` has a white TEDx backdrop that faded to white, not to navy.
+
+**Homepage copy is visitor-first, not bio-first.** Rewritten 24 Aug 2026 on the same
+instruction. The headline addresses the reader's fear ("It's not too late to reinvent
+your career with AI"), and the lede names who the site is for before it says anything
+about Nathan. The old lede opened "I spent 25 years…". If the copy gets revised, keep
+the second person in the headline — that is the whole point of the change.
 
 **Mobile hero crop — fixed 24 Aug 2026, don't reintroduce.** The base `.hero-shot`
 rule forces `aspect-ratio:3/2` below 820px. `portrait.jpg` is 1000×1249 (4:5), so
