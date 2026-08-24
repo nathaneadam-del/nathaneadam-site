@@ -35,6 +35,10 @@ h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weig
 a{color:var(--deep);}
 a:hover{color:var(--accent);}
 
+/* No image, video or embed may ever push the page sideways. */
+img,video,iframe{max-width:100%;}
+img{height:auto;}
+
 /* ---------- top bar ---------- */
 .topbar{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:10;}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px;}
@@ -43,7 +47,16 @@ a:hover{color:var(--accent);}
 .topnav a{text-decoration:none;color:var(--ink-soft);}
 .topnav a:hover{color:var(--accent);}
 .topnav a[aria-current=page]{color:var(--ink);border-bottom:2px solid var(--accent);padding-bottom:2px;}
-@media(max-width:760px){.topnav{display:none;}}
+
+/* On narrow screens the nav wraps under the brand instead of disappearing.
+   The bar also stops being sticky so it doesn't eat a phone's viewport. */
+@media(max-width:760px){
+  .topbar{position:static;}
+  .topbar .wrap{flex-direction:column;align-items:flex-start;height:auto;
+                padding-top:13px;padding-bottom:13px;gap:9px;}
+  .topnav{flex-wrap:wrap;gap:14px 20px;font-size:15px;}
+  .topnav a{padding:2px 0;}
+}
 
 /* ---------- photo slots ----------
    Each slot is an <img> wrapped in a .shot. Until a real file exists at the
@@ -203,6 +216,37 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
 .band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0;}
 .band img{display:block;width:100%;height:clamp(220px,34vw,420px);object-fit:cover;object-position:center 28%;}
 .band figcaption{padding:12px 26px 16px;max-width:1060px;margin:0 auto;}
+
+/* Photographer credit inside a caption */
+.credit{color:#8a8073;font-style:normal;font-size:0.9em;white-space:nowrap;}
+
+/* ---------- small screens ---------- */
+@media(max-width:700px){
+  body{font-size:17.5px;line-height:1.62;}
+  .wrap,.wrap-wide{padding:0 20px;}
+  section{padding:48px 0;}
+  .hero{padding:40px 0 44px;}
+  .pagehead{padding:36px 0 30px;}
+  .hero .lede,.pagehead .lede{font-size:18.5px;}
+  .story p:first-of-type{font-size:18.5px;}
+  figure.plate,.plate-pair{margin:26px 0;}
+  .plate-pair{gap:18px;}
+  .proof{padding:22px 0;}
+  .proof ul{gap:10px 22px;}
+  .proof b{font-size:20px;}
+  blockquote.pull{font-size:19px;padding-left:18px;margin:26px 0;}
+  .band figcaption{padding:11px 20px 14px;}
+  .credits li{padding:15px 0;}
+  .credits .t{font-size:18.5px;}
+  /* Buttons go full width so they're easy to hit with a thumb */
+  .cta-row{gap:10px;}
+  .cta-row .btn{width:100%;text-align:center;padding:14px 20px;}
+}
+
+@media(max-width:420px){
+  .wrap,.wrap-wide{padding:0 16px;}
+  .credit{white-space:normal;}
+}
 
 /* Simple two-column meta list (education, etc.) */
 .meta{list-style:none;margin:0;padding:0;max-width:700px;}
