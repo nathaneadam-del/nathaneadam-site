@@ -4,7 +4,7 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 23 August 2026.
+Last updated: 24 August 2026 (Poppins, mobile hero crop fix).
 
 ---
 
@@ -132,8 +132,23 @@ One stylesheet, four pages. A change to a token hits every page — check more t
 one after editing.
 
 Design tokens live on `:root`: `--ink`, `--ink-soft`, `--paper`, `--paper-2`,
-`--line`, `--deep` (navy), `--accent` (rust). Georgia for headings, system sans
-for body.
+`--line`, `--deep` (navy), `--accent` (rust), `--cta` (orange), `--sky`.
+
+**Typography — Poppins, changed from Georgia on 24 Aug 2026.** Nathan asked for a
+sans to match grahamcochrane.com. Headings and display type use
+`var(--font-display)`; body uses `var(--font-body)`. Never hardcode a font family
+— every one of the eleven old `Georgia,serif` declarations now points at a token,
+so the whole site changes from one line.
+
+This is the site's **only external dependency**, loaded from Google Fonts in all
+four `<head>`s with `display=swap` and preconnects. The no-build-step rule still
+holds. The fallback stack after Poppins is the system sans, deliberately — if
+Google is unreachable the site degrades to a different sans, never back to a
+serif, so nothing about the layout shifts. Removing the dependency means deleting
+three `<link>` tags and dropping `"Poppins",` from one token.
+
+Heading tracking is `-0.02em`, tighter than Georgia's `-0.01em`, because Poppins
+is a wide geometric face and falls apart at display sizes without it.
 
 Layout classes, in the order they were added:
 
@@ -174,16 +189,47 @@ when the full file is already under ~780px — pointless bytes.
 
 ## Open items
 
-**Design direction — unanswered.** On 23 Aug Nathan asked to restyle the site to
-look "a lot more like" grahamcochrane.com: a dark hero with a large cutout
-portrait, an orange CTA button, a "Featured In" logo strip, testimonial cards, and
-a three-card offer grid. That request was never answered and no work was done on
-it. It is a real decision, not a small styling job — that template is built to
-sell coaching packages, and the current site's restraint is doing deliberate work
-for a "calm, credentialed professor" position. Worth talking through before
-building. A middle path exists: borrow the "Featured In" strip (TEDx, NewsChannel
-5, WPLN, GRAMMY, MEIEA are all real and earned) and a stronger single CTA, without
-the sales-funnel furniture.
+**Design direction — decided and built, 23 Aug 2026.** Nathan asked to restyle
+toward grahamcochrane.com. He chose the middle path over a full clone.
+
+Built:
+
+- Dark navy top bar on the homepage only (`.topbar--dark`)
+- Full-bleed navy hero, portrait bottom-aligned and mask-faded to fake a cutout
+- One loud orange CTA, `#ef8c1f` with near-black text → the newsletter anchor
+- A typographic "Featured in and on stage at" strip (`.logostrip`)
+
+Deliberately **not** built, and the reasoning still holds if it comes up again:
+testimonial cards and the three-card offer grid. Those are sales-funnel furniture
+that implies products for sale. The professor position is the asset; don't dress
+it as a coaching launch.
+
+All new CSS is appended at the end of `site.css` under its own banner and scoped
+to `.topbar--dark` / `.herowrap` / `.logostrip`, so interior pages are untouched.
+The `--cta`, `--cta-hover` and `--sky` tokens are new on `:root`.
+
+Two constraints not to undo:
+
+1. **The CTA button uses dark text (`#1b1206`), not white.** White on that orange
+   is ~2.9:1 and fails contrast. This was checked.
+2. **The hero bleed reverts below 820px.** A bottom-aligned photo in a stacked
+   single column leaves a gap, and the mask is turned off there.
+
+**Mobile hero crop — fixed 24 Aug 2026, don't reintroduce.** The base `.hero-shot`
+rule forces `aspect-ratio:3/2` below 820px. `portrait.jpg` is 1000×1249 (4:5), so
+`object-fit:cover` discarded about 47% of its height and cut the top of his head
+off on every phone. This was live for a while. The `.herowrap` override now sets
+`aspect-ratio:auto` with `object-fit:contain` and caps the box at 300px wide, so
+the photo is shown whole and centred. **Any new photo dropped into the hero must
+be checked on a phone** — a fixed aspect-ratio plus `cover` will silently crop
+whatever you give it.
+
+The strip is text wordmarks, not logo files — no trademark assets, and every name
+is a verified appearance. Adding a name means adding a source.
+
+**Newsletter CTA now carries the homepage.** The hero button points at `#join`,
+which makes open item 4 below more urgent than it was — the primary call to
+action currently lands on a form that saves nothing.
 
 **`TODO (Nathan)` markers in the HTML** — search for that string:
 

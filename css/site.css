@@ -7,6 +7,12 @@
    ============================================================ */
 
 :root{
+  /* Headings and display type. Poppins is loaded from Google Fonts in every
+     page <head>; the rest of the stack is the fallback, so if Google is
+     unreachable the site still renders in the system sans and nothing shifts
+     to a serif. Changed from Georgia on 24 Aug 2026 — see CLAUDE.md. */
+  --font-display:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
   --ink:#141618;
   --ink-soft:#4a5157;
   --paper:#faf8f5;
@@ -21,7 +27,7 @@ body{
   margin:0;
   background:var(--paper);
   color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  font-family:var(--font-body);
   font-size:19px;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
@@ -31,7 +37,9 @@ body{
    Prose is held to a readable measure inside it. */
 .wrap,.wrap-wide{max-width:1060px;margin:0 auto;padding:0 26px;}
 .measure{max-width:700px;}
-h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:600;letter-spacing:-0.01em;line-height:1.18;margin:0;}
+/* -0.02em, not -0.01em: Poppins is a wide geometric sans and needs more
+   negative tracking than Georgia did to hold together at display sizes. */
+h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:-0.02em;line-height:1.2;margin:0;}
 a{color:var(--deep);}
 a:hover{color:var(--accent);}
 
@@ -42,7 +50,7 @@ img{height:auto;}
 /* ---------- top bar ---------- */
 .topbar{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:10;}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px;}
-.brand{font-family:Georgia,serif;font-size:20px;letter-spacing:0.01em;text-decoration:none;color:var(--ink);white-space:nowrap;}
+.brand{font-family:var(--font-display);font-size:20px;letter-spacing:0.01em;text-decoration:none;color:var(--ink);white-space:nowrap;}
 .topnav{display:flex;gap:26px;font-size:15px;}
 .topnav a{text-decoration:none;color:var(--ink-soft);}
 .topnav a:hover{color:var(--accent);}
@@ -71,7 +79,7 @@ img{height:auto;}
   align-items:center;justify-content:center;text-align:center;gap:7px;padding:22px;
   border:2px dashed #c9bfb1;border-radius:6px;color:#8a8073;background:var(--paper-2);
 }
-.ph .ph-t{font-family:Georgia,serif;font-size:17px;color:#6f6659;}
+.ph .ph-t{font-family:var(--font-display);font-size:17px;color:#6f6659;}
 .ph .ph-d{font-size:13.5px;line-height:1.5;max-width:24ch;}
 .ph .ph-f{font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#a2988a;margin-top:3px;}
 figcaption{font-size:14.5px;color:var(--ink-soft);margin-top:11px;font-style:italic;}
@@ -105,7 +113,7 @@ h1{font-size:clamp(34px,5.4vw,52px);}
 .proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2);padding:30px 0;}
 .proof ul{max-width:760px;list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px 30px;}
 .proof li{font-size:15px;color:var(--ink-soft);display:flex;align-items:baseline;gap:9px;}
-.proof b{font-family:Georgia,serif;font-size:22px;color:var(--ink);font-weight:600;}
+.proof b{font-family:var(--font-display);font-size:22px;color:var(--ink);font-weight:600;}
 
 /* ---------- sections ---------- */
 section{padding:70px 0;}
@@ -116,7 +124,7 @@ p:last-child{margin-bottom:0;}
 
 .story h2,.story p{max-width:700px;}
 .story p:first-of-type{font-size:21px;}
-.story .sig{margin-top:30px;font-family:Georgia,serif;font-style:italic;color:var(--ink-soft);font-size:17px;}
+.story .sig{margin-top:30px;font-family:var(--font-display);font-style:italic;color:var(--ink-soft);font-size:17px;}
 
 .pillars{display:grid;gap:34px;max-width:700px;}
 .pillar h3{font-size:21px;margin-bottom:9px;}
@@ -166,12 +174,12 @@ footer{padding:46px 0 60px;font-size:16px;color:var(--ink-soft);}
 .credits{list-style:none;margin:0;padding:0;}
 .credits li{padding:18px 0;border-top:1px solid var(--line);}
 .credits li:last-child{border-bottom:1px solid var(--line);}
-.credits .t{font-family:Georgia,serif;font-size:20px;line-height:1.3;}
+.credits .t{font-family:var(--font-display);font-size:20px;line-height:1.3;}
 .credits .r{font-size:16px;color:var(--ink-soft);margin-top:5px;}
 .credits .n{font-size:15px;color:var(--ink-soft);margin-top:7px;}
 
 /* Inline roster of names (artists, etc.) */
-.roster{font-family:Georgia,serif;font-size:20px;line-height:1.6;max-width:700px;color:var(--ink);}
+.roster{font-family:var(--font-display);font-size:20px;line-height:1.6;max-width:700px;color:var(--ink);}
 
 /* Speaking: topic cards */
 .topics{display:grid;grid-template-columns:repeat(2,1fr);gap:30px 34px;max-width:820px;}
@@ -187,7 +195,7 @@ footer{padding:46px 0 60px;font-size:16px;color:var(--ink-soft);}
 /* Pull quote */
 blockquote.pull{
   margin:34px 0;padding:4px 0 4px 24px;border-left:3px solid var(--accent);
-  font-family:Georgia,serif;font-size:22px;line-height:1.45;max-width:700px;
+  font-family:var(--font-display);font-size:22px;line-height:1.45;max-width:700px;
 }
 blockquote.pull cite{display:block;font-family:inherit;font-size:15px;font-style:normal;
   color:var(--ink-soft);margin-top:14px;}
@@ -246,6 +254,99 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
 @media(max-width:420px){
   .wrap,.wrap-wide{padding:0 16px;}
   .credit{white-space:normal;}
+}
+
+/* ============================================================
+   Homepage dark hero + featured strip (added 23 Aug 2026)
+
+   Borrowed from the grahamcochrane.com layout: dark hero, one
+   loud CTA, a "Featured in" strip. Deliberately NOT borrowed:
+   testimonial cards and the three-card offer grid — those imply
+   products for sale and undercut the professor position. See
+   CLAUDE.md, "Design direction".
+
+   Everything here is scoped to .topbar--dark, .herowrap or
+   .logostrip, all of which appear only on index.html. Interior
+   pages are untouched by design — check them anyway after
+   editing tokens.
+   ============================================================ */
+
+:root{
+  --cta:#ef8c1f;        /* button orange — always paired with dark text */
+  --cta-hover:#ffa236;
+  --sky:#7fb8e0;        /* headline highlight on navy */
+}
+
+/* ---------- dark top bar ---------- */
+.topbar--dark{background:var(--deep);border-bottom:1px solid rgba(255,255,255,0.10);}
+.topbar--dark .brand{color:#fff;}
+.topbar--dark .topnav a{color:#b9c8d4;}
+.topbar--dark .topnav a:hover{color:var(--cta);}
+.topbar--dark .topnav a[aria-current=page]{color:#fff;border-bottom-color:var(--cta);}
+
+/* ---------- full-bleed navy hero ----------
+   The portrait sits flush to the bottom edge and fades out with a
+   mask, which reads like a cutout without needing a cut-out PNG.
+   Below 820px the grid stacks and the bleed is reverted — a
+   bottom-aligned photo in a single column just leaves a gap. */
+.herowrap{background:var(--deep);color:#f4f1ec;overflow:hidden;}
+.herowrap .hero{padding:76px 0 0;}
+.herowrap .hero-grid{grid-template-columns:1.25fr 1fr;gap:48px;align-items:end;}
+.herowrap .eyebrow{color:#9fb8cc;}
+.herowrap h1{color:#fff;}
+.herowrap h1 .hl{color:var(--sky);}
+.herowrap .lede{color:#c3cdd6;}
+.herowrap .cta-row{margin-bottom:76px;}
+.herowrap .hero-shot{background:transparent;border-radius:0;aspect-ratio:4/5;align-self:end;}
+.herowrap .hero-shot img{
+  object-position:center top;
+  -webkit-mask-image:linear-gradient(to bottom,#000 74%,transparent 100%);
+          mask-image:linear-gradient(to bottom,#000 74%,transparent 100%);
+}
+/* On phones the photo is shown WHOLE — no crop.
+   portrait.jpg is 1000x1249 (4:5). The base .hero-shot rule forces
+   aspect-ratio:3/2 below 820px, and object-fit:cover then threw away
+   ~47% of the height, decapitating him. Overridden here: the box takes
+   the image's own ratio and the image is capped to a sensible width so
+   it doesn't become a full-bleed slab on a small screen. */
+@media(max-width:820px){
+  .herowrap .hero{padding:52px 0 48px;}
+  .herowrap .cta-row{margin-bottom:0;}
+  .herowrap .hero-shot{
+    aspect-ratio:auto;max-height:none;align-self:auto;
+    width:min(100%,300px);margin:0 auto;border-radius:8px;
+  }
+  .herowrap .hero-shot img{
+    height:auto;object-fit:contain;object-position:center;
+    -webkit-mask-image:none;mask-image:none;
+  }
+}
+
+/* ---------- the one loud button ----------
+   Orange with near-black text, not white. White on this orange is
+   about 2.9:1 and fails; #1b1206 clears 8:1. Don't flip it. */
+.btn-cta{background:var(--cta);border-color:var(--cta);color:#1b1206;font-weight:600;}
+.btn-cta:hover{background:var(--cta-hover);border-color:var(--cta-hover);color:#1b1206;}
+.herowrap .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,0.35);}
+.herowrap .btn-ghost:hover{background:rgba(255,255,255,0.10);color:#fff;}
+.signup button{background:var(--cta);color:#1b1206;font-weight:600;}
+.signup button:hover{background:var(--cta-hover);}
+
+/* ---------- "Featured in" strip ----------
+   Typographic wordmarks, not logo files. Every name here is a
+   verified appearance (see CLAUDE.md). Nothing goes in this strip
+   that can't be pointed at. */
+.logostrip{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 0 30px;}
+.logostrip .lab{font-family:var(--font-display);font-style:italic;font-size:15px;
+  color:var(--ink-soft);text-align:center;margin:0 0 18px;}
+.logostrip ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  justify-content:center;align-items:center;gap:12px 36px;}
+.logostrip li{font-family:var(--font-display);font-size:19px;letter-spacing:0.02em;
+  color:#6f6659;white-space:nowrap;}
+@media(max-width:700px){
+  .logostrip{padding:22px 0 24px;}
+  .logostrip ul{gap:10px 22px;}
+  .logostrip li{font-size:16px;}
 }
 
 /* Simple two-column meta list (education, etc.) */
