@@ -23,3 +23,7 @@ node_modules/
 
 # Local infrastructure notes — keep out of the public repo
 DNS-BACKUP-*.txt
+
+# Draft correspondence about correcting other people's published bios.
+# Private working material; the repo is public.
+BIO-CORRECTIONS.md

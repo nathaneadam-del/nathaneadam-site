@@ -64,6 +64,38 @@ Everything else in that zone is Google Workspace and **must not move**: the
 nameservers, decline — moving the zone means recreating the MX by hand, and
 missing it kills his email.
 
+### Zone as actually observed, 24 Aug 2026
+
+Queried against public resolvers rather than read off the DreamHost panel, so
+this is what the world sees:
+
+| Record | Value | Verdict |
+|---|---|---|
+| NS | `ns1/2/3.dreamhost.com` | As intended — not delegated to Vercel |
+| A (apex) | `216.198.79.1` | Matches |
+| `www` CNAME | `05b8bf420d1ec53b.vercel-dns-017.com` | Matches |
+| MX | `0 aspmx.l.google.com` | **Mail survived the migration** |
+| `mail` CNAME | `ghs.googlehosted.com` | Present |
+| `calendar`, `docs`, `sites`, `start` | NXDOMAIN | **Gone.** Vanity redirects only; low impact, but the zone lost them |
+| SPF (TXT at apex) | none | **Missing** |
+| DKIM (`google._domainkey`) | none | **Missing** |
+| DMARC (`_dmarc`) | none | **Missing** |
+
+**The good news: `nathan@nathaneadam.com` receives mail.** The MX points at
+Google Workspace and `aspmx.l.google.com` resolves. The thing most at risk during
+the Vercel move came through. That said, it's a *lone* MX at priority 0 — Google's
+own setup is either five records or the modern single `smtp.google.com` at
+priority 1. One record works but has no failover.
+
+**The bad news: the domain cannot authenticate outbound mail.** No SPF, no DKIM,
+no DMARC. Since February 2024 Gmail and Yahoo require all three from bulk senders,
+and even one-to-one mail from an unauthenticated domain gets filtered hard. This
+matters right now for two reasons: the speaking page's booking CTA sends replies
+from this address, and the whole launch plan is a weekly newsletter. **Sending a
+newsletter from this domain as it stands is the most likely single cause of it
+landing in spam.** Fixing it is three DNS records at DreamHost plus turning DKIM
+on in the Workspace admin console — no code, and unrelated to Vercel.
+
 `nathaneadam.com` at DreamHost is set to **DNS Only** (hosting removed 23 Aug
 2026). His old files still sit in `/home/adnstudios/nathaneadam` including a
 `projects/` folder that is no longer served. A pre-migration zone snapshot is in
@@ -405,10 +437,12 @@ nothing else. Everything else found in that review has been fixed.
   television and emerging media"* and *"more than 100 Grammy camps."* Both wrong,
   both propagated from the conference bio. Worth asking her to correct it — the
   site's own proof section currently routes people to it.
-- **Confirm `nathan@nathaneadam.com` actually receives mail.** The speaking
-  page's booking CTA and every footer contact link point at it, and the Google
-  Workspace MX records were the thing most at risk during the Vercel migration.
-  Never verified end to end.
+- **Email authentication — the most urgent thing on this list.** Checked 24 Aug
+  2026: inbound mail to `nathan@nathaneadam.com` works (the MX survived), but the
+  domain has **no SPF, no DKIM and no DMARC**. See the zone table under
+  **Deployment**. Nothing sent from this address is authenticated, which is a
+  problem for the booking CTA and a serious one for a newsletter. Three DNS
+  records plus a toggle in the Workspace admin console.
 - **The bio he sends conferences** says "over 100 GRAMMY Camps" and *Assistant*
   Professor. That's where the inflated number came from.
 - **A Resolve title card** reads "The **Asessment** Pivot" — one S short. Kept off
