@@ -179,6 +179,31 @@ blockquote.pull{
 blockquote.pull cite{display:block;font-family:inherit;font-size:15px;font-style:normal;
   color:var(--ink-soft);margin-top:14px;}
 
+/* ---------- imagery ---------- */
+
+/* A plain framed photo with caption, used inline in prose */
+figure.plate{margin:38px 0;max-width:760px;}
+figure.plate img{display:block;width:100%;height:auto;border-radius:6px;background:var(--paper-2);}
+
+/* Two photos side by side; stacks on narrow screens */
+.plate-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:38px 0;max-width:820px;}
+.plate-pair figure{margin:0;}
+.plate-pair img{display:block;width:100%;height:auto;border-radius:6px;background:var(--paper-2);}
+@media(max-width:640px){.plate-pair{grid-template-columns:1fr;}}
+
+/* Small thumbnail sitting beside a credit entry */
+.credits li.with-shot{display:grid;grid-template-columns:180px 1fr;gap:22px;align-items:start;}
+.credits li.with-shot img{display:block;width:100%;height:auto;border-radius:5px;background:var(--paper-2);}
+@media(max-width:640px){
+  .credits li.with-shot{grid-template-columns:1fr;gap:14px;}
+  .credits li.with-shot img{max-width:260px;}
+}
+
+/* Full-bleed-ish band used to break up long text pages */
+.band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0;}
+.band img{display:block;width:100%;height:clamp(220px,34vw,420px);object-fit:cover;}
+.band figcaption{padding:12px 26px 16px;max-width:1060px;margin:0 auto;}
+
 /* Simple two-column meta list (education, etc.) */
 .meta{list-style:none;margin:0;padding:0;max-width:700px;}
 .meta li{display:flex;gap:18px;padding:11px 0;border-top:1px solid var(--line);font-size:17px;}

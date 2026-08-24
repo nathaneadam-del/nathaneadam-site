@@ -20,3 +20,6 @@
 
 # Node (only if you ever add tooling)
 node_modules/
+
+# Local infrastructure notes — keep out of the public repo
+DNS-BACKUP-*.txt
