@@ -162,7 +162,12 @@ footer{padding:46px 0 60px;font-size:16px;color:var(--ink-soft);}
    ============================================================ */
 
 /* Page header used at the top of interior pages instead of the hero */
-.pagehead{padding:64px 0 44px;border-bottom:1px solid var(--line);}
+/* Vertical padding only. This element is always `class="pagehead wrap"`, and
+   the `.wrap` gutter is `padding:0 26px`. A `padding` shorthand here resets
+   left/right to 0 (same specificity, later in the file), which pulled the
+   header text 26px left of every other left edge on all three interior pages.
+   Use the longhands so the gutter survives. */
+.pagehead{padding-top:64px;padding-bottom:44px;border-bottom:1px solid var(--line);}
 .pagehead h1{font-size:clamp(31px,4.6vw,44px);max-width:760px;}
 .pagehead .lede{font-size:20px;color:var(--ink-soft);margin:22px 0 0;max-width:660px;}
 
@@ -220,10 +225,21 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
   .credits li.with-shot img{max-width:260px;}
 }
 
-/* Full-bleed-ish band used to break up long text pages */
-.band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0;}
-.band img{display:block;width:100%;height:clamp(220px,34vw,420px);object-fit:cover;object-position:center 28%;}
-.band figcaption{padding:12px 26px 16px;max-width:1060px;margin:0 auto;}
+/* Band used to break up long text pages.
+   No longer full-bleed. It was `width:100%` at a fixed 220–420px
+   height with object-fit:cover, which on a wide monitor made a ~4.6:1
+   letterbox out of students-studio.jpg (1600x1066, 3:2) — about two
+   thirds of the height thrown away, cutting heads off at both the top
+   and the bottom of the frame. Any wide crop of that photo decapitates
+   somebody, because there are faces at the very top and very bottom.
+
+   It now shows the whole frame and lines up exactly with the text
+   column: 1008px = the 1060px .wrap minus its 2x26px gutters, so the
+   left edge matches every other left edge on the page. */
+.band{background:transparent;border:0;padding:0 26px;margin:44px 0 0;}
+.band img{display:block;width:100%;max-width:1008px;margin:0 auto;
+  height:auto;border-radius:6px;background:var(--paper-2);}
+.band figcaption{max-width:1008px;margin:0 auto;padding:0;}
 
 /* Photographer credit inside a caption */
 .credit{color:#8a8073;font-style:normal;font-size:0.9em;white-space:nowrap;}
@@ -234,7 +250,7 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
   .wrap,.wrap-wide{padding:0 20px;}
   section{padding:48px 0;}
   .hero{padding:40px 0 44px;}
-  .pagehead{padding:36px 0 30px;}
+  .pagehead{padding-top:36px;padding-bottom:30px;}
   .hero .lede,.pagehead .lede{font-size:18.5px;}
   .story p:first-of-type{font-size:18.5px;}
   figure.plate,.plate-pair{margin:26px 0;}
@@ -243,7 +259,9 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
   .proof ul{gap:10px 22px;}
   .proof b{font-size:20px;}
   blockquote.pull{font-size:19px;padding-left:18px;margin:26px 0;}
-  .band figcaption{padding:11px 20px 14px;}
+  /* Match the .wrap gutter, which drops to 20px at this breakpoint. */
+  .band{padding:0 20px;margin-top:30px;}
+  .band figcaption{padding:0;}
   .credits li{padding:15px 0;}
   .credits .t{font-size:18.5px;}
   /* Buttons go full width so they're easy to hit with a thumb */
@@ -253,6 +271,7 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
 
 @media(max-width:420px){
   .wrap,.wrap-wide{padding:0 16px;}
+  .band{padding:0 16px;}
   .credit{white-space:normal;}
 }
 
@@ -303,19 +322,32 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
   -webkit-mask-image:linear-gradient(to bottom,#000 74%,transparent 100%);
           mask-image:linear-gradient(to bottom,#000 74%,transparent 100%);
 }
-/* On phones the photo is shown WHOLE — no crop.
-   portrait.jpg is 1000x1249 (4:5). The base .hero-shot rule forces
-   aspect-ratio:3/2 below 820px, and object-fit:cover then threw away
-   ~47% of the height, decapitating him. Overridden here: the box takes
-   the image's own ratio and the image is capped to a sensible width so
-   it doesn't become a full-bleed slab on a small screen. */
+/* ---------- phone hero: centred stack ----------
+   MUST restate grid-template-columns:1fr here. The base stacking rule
+   is plain `.hero-grid` (0,1,0) and `.herowrap .hero-grid` is (0,2,0),
+   so the desktop two-column rule wins on specificity even inside this
+   media query. Leaving it out kept phones on a two-column grid: the
+   headline broke to five lines and the portrait was crushed into a
+   side column. Same trap applies to every .herowrap override below.
+
+   The photo is shown WHOLE — no crop. portrait.jpg is 1000x1249 (4:5)
+   and the base .hero-shot rule forces aspect-ratio:3/2 below 820px,
+   which with object-fit:cover discarded ~47% of the height and cut the
+   top of his head off. */
 @media(max-width:820px){
-  .herowrap .hero{padding:52px 0 48px;}
-  .herowrap .cta-row{margin-bottom:0;}
+  .herowrap .hero{padding:44px 0 0;}
+  .herowrap .hero-grid{grid-template-columns:1fr;gap:30px;text-align:center;}
+  .herowrap .eyebrow{margin-bottom:16px;}
+  .herowrap h1{font-size:clamp(28px,7.2vw,38px);}
+  .herowrap .lede{font-size:18px;margin:18px auto 0;max-width:34ch;}
+  .herowrap .cta-row{margin-bottom:0;justify-content:center;}
   .herowrap .hero-shot{
     aspect-ratio:auto;max-height:none;align-self:auto;
-    width:min(100%,300px);margin:0 auto;border-radius:8px;
+    width:min(100%,320px);margin:0 auto;border-radius:8px;
   }
+  /* No mask on phones. portrait.jpg has a white TEDx backdrop, so a
+     fade-to-transparent would bleed white into the navy. It reads as a
+     clean card instead. */
   .herowrap .hero-shot img{
     height:auto;object-fit:contain;object-position:center;
     -webkit-mask-image:none;mask-image:none;

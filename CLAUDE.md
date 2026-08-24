@@ -4,7 +4,7 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 24 August 2026 (Poppins, mobile hero crop fix).
+Last updated: 24 August 2026 (Poppins; mobile hero stacking; band + pagehead alignment).
 
 ---
 
@@ -160,7 +160,7 @@ Layout classes, in the order they were added:
 | `figure.plate` | One photo with caption, inline in prose, 760px max |
 | `.plate-pair` | Two photos side by side, stacks under 640px |
 | `.credits li.with-shot` | Thumbnail beside a credit entry, stacks under 640px |
-| `.band` | Full-width photo strip; `object-position: center 28%` so faces aren't cropped |
+| `.band` | Big photo, uncropped, aligned to the text column. Used once, on `credits.html` |
 | `.credit` | Photographer credit inside a caption |
 | `.topics` | Two-column grid on the speaking page |
 
@@ -168,8 +168,29 @@ Layout classes, in the order they were added:
 `early-guitar.jpg` and `console.jpg` are both square, and the Walnut House pair
 are both 4:3.
 
-**Only use `.band` for images at least ~1400px wide.** A 720px source stretched
-full-bleed looks like mush. The GRAMMY speaking shot is a `.plate` for this reason.
+**`.band` is no longer full-bleed** (changed 24 Aug 2026). It used to be `width:100%`
+at a fixed 220–420px height with `object-fit:cover`, which on a wide monitor turned
+`students-studio.jpg` (1600×1066, 3:2) into a ~4.6:1 letterbox — two thirds of the
+height gone, heads cut off at both the top and the bottom of the frame. That photo
+has faces at the very top *and* the very bottom, so no wide crop of it works. It now
+shows the whole frame at `max-width:1008px`.
+
+**1008px is not arbitrary**: it is the 1060px `.wrap` minus its two 26px gutters, so
+the image's edges land exactly on the text column's edges. If the wrap width or
+gutter ever changes, this number has to change with it.
+
+### The padding-shorthand trap
+
+`.pagehead` is always written `class="pagehead wrap"`. `.wrap` supplies the gutter as
+`padding:0 26px`, and `.pagehead` used to say `padding:64px 0 44px` — same
+specificity, later in the file, so its shorthand silently reset left/right to 0. The
+header text on all three interior pages sat 26px left of every other left edge. Fixed
+24 Aug 2026 by switching to `padding-top`/`padding-bottom` longhands.
+
+**Any rule that also carries `.wrap` must use padding longhands.** A `padding`
+shorthand will eat the gutter and break the alignment the whole site is built on.
+Verified after the fix: eyebrow, h1, lede, proof bar, band image and credit headings
+all report the same `getBoundingClientRect().left`.
 
 ### Responsive
 
@@ -214,6 +235,18 @@ Two constraints not to undo:
    is ~2.9:1 and fails contrast. This was checked.
 2. **The hero bleed reverts below 820px.** A bottom-aligned photo in a stacked
    single column leaves a gap, and the mask is turned off there.
+
+**The specificity trap in `.herowrap` — read before touching the hero.** The base
+stacking rule is plain `.hero-grid` (specificity 0,1,0) inside `@media(max-width:820px)`.
+Every homepage override is `.herowrap .hero-grid` (0,2,0), which **wins regardless of
+the media query**. The first version of this restyle set the desktop two-column grid
+without restating `grid-template-columns:1fr` in the mobile block, so phones kept a
+two-column hero: the headline broke to five words-per-line and the portrait was
+crushed into a side column. Shipped live before it was caught. Every `.herowrap`
+override needs its mobile counterpart restated explicitly.
+
+The phone hero is a centred stack, matching the reference: eyebrow, headline, lede
+capped at `34ch`, full-width CTA, then the portrait whole at `min(100%,320px)`.
 
 **Mobile hero crop — fixed 24 Aug 2026, don't reintroduce.** The base `.hero-shot`
 rule forces `aspect-ratio:3/2` below 820px. `portrait.jpg` is 1000×1249 (4:5), so
