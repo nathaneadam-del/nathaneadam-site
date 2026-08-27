@@ -31,3 +31,9 @@ BIO-CORRECTIONS.md
 # Sandbox/FUSE leftovers from editing over a mounted filesystem.
 # Deleted-but-still-open file handles; never real content.
 .fuse_hidden*
+
+# Local captures of other people's articles, kept as a personal backup in case
+# a source goes offline. Never published — the repo is public and these are
+# third-party copyrighted works. The public durability fix is the Wayback link
+# beside each item on the live site. See press-archive/README.md.
+press-archive/
