@@ -212,9 +212,25 @@ Hold the line.
 - **Peter Pan** was the Mansion Theater production in Branson, Missouri.
   `youtube.com/watch?v=K1PBskGJVl0`
 - **TEDxNashville board member**, and he produced multicam shoots for other
-  people's talks.
+  people's talks. The full list of talks he produced and edited is on
+  `projects/tedx-nashville.html` — 34 speakers, 32 with verified links.
 - **GRAMMY Foundation curriculum author** — *GRAMMY Career Pathways* (2018) and
   *GRAMMY Camp: Weekends* (2016).
+- **The TEDx talk was 13 November 2017.** "Society of Fellows" and "Salon" are
+  **both correct and not a contradiction** — confirmed by Nathan. The Society of
+  Fellows was the event; "Salon" was TEDxNashville's name at the time for the
+  smaller event format. The 2017 Belmont News piece uses the former, the site
+  uses the latter. Don't try to reconcile these again.
+- **His titles have changed, and old ones are not errors.** Assistant Professor
+  of Audio Engineering Technology (2017, per Belmont News) → Professor of
+  Emerging Media (2023, per WPLN) → Associate Professor of Media Production
+  (current, used on the site). All three were accurate when published. This is
+  separate from the genuinely wrong titles in circulation — see the editorial
+  rules above; the problem ones are *"assistant professor of cinema, television
+  and emerging media"* (Jamie Dunham) and the Belmont faculty page's claims.
+- **GRAMMY Camp Weekends 2017** ran in San Antonio, San Diego and Los Angeles,
+  with Best Buy Teen Tech Centers and the Boys and Girls Club, 80+ students
+  across three tracks. Source: the 2017 Belmont News piece. Not yet on the site.
 
 ---
 
@@ -427,6 +443,17 @@ nothing else. Everything else found in that review has been fixed.
 5. `index.html` — YouTube link held back until episode 1. The handle
    `@nathaneadam` was **not** claimed as of August 2026; an unrelated account sits
    at `@nathanadam1156`.
+6. `projects/cost-of-valor.html` — the two trailers currently link to **LinkedIn
+   posts on Gary Garrison's account**. Nathan plans to post the films to his own
+   YouTube channel and brand. When that happens, swap the links: LinkedIn post
+   URLs are fragile, tied to someone else's account, and the Wayback Machine
+   handles them poorly. This is the single most at-risk link on the new pages.
+7. **Three press URLs have no Wayback snapshot** and need submitting by hand at
+   `web.archive.org/save` — the save endpoint is blocked from the Cowork
+   sandbox, so this can't be automated from here. In priority order:
+   NewsChannel 5 (unarchived, on a local TV CMS, and the proof bar leans on it),
+   the MEIEA 2026 proceedings PDF, and the Belmont M.A. program page. A TODO in
+   `speaking.html` marks where the NewsChannel 5 archive link goes.
 
 **Not on the site, but Nathan should fix at the source:**
 
