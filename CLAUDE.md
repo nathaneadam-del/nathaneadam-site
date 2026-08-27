@@ -41,7 +41,7 @@ manager, no CDN scripts.
 | | |
 |---|---|
 | Source of truth | `~/Library/CloudStorage/Dropbox/nathaneadam-site` |
-| GitHub | `github.com/nathaneadam-del/nathaneadam-site` (public) |
+| GitHub | `github.com/nathaneadam/nathaneadam-site` (public) — **moved 26 Aug 2026** from `nathaneadam-del` |
 | Host | Vercel, project `nathaneadam-site`, team slug `nathan-ea-dam` |
 | Deploys | Automatically on push to `main`. ~1 minute. |
 | Preview URL | `nathaneadam-site.vercel.app` |
@@ -49,6 +49,32 @@ manager, no CDN scripts.
 
 **Nathan pushes, not Claude.** Auth lives in his macOS keychain via GitHub
 Desktop. Claude can commit locally; the push is his click.
+
+### The repo move broke Vercel — 27 Aug 2026
+
+The repo was moved from the `nathaneadam-del` account to `nathaneadam`. GitHub
+redirects the old URL, so **git kept working and hid the problem**: pushes
+succeeded, `git ls-remote` against either URL returned the same commits, and
+nothing in the terminal suggested anything was wrong.
+
+Vercel broke silently. Its project was still linked to
+`nathaneadam-del/nathaneadam-site`, and Settings → Git showed
+**"Error: Project Link not found."** The webhook stopped firing, so pushes
+produced **no deployment at all** — not a failed one. The Deployments list
+simply stopped at `7e2a099` (24 Aug) while three later commits sat on `main`.
+
+**How to recognise this again.** The tell is a stale live site with *no*
+corresponding failed build. If a deploy had broken, there would be a red entry
+in Deployments. An empty list past a certain date means Vercel never heard about
+the push at all — look at Settings → Git before debugging anything in the code.
+Checking production against the `nathaneadam-site.vercel.app` preview is the
+fast confirmation: if both serve identical stale content, it is not DNS, not
+caching and not the domain.
+
+The fix is **Reconnect** on that settings page, pointed at the new repo. That
+re-authorizes Vercel's GitHub App, which may need installing on the
+`nathaneadam` account since it was authorized on `nathaneadam-del`. That is an
+account-permission change and is Nathan's click, like the push.
 
 ### DNS — read before touching
 
@@ -476,10 +502,9 @@ nothing else. Everything else found in that review has been fixed.
   the site until fixed.
 - **His DreamHost SFTP password sits in plaintext** in the file-manager URL.
   Should be rotated, especially with recording-in-public planned.
-- **GitHub attribution.** `nathaneadam@gmail.com` is verified on
-  `nathaneadam-del`, so commits credit that account even though the nicer username
-  `nathaneadam` (created 2023) also exists. He chose to defer this. Fixing it
-  means moving the email between accounts.
+- ~~**GitHub attribution.**~~ **Done, 26 Aug 2026.** The repo now lives at
+  `github.com/nathaneadam/nathaneadam-site`. The side effect was breaking
+  Vercel's Git link — see "The repo move broke Vercel" under **Deployment**.
 
 ## Still missing photography
 
