@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Four pages, hand-maintained. There is no build step, so adding a page to
-     the site means adding it here too. 404.html is deliberately absent. -->
+<!-- Hand-maintained. There is no build step, so adding a page to the site means
+     adding it here too. 404.html is deliberately absent. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.nathaneadam.com/</loc>
@@ -21,5 +21,25 @@
     <loc>https://www.nathaneadam.com/credits.html</loc>
     <lastmod>2026-08-24</lastmod>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.nathaneadam.com/projects.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nathaneadam.com/projects/cost-of-valor.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nathaneadam.com/projects/ma-media-entertainment.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nathaneadam.com/projects/tedx-nashville.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>

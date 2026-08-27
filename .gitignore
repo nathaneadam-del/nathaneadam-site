@@ -27,3 +27,7 @@ DNS-BACKUP-*.txt
 # Draft correspondence about correcting other people's published bios.
 # Private working material; the repo is public.
 BIO-CORRECTIONS.md
+
+# Sandbox/FUSE leftovers from editing over a mounted filesystem.
+# Deleted-but-still-open file handles; never real content.
+.fuse_hidden*
