@@ -47,7 +47,9 @@ navigation — it looks badly broken, and the cause isn't obvious.
 
 **Photo pairs need matching shapes.** Two images side by side (`.plate-pair`) run
 ragged if one is portrait and the other landscape. Crop both to the same aspect
-ratio first.
+ratio first, or give the odd one out its own `figure.plate`. There's a script in
+`images/README.md` that checks every pair on the site in one go — worth running
+after adding photos, since a ragged pair isn't always obvious on a wide screen.
 
 **The mobile nav.** Below 760px it collapses behind a hamburger button, run by
 `js/nav.js`. It used to be hidden with nothing in its place, which left phones

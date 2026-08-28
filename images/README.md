@@ -164,6 +164,44 @@ Nathan's own channel. Every other image on the site shows what it claims to.
 automatically, originals and all. Delete strays before committing — a 3.7MB PNG
 nearly ended up in git history permanently.
 
+## Check images before committing
+
+These three checks caught two real bugs during the 27 Aug batch — a ragged pair
+and a wrong dimension — neither of which was obvious by eye on a laptop. Run
+them from the repo root after adding or swapping any image.
+
+```python
+import re, glob
+from PIL import Image
+
+files = glob.glob('*.html') + glob.glob('projects/*.html')
+
+# 1. Every <img> declares width and height
+for f in files:
+    h = open(f).read()
+    tot = len(re.findall(r'<img ', h))
+    ok  = len(re.findall(r'<img [^>]*width="\d+" height="\d+"', h))
+    if tot != ok: print(f'{f}: only {ok}/{tot} have dimensions')
+
+# 2. Declared dimensions match the actual file (wrong ones defeat the purpose)
+for f in files:
+    for m in re.finditer(r'<img src="(?:\.\./)?(images/[^"]+)"[^>]*width="(\d+)" height="(\d+)"', open(f).read()):
+        p, w, ht = m.group(1), int(m.group(2)), int(m.group(3))
+        if Image.open(p).size != (w, ht):
+            print(f'{f}: {p} declared {w}x{ht}, actually {Image.open(p).size}')
+
+# 3. Both images in a .plate-pair share an aspect ratio
+for f in files:
+    for pair in re.findall(r'<div class="plate-pair">(.*?)</div>', open(f).read(), re.S):
+        imgs = re.findall(r'src="(?:\.\./)?(images/[^"]+)"', pair)
+        if len(imgs) == 2:
+            r = [w/h for w, h in (Image.open(i).size for i in imgs)]
+            if abs(r[0]-r[1])/max(r) >= 0.08: print(f'{f}: ragged pair {imgs}')
+```
+
+Then look at the page at ~390px wide. The checks catch arithmetic; they don't
+catch a face cropped out of frame.
+
 ## Rights
 
 The Tiffany L. photographs are used with her permission; watermarks were cropped

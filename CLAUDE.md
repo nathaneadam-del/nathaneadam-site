@@ -5,8 +5,9 @@ reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
 Last updated: 27 August 2026 (projects section — four write-ups, embedded TEDx
-talk grid, card index; Wayback archive links; the repo move that silently broke
-Vercel and how it was actually fixed).
+talk grid, card index; a twenty-image photo batch placed across the site;
+Wayback archive links; the repo move that silently broke Vercel and how it was
+actually fixed).
 
 ---
 
@@ -600,6 +601,20 @@ fixed. Pushes deploy normally.
 Projects link in every nav and footer, nine sitemap URLs, and "Archived copy"
 links on the six press sources that have Wayback snapshots.
 
+**The photography is no longer thin.** Twenty images were added and placed on
+27 Aug — see "Photography" below. Every `<img>` on every page carries width and
+height, every `.plate-pair` was checked for matching aspect ratios, and the
+declared dimensions were verified against the actual files. If you add images,
+re-run those three checks; a ragged pair and a missing dimension both shipped
+briefly during that batch and were caught by checking rather than by looking.
+
+**The homepage story photo changed** on 27 Aug at Nathan's request — from
+`teaching.jpg` to the Nate Bargatze shot. Worth knowing that the surrounding
+copy argues "I taught people through the last technology shift," which the old
+photo illustrated literally and the new one does not. `teaching.jpg` is still in
+the folder if that ever wants reverting, and `vision-pro.jpg` (now on About)
+would also carry that argument.
+
 **Waiting on Nathan, in rough priority order:**
 
 1. **Email authentication** — no SPF, no DKIM, no DMARC. Unchanged and still the
@@ -620,7 +635,32 @@ specific, sourced, and it uses detail that had been sitting unused in this file.
 
 ---
 
-## Still missing photography
+## Photography — status after the 27 Aug batch
 
-No images for: the dissertation, the AES Journal piece, *Live from Virtual
-Reality*. Those entries stand on text, which is fine.
+Nathan supplied twenty images on 27 Aug. They were placed by what each actually
+evidences rather than collected into a gallery; the full table of what went
+where is in `images/README.md`.
+
+**Gaps that closed:**
+
+- ***Live from Virtual Reality*** had no image at all. It now has one, and it's
+  the only picture of that credit in existence as far as this repo knows.
+- **The COVID teaching** — the video-call grid shot is the work the dissertation
+  studied. It earned its own section on the GRAMMY Camp page ("When it went
+  online") rather than sitting as a caption, because the research is the reason
+  that period matters.
+- **Vince Gill** is named first on the credits roster and is now pictured
+  directly beneath it.
+- **Donald Miller** appears on the TEDx project page, where his talk is already
+  embedded in the grid — the photo and the video reinforce each other.
+
+**Still text-only, which is fine:** the AES Journal piece, and the dissertation
+itself as a document (as opposed to the teaching it studied).
+
+**Two frames deliberately unused**, held as alternates: `live-from-vr-2.jpg` and
+`tedx-talk-close.jpg`.
+
+**The one image that lies:** `nc5-ai.jpg` doubles as the Cost of Valor card on
+`projects.html` and is a frame from the NewsChannel 5 story, not the film. See
+open item 8 and the warning in `images/README.md`. Everything else on the site
+depicts what it claims to.
