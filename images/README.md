@@ -13,11 +13,11 @@ that used to live here has been removed — every `<img>` now points at a real f
 | `teaching.jpg` | Homepage | Teaching at a board in a darkened studio |
 | `early-guitar.jpg` | About | Teenage Nathan with an electric guitar. Square. |
 | `console.jpg` | About | Younger, at a large analog desk. Square, pairs with the above. |
-| `grammy-camp.jpg` | About | Students around a console |
-| `grammy-console.jpg` | About | Eight people at one desk. **Photo: Tiffany L.** |
-| `grammy-camp-group.jpg` | Credits | Full GRAMMY Camp Nashville class |
-| `grammy-speaking.jpg` | Speaking | With a mic at a GRAMMY Foundation backdrop. **Photo: Tiffany L.** |
-| `students-studio.jpg` | Credits band | 1600×1066 (3:2). Shown whole — faces run from the very top of the frame to the very bottom |
+| `grammy-camp.jpg` | About · **GRAMMY Camp band** · **Projects card** | Students around a console |
+| `grammy-console.jpg` | About · **GRAMMY Camp pair** | Eight people at one desk. **Photo: Tiffany L.** |
+| `grammy-camp-group.jpg` | Credits · **GRAMMY Camp pair** | Full GRAMMY Camp Nashville class |
+| `grammy-speaking.jpg` | Speaking · **GRAMMY Camp plate** | With a mic at a GRAMMY Foundation backdrop. **Photo: Tiffany L.** |
+| `students-studio.jpg` | Credits band · **Projects card (M.A.)** | 1600×1066 (3:2). Shown whole in `.band` — faces run from the very top of the frame to the very bottom. Safe to crop in a `.projectcard`, which is 3:2 already |
 
 **Work and credits**
 
@@ -39,8 +39,9 @@ that used to live here has been removed — every `<img>` now points at a real f
 | File | Where |
 |---|---|
 | `tedx-stage.jpg` | Onstage in the VR headset |
-| `tedx-letters.jpg` | The red TEDx letters |
+| `tedx-letters.jpg` | The red TEDx letters. Also the TEDx project page band and its Projects card |
 | `walnut-house.jpg`, `walnut-house-2.jpg` | The Walnut House, both 4:3 |
+| `nc5-ai.jpg` | Frame from the NewsChannel 5 story. **Also standing in as the Cost of Valor card** — see the warning below |
 
 **Social cards** — these two are never shown on the site. They exist only for
 `og:image`, and they are the first thing anyone sees when the site is shared.
@@ -94,6 +95,21 @@ on every phone, and nothing about the desktop view hinted at it. The homepage no
 overrides the box to show the image whole, but a *new* photo can still land back
 in the cropped path. Resize the browser to ~390px and look before committing.
 
+**Project cards crop; `.band` does not.** Added 27 Aug 2026 with
+`projects.html`. A `.projectcard .shot` is a fixed 3:2 box with
+`object-fit:cover`, so it *will* crop whatever you give it — that is intended
+here, unlike `figure.band`, where cropping was the bug. The consequence is the
+same either way: **pick card images whose subject sits away from the frame
+edges.** `students-studio.jpg` is safe in a card because the card is 3:2 and so
+is the file; a 4:5 portrait in that slot would lose its top and bottom.
+
+**The one dishonest image on the site, flagged deliberately.** The Cost of Valor
+card on `projects.html` uses `nc5-ai.jpg`, a frame from the NewsChannel 5 story
+— not from the film. That project has no photography of its own yet. It reads as
+thematically right and is captioned generically, but it does not depict what the
+card is about. Replace it with a still from one of the trailers once they're on
+Nathan's own channel. Every other image on the site shows what it claims to.
+
 **Rules of thumb**
 
 - `.band` is no longer full-bleed. It shows the whole frame, capped at 1008px so
@@ -105,8 +121,11 @@ in the cropped path. Resize the browser to ~390px and look before committing.
   site.css means the CSS still controls how big it renders; the attributes only
   tell the browser the aspect ratio so it can reserve the space before the file
   arrives. Without them the homepage grew 507px as images loaded and text slid
-  out from under the reader. All four pages now measure a 0px shift; adding an
-  image without these attributes puts that back.
+  out from under the reader. Every page measured a 0px shift when last checked;
+  adding an image without these attributes puts that back. The same reasoning is
+  why the video grid on the TEDx project page wraps each iframe in a fixed 16:9
+  `.video` box — thirty embeds with no reserved height would be the worst version
+  of this bug the site has had.
 - **`sizes` must match the real box width**, or the browser picks the wrong
   source file. The hero declared `400px` for a box that measures `460px`, and
   the credits band declared `100vw` for a box capped at `1008px`. Measure with

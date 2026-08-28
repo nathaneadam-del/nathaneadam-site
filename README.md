@@ -1,6 +1,6 @@
 # nathaneadam.com
 
-Static site. Four pages, one stylesheet, one small script, no build step.
+Static site. One stylesheet, one small script, no build step.
 Edit a file, commit, push — Vercel deploys within about a minute.
 
 ```
@@ -8,15 +8,22 @@ index.html        Homepage
 about.html        The long story
 credits.html      Production, engineering, publishing, curriculum, teaching
 speaking.html     TEDx talk, topics, talk history, press, booking
+projects.html     Card index of the project write-ups
+404.html          Branded not-found page
+projects/         One page per project — Cost of Valor, TEDxNashville,
+                  GRAMMY Camp, the M.A. programme. These sit one folder down,
+                  so their links use ../
 css/site.css      Every style for every page
 js/nav.js         Mobile menu toggle — the only script on the site
 images/           Photos — see images/README.md
+press-archive/    Local copies of articles the site links to. Private, never
+                  published — see its README
 CLAUDE.md         Full project context, decisions, and open items
 ```
 
-The one thing loaded from outside is the Poppins webfont, from Google Fonts.
-If Google is ever unreachable the pages fall back to the system sans and the
-layout is unaffected.
+Loaded from outside: the Poppins webfont from Google Fonts, and the video
+embeds on the TEDx project page. If Google is ever unreachable the pages fall
+back to the system sans and the layout is unaffected.
 
 ## How to change something
 
@@ -27,11 +34,16 @@ There's no framework here on purpose. Any text editor works. Nothing to install,
 nothing to keep updated, nothing that breaks in eighteen months when a dependency
 goes stale.
 
-## Four things that are easy to get wrong
+## Five things that are easy to get wrong
 
-**One stylesheet, four pages.** `css/site.css` is shared. Changing a colour or a
+**One stylesheet, every page.** `css/site.css` is shared. Changing a colour or a
 base style hits every page at once — that's the point, but check more than one
 page afterwards.
+
+**Pages in `projects/` need `../` in their links.** They're one folder down, so
+their stylesheet, script and nav links start `../`. Copying a top-level page as a
+starting point and forgetting to fix those gives an unstyled page with dead
+navigation — it looks badly broken, and the cause isn't obvious.
 
 **Photo pairs need matching shapes.** Two images side by side (`.plate-pair`) run
 ragged if one is portrait and the other landscape. Crop both to the same aspect
@@ -50,10 +62,19 @@ letterbox. Resize the browser to about 390px wide before you commit.
 
 ## Where everything lives
 
-- **Repo** — `github.com/nathaneadam-del/nathaneadam-site`
+- **Repo** — `github.com/nathaneadam/nathaneadam-site` (moved here 26 Aug 2026
+  from the `nathaneadam-del` account)
 - **Host** — Vercel, deploys automatically from `main`
 - **Domain** — DNS stays at DreamHost; only the apex `A` record and `www` CNAME
   point at Vercel, so the Google Workspace email records are never touched
+
+**If a push doesn't show up on the live site**, check Vercel → Settings → Git
+before looking at anything in the code. Moving the repo between GitHub accounts
+broke the deploy webhook once, and it broke *silently* — pushes succeeded,
+nothing errored, and the Deployments list simply stopped growing. The giveaway is
+a stale site with **no failed build**: a build that fails leaves a red entry, so
+an empty list means Vercel never heard about the push. CLAUDE.md has the full
+diagnosis and the fix that actually worked.
 
 ## The editorial rules this site follows
 

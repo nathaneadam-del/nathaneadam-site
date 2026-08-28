@@ -4,8 +4,9 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 24 August 2026 (Poppins; hamburger nav; visitor-first hero copy;
-social cards, 404 page, image dimensions, structured data).
+Last updated: 27 August 2026 (projects section — four write-ups, embedded TEDx
+talk grid, card index; Wayback archive links; the repo move that silently broke
+Vercel and how it was actually fixed).
 
 ---
 
@@ -99,10 +100,32 @@ Checking production against the `nathaneadam-site.vercel.app` preview is the
 fast confirmation: if both serve identical stale content, it is not DNS, not
 caching and not the domain.
 
-The fix is **Reconnect** on that settings page, pointed at the new repo. That
-re-authorizes Vercel's GitHub App, which may need installing on the
-`nathaneadam` account since it was authorized on `nathaneadam-del`. That is an
-account-permission change and is Nathan's click, like the push.
+**What actually fixed it — and what didn't.** Two separate faults were stacked,
+which is why the first two attempts failed.
+
+1. **GitHub side.** The Vercel GitHub App *was* installed on `nathaneadam`, but
+   its Repository access was **"Only select repositories"** with just
+   `showrunner-review` ticked. Vercel could not see `nathaneadam-site` at all.
+   The trap: that option's fine print says *"Also includes public repositories
+   (read-only)"*, and this repo **is** public — so it looks like it should be
+   covered. Read-only is not enough. Vercel needs write access to register the
+   deploy webhook. Fixed at `github.com/settings/installations` by switching to
+   **All repositories**.
+
+2. **Vercel side. `Reconnect` did not work.** It cleared the red error and
+   displayed the right repo, but the card still read *"Connected Aug 23"* — it
+   had restored a stale link record without registering a webhook. Pushes still
+   produced nothing. What worked was **Disconnect, then connect fresh**:
+   Settings → Git → Disconnect → GitHub → pick `nathaneadam/nathaneadam-site`.
+   Deployment history, domains and DNS all survive; only the Git link is rebuilt.
+
+**Connecting the repo does not deploy anything.** Vercel waits for the next
+push. After reconnecting, the site stayed stale until a new commit went up —
+which looks exactly like the connection still being broken. Make a commit and
+push it before concluding anything is wrong.
+
+Both steps are account-permission changes, so they are Nathan's clicks, like the
+push.
 
 ### DNS — read before touching
 
@@ -290,8 +313,10 @@ Hold the line.
 
 ## CSS conventions
 
-One stylesheet, five pages (the four content pages plus `404.html`). A change to
-a token hits every page — check more than one after editing.
+One stylesheet, ten pages: six at the top level (`index`, `about`, `credits`,
+`speaking`, `projects`, `404`) and four in `projects/`. A change to a token hits
+every one of them — check more than one after editing, and check a project page
+as well as a top-level page, since those resolve their assets differently.
 
 **`404.html` links with root-relative paths** (`/css/site.css`, `/js/nav.js`,
 `/about.html`) while the other four use relative ones. That's deliberate and must
@@ -425,7 +450,7 @@ it as a coaching launch.
 All new CSS is appended at the end of `site.css` under its own banner and scoped
 to `.topbar--dark` / `.herowrap` / `.logostrip`, so interior pages are untouched.
 The exceptions are deliberate and shared: the font tokens, the `.pagehead` gutter
-fix and the hamburger, all of which apply to all four pages.
+fix and the hamburger, all of which apply site-wide.
 The `--cta`, `--cta-hover` and `--sky` tokens are new on `:root`.
 
 Two constraints not to undo:
@@ -484,6 +509,20 @@ the one thing the page asks for. Verified by submitting it against production on
 24 Aug 2026. See open item 4 below; it needs the beehiiv endpoint from Nathan and
 nothing else. Everything else found in that review has been fixed.
 
+**The projects section — built 27 Aug 2026.** Four write-ups under `projects/`
+plus a card index at `projects.html`, added to the nav and footer of all six
+pages and to `sitemap.xml` (now nine URLs).
+
+The reasoning, since it will come up again: Nathan asked whether he needed a
+blog CMS for SEO. He doesn't. Static HTML is what Google prefers to crawl, the
+publishing cadence is project-driven rather than daily, and a CMS would mean a
+database and an admin panel on a site deliberately built with no build step. New
+project means a new file from the same template — cheaper than maintaining a CMS.
+
+One decision worth keeping: the TEDx page is a **single** page listing all 34
+speakers, not 34 thin pages. Better internal linking, and it surfaces on searches
+pairing Nathan's name with any of those speakers.
+
 **`TODO (Nathan)` markers in the HTML** — search for that string:
 
 1. `credits.html` — the Telly conflict. He says Legacy Learning holds it; his 2023
@@ -509,7 +548,20 @@ nothing else. Everything else found in that review has been fixed.
    sandbox, so this can't be automated from here. In priority order:
    NewsChannel 5 (unarchived, on a local TV CMS, and the proof bar leans on it),
    the MEIEA 2026 proceedings PDF, and the Belmont M.A. program page. A TODO in
-   `speaking.html` marks where the NewsChannel 5 archive link goes.
+   `speaking.html` marks where the NewsChannel 5 archive link goes. The other six
+   sources are archived and already carry "Archived copy" links; the full table
+   is in `press-archive/README.md`.
+8. `projects.html` — the **Cost of Valor card uses `nc5-ai.jpg`**, which is a
+   frame from the NewsChannel 5 story, not from the film. It's a stand-in because
+   that project has no photography of its own. Replace it with a still from one
+   of the trailers when they go up on Nathan's channel (see item 6). This is the
+   only image on the site that doesn't depict what its caption implies, which is
+   why it's flagged rather than left to be discovered.
+9. `projects/grammy-camp.html` — the **2017 GRAMMY Camp Weekends** detail (San
+   Antonio, San Diego, Los Angeles; Best Buy Teen Tech Centers and the Boys and
+   Girls Club; 80+ students) is now used here and sourced to the 2017 Belmont
+   News piece. If that page ever disappears, the archived copy is linked on the
+   page and the full text is in `press-archive/belmont-news-tedx-2017.md`.
 
 **Not on the site, but Nathan should fix at the source:**
 
@@ -535,6 +587,38 @@ nothing else. Everything else found in that review has been fixed.
 - ~~**GitHub attribution.**~~ **Done, 26 Aug 2026.** The repo now lives at
   `github.com/nathaneadam/nathaneadam-site`. The side effect was breaking
   Vercel's Git link — see "The repo move broke Vercel" under **Deployment**.
+
+## State as of 27 August 2026 — read this first in a new session
+
+Where things actually stand, so the next session doesn't have to reconstruct it.
+
+**Deployment is working again.** It was broken for most of 27 Aug — see "The repo
+move broke Vercel" under **Deployment** for the full diagnosis. Both faults are
+fixed. Pushes deploy normally.
+
+**Live and verified:** all six top-level pages plus four project pages, the
+Projects link in every nav and footer, nine sitemap URLs, and "Archived copy"
+links on the six press sources that have Wayback snapshots.
+
+**Waiting on Nathan, in rough priority order:**
+
+1. **Email authentication** — no SPF, no DKIM, no DMARC. Unchanged and still the
+   most consequential item here, because the whole launch plan is a newsletter.
+2. **The beehiiv endpoint** — `index.html` still posts to `action="#"` and tells
+   real visitors their address wasn't saved. The last thing between this site and
+   a launch.
+3. **Three Wayback submissions** — NewsChannel 5 first; it's unarchived and the
+   proof bar leans on it.
+4. **The two bio corrections** — `BIO-CORRECTIONS.md` has the drafted emails.
+5. **Cost of Valor trailers on his own channel**, which then fixes both the
+   fragile LinkedIn links and the stand-in card image.
+
+**Good next moves if he asks what's worth doing:** more project write-ups follow
+the established template cheaply (Peter Pan, Multi-Platinum.com, and the two Pro
+Tools books all have photography already). The GRAMMY Camp page is the model —
+specific, sourced, and it uses detail that had been sitting unused in this file.
+
+---
 
 ## Still missing photography
 
