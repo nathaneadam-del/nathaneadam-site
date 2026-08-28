@@ -44,7 +44,7 @@ most sense rather than all in one gallery.
 | `capitol-studios.jpg` | Credits, music pair | Capitol Studios LA. Pairs with the above — both ~3:4 |
 | `studio-console.jpg` | Credits, editing credit | Console with a band tracking beyond the glass |
 | `live-from-vr.jpg` | Credits | **Fills a gap** — the *Live from Virtual Reality* credit had no image at all |
-| `live-from-vr-2.jpg` | **Unused** | Second VR avatar frame, kept as an alternate |
+| `live-from-vr-2.jpg` | **Live from Virtual Reality** project pair | Second VR avatar frame. Was held as an alternate; placed 27 Aug 2026 — it and `live-from-vr.jpg` are both 1400×788, so they pair exactly |
 | `shooting-video.jpg`, `-2.jpg` | Credits pair | Current production work, both 3:2 |
 | `grammy-camp-la.jpg` | GRAMMY Camp | A Weekends lab full of students at iMacs |
 | `grammy-camp-weekend.jpg` | GRAMMY Camp pair | Group at the desk |
@@ -68,6 +68,35 @@ most sense rather than all in one gallery.
 | `tedx-letters.jpg` | The red TEDx letters. Also the TEDx project page band and its Projects card |
 | `walnut-house.jpg`, `walnut-house-2.jpg` | The Walnut House, both 4:3 |
 | `nc5-ai.jpg` | Frame from the NewsChannel 5 story. **Also standing in as the Cost of Valor card** — see the warning below |
+
+**Derived files, added 27 Aug 2026** with the ten new project pages. Nothing
+here is a new photograph — each one is a crop or a mat of a file already listed
+above, made because the original could not go where it was needed.
+
+| File | From | Why it exists |
+|---|---|---|
+| `presleys-frame.jpg` | `presleys.jpg` | The original is a **YouTube screenshot** — player chrome, the video title across the top, black letterbox bars. Fine at 180px on `credits.html`, embarrassing as a 1008px `.band`. Cropped to just the video frame (942×390). Keep the original: `credits.html` still uses it |
+| `*-card.jpg` (six) | Peter Pan playbill, both book covers, the LANDR and Multi-Platinum screenshots, the Norville frame | A `.projectcard .shot` is a hard 3:2 `object-fit:cover` box. A square playbill loses "Cathy Rigby" off the top; a 4:5 book cover loses the title and the authors; a wide screenshot loses its own edges. Each card variant sits the **whole** frame on a navy `#132a3e` field at 3:2, so nothing is cut |
+
+The card mats are generated, not designed. To remake one:
+
+```python
+from PIL import Image
+NAVY = (19, 42, 62)
+im = Image.open('images/NAME.jpg').convert('RGB')
+cw = max(im.width, 700); ch = round(cw*2/3)
+if im.height > ch:
+    im = im.resize((round(im.width*ch/im.height), ch), Image.LANCZOS)
+c = Image.new('RGB', (cw, ch), NAVY)
+c.paste(im, ((cw-im.width)//2, (ch-im.height)//2))
+c.save('images/NAME-card.jpg', 'JPEG', quality=86, optimize=True, progressive=True)
+```
+
+**Use a card mat only when a crop would destroy information.** A letterboxed
+photo looks worse than a cropped one, so a photograph that survives 3:2 should
+just be cropped — `presleys-frame.jpg`, `live-from-vr.jpg`, `learn-master.jpg`
+and `grammy-camp-online.jpg` all go into cards uncropped-by-mat and are fine.
+The six that got mats are all type or artwork, where losing an edge loses a word.
 
 **Social cards** — these two are never shown on the site. They exist only for
 `og:image`, and they are the first thing anyone sees when the site is shared.

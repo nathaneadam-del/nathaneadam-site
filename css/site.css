@@ -470,3 +470,15 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
 @media(max-width:560px){
   .projectgrid{grid-template-columns:1fr;gap:32px;}
 }
+
+/* ---------------------------------------------------------------------------
+   Credit titles that link to a project write-up. Added 27 Aug 2026, when every
+   substantive entry on credits.html got its own detail page.
+
+   Deliberately NOT the default underlined link: .credits .t is 20px display
+   type, and a full underline on a two-line book title turns the list into a
+   wall of rules. This copies .videogrid .t a — inherit the colour, carry a hairline
+   under it, and switch to the accent on hover, so a linked title and an unlinked
+   one still sit at the same visual weight in the same list. */
+.credits .t a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);}
+.credits .t a:hover{color:var(--accent);border-bottom-color:var(--accent);}

@@ -33,6 +33,16 @@ projects/         One page per project. Same template as the top-level pages
   tedx-nashville.html      ~30 embedded talks in a grid
   grammy-camp.html
   ma-media-entertainment.html
+  presleys-country-jubilee.html   ┐
+  deborah-norville.html           │
+  peter-pan.html                  │
+  learn-master-guitar.html        │ Added 27 Aug 2026. One page per
+  multi-platinum-com.html         │ substantive credits.html entry, so every
+  live-from-virtual-reality.html  │ credit title on that page now links
+  multi-platinum-pro-tools.html   │ somewhere. See "The credits build-out".
+  mixers-toolkit.html             │
+  covid-dissertation.html         │
+  landr-pro-tools.html            ┘
 css/site.css      Every style for every page
 js/nav.js         Mobile menu toggle — the only script, loaded on every page
 sitemap.xml       Eight URLs, hand-maintained. New page means a new entry here.
@@ -524,6 +534,54 @@ One decision worth keeping: the TEDx page is a **single** page listing all 34
 speakers, not 34 thin pages. Better internal linking, and it surfaces on searches
 pairing Nathan's name with any of those speakers.
 
+**The credits build-out — 27 Aug 2026.** Ten more project pages, one per
+substantive entry on `credits.html`, so every credit title on that page now
+links somewhere. Nineteen sitemap URLs.
+
+Three things about this batch that matter more than the pages themselves:
+
+**These pages are mostly TODO, and that is the honest state of them.** Each one
+carries a `TODO (Nathan)` block naming exactly what is missing. The site had a
+one-line credit for each of these and nothing else — no dates, no links, no
+outcome. Rather than write around the gaps convincingly, each page argues from
+what is actually sourced and then says, in the markup, what it needs. **Do not
+fill these in by inference.** The reason the editorial rules exist is that
+Nathan's published bios already contain numbers nobody can trace; a plausible
+paragraph on this site becomes the next bio's wrong fact.
+
+The three most valuable to close, in order:
+
+1. **`covid-dissertation.html` — a link to the dissertation.** The site asserts
+   a doctorate with nothing clickable. The JSON-LD `Person` block on
+   `index.html` omits the institution for the same reason. One URL (TSU
+   repository or the ProQuest record) fixes both at once.
+2. **`deborah-norville.html` — a link to the segment.** "820,000+ views" is
+   quoted on `credits.html` and now on its own page, and there is nothing to
+   click. It is the most-cited number on the site with no source attached.
+3. **`multi-platinum-com.html` — what happened to the company.** The page
+   currently stops mid-story, which reads as evasive rather than modest.
+
+**`mixers-toolkit.html` is deliberately the thinnest page on the site.** The
+repo has only ever recorded a title, a co-author, a publisher, a year and an
+ISBN for that book. Everything else on the page is either carried over from the
+first book's entry or is general fact about Pro Tools 9 itself, and the TODO
+says so. If Nathan cannot supply detail, the right move is folding it into
+`multi-platinum-pro-tools.html` as a section rather than leaving a page that
+exists to fill a grid cell.
+
+**`projects.html` is now grouped, not a flat grid.** Fourteen cards under four
+`<h2>` headings — film and video, teaching and curriculum, instructional video
+and courses, writing and research. The grid was designed for four cards; at
+fourteen it needed the same categories `credits.html` already uses. A new page
+goes in whichever group it belongs to, not at the end.
+
+`.credits .t a` is new in `site.css` and is **not** the default link style. It
+copies `.videogrid .t a` — inherited colour, hairline underneath, accent on
+hover — because `.credits .t` is 20px display type and a real underline on a
+two-line book title turns the whole list into a wall of rules. It also keeps a
+linked title and an unlinked one at the same visual weight, which matters
+because four entries on `credits.html` still have no page.
+
 **`TODO (Nathan)` markers in the HTML** — search for that string:
 
 1. `credits.html` — the Telly conflict. He says Legacy Learning holds it; his 2023
@@ -597,9 +655,12 @@ Where things actually stand, so the next session doesn't have to reconstruct it.
 move broke Vercel" under **Deployment** for the full diagnosis. Both faults are
 fixed. Pushes deploy normally.
 
-**Live and verified:** all six top-level pages plus four project pages, the
-Projects link in every nav and footer, nine sitemap URLs, and "Archived copy"
-links on the six press sources that have Wayback snapshots.
+**Live and verified:** all six top-level pages plus **fourteen** project pages,
+the Projects link in every nav and footer, nineteen sitemap URLs, and "Archived
+copy" links on the six press sources that have Wayback snapshots. Every
+substantive credit title on `credits.html` now links to a write-up — see "The
+credits build-out" above, and read the caveat there before adding to any of
+those pages.
 
 **The photography is no longer thin.** Twenty images were added and placed on
 27 Aug — see "Photography" below. Every `<img>` on every page carries width and
@@ -627,11 +688,15 @@ would also carry that argument.
 4. **The two bio corrections** — `BIO-CORRECTIONS.md` has the drafted emails.
 5. **Cost of Valor trailers on his own channel**, which then fixes both the
    fragile LinkedIn links and the stand-in card image.
+6. **The ten `TODO (Nathan)` blocks on the new project pages.** Grep for the
+   string. Most are one fact or one URL each. The three highest-value ones are
+   listed under "The credits build-out" above.
 
-**Good next moves if he asks what's worth doing:** more project write-ups follow
-the established template cheaply (Peter Pan, Multi-Platinum.com, and the two Pro
-Tools books all have photography already). The GRAMMY Camp page is the model —
-specific, sourced, and it uses detail that had been sitting unused in this file.
+**Good next moves if he asks what's worth doing:** the project pages now exist
+but half of them are shells waiting on facts only he has — a pass through the
+TODO blocks would do more for the site than another new page. The GRAMMY Camp
+page is still the model: specific, sourced, and built from detail that had been
+sitting unused in this file.
 
 ---
 
