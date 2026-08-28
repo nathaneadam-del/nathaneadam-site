@@ -418,3 +418,55 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
 .meta li:last-child{border-bottom:1px solid var(--line);}
 .meta .k{flex:0 0 190px;color:var(--ink-soft);}
 @media(max-width:560px){.meta li{flex-direction:column;gap:2px;}.meta .k{flex:none;font-size:15px;}}
+
+/* ---------- Video grid ----------
+   Added 27 Aug 2026 for projects/tedx-nashville.html, which embeds ~30 talks.
+
+   Every cell reuses .video, which already fixes aspect-ratio:16/9. That is what
+   keeps layout shift at zero here: the box is sized before any iframe loads.
+   Do not replace it with a fixed pixel height.
+
+   The embeds are the only third-party frames on the site besides the TED player
+   on speaking.html. They use youtube-nocookie.com and loading="lazy" — with this
+   many on one page, eager loading would fire ~30 requests before first paint. */
+.videogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:34px 26px;margin:34px 0 0;list-style:none;padding:0;}
+.videogrid > li{margin:0;}
+.videogrid .video{margin:0 0 12px;border-radius:6px;overflow:hidden;}
+.videogrid .t{font-family:var(--font-display);font-weight:600;font-size:17px;
+  line-height:1.3;color:var(--deep);margin:0 0 3px;}
+.videogrid .t a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);}
+.videogrid .t a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+.videogrid .r{font-size:14.5px;color:var(--ink-soft);line-height:1.4;}
+
+/* Talks with no published video yet. Same cell size so the grid stays even. */
+.videogrid li.pending .video{display:flex;align-items:center;justify-content:center;
+  background:var(--paper-2);border:1px dashed var(--line);}
+.videogrid li.pending .video span{font-size:14px;color:var(--ink-soft);
+  letter-spacing:.04em;text-transform:uppercase;}
+
+@media(max-width:560px){
+  .videogrid{grid-template-columns:1fr;gap:28px;}
+}
+
+/* ---------- Project cards ----------
+   projects.html. One card per write-up, image on top, text beneath.
+   Thumbnails are 3:2 and cropped with object-fit, so unlike .band a wide crop
+   here is intentional and safe — pick images without faces at the frame edges. */
+.projectgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:38px 30px;margin:38px 0 0;list-style:none;padding:0;}
+.projectgrid > li{margin:0;}
+.projectcard{display:block;text-decoration:none;color:inherit;height:100%;}
+.projectcard .shot{width:100%;aspect-ratio:3/2;overflow:hidden;border-radius:8px;
+  background:var(--paper-2);margin:0 0 16px;}
+.projectcard .shot img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .35s ease;}
+.projectcard:hover .shot img{transform:scale(1.03);}
+.projectcard h3{font-size:21px;line-height:1.25;margin:0 0 5px;color:var(--deep);}
+.projectcard:hover h3{color:var(--accent);}
+.projectcard .r{font-size:14.5px;color:var(--ink-soft);margin:0 0 9px;}
+.projectcard p{font-size:16px;line-height:1.55;margin:0;color:var(--ink-soft);}
+
+@media(max-width:560px){
+  .projectgrid{grid-template-columns:1fr;gap:32px;}
+}

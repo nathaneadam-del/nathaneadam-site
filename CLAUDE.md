@@ -28,7 +28,8 @@ projects.html     Index of the long-form project write-ups
 projects/         One page per project. Same template as the top-level pages
                   but with ../ asset paths — see CSS conventions below.
   cost-of-valor.html
-  tedx-nashville.html
+  tedx-nashville.html      ~30 embedded talks in a grid
+  grammy-camp.html
   ma-media-entertainment.html
 css/site.css      Every style for every page
 js/nav.js         Mobile menu toggle — the only script, loaded on every page
@@ -45,9 +46,23 @@ fixing those gives an unstyled page with dead navigation. The `404.html`
 root-relative convention is a separate case — see **CSS conventions**.
 
 **The only external things the browser fetches** are the Poppins webfont from
-Google Fonts (all five pages) and the TED embed iframe on `speaking.html`. The
-`og:image` files are local. Nothing else phones home — no analytics, no tag
-manager, no CDN scripts.
+Google Fonts (every page), the TED embed on `speaking.html`, and — added
+27 Aug 2026 — roughly thirty video embeds on `projects/tedx-nashville.html`
+(29 YouTube, 3 TED). The `og:image` files are local. Nothing else phones home —
+no analytics, no tag manager, no CDN scripts.
+
+**The video embeds are the one place that policy bends, deliberately.** Two
+things keep them from costing what they normally would:
+
+- `youtube-nocookie.com`, not `youtube.com`, so nothing is set until a visitor
+  actually presses play.
+- `loading="lazy"` on every frame. Thirty eager iframes would fire thirty
+  third-party requests before first paint. Removing it would be the single
+  worst thing anyone could do to that page's load time.
+
+If a privacy or performance review ever wants them gone, the replacement is a
+click-to-load facade: a local thumbnail that swaps itself for the iframe. That
+costs 30 more image files and some JS, which is why it wasn't done first.
 
 ## Deployment
 
@@ -325,6 +340,8 @@ Layout classes, in the order they were added:
 | `.logostrip` | "Featured in and on stage at" wordmarks |
 | `.btn-cta` | The single orange call to action |
 | `.notfound-links` | The page list on `404.html`. Used nowhere else. |
+| `.videogrid` | Grid of embedded talks. Each cell reuses `.video`, which fixes 16:9 — that is what keeps layout shift at zero with ~30 iframes. Never swap it for a fixed height. |
+| `.projectgrid` / `.projectcard` | Card grid on `projects.html`. Thumbnails crop to 3:2 with `object-fit:cover`, so unlike `.band` a wide crop here is intended — but pick images without faces at the frame edges. |
 
 **Pair images must share an aspect ratio** or the columns run ragged. That's why
 `early-guitar.jpg` and `console.jpg` are both square, and the Walnut House pair
