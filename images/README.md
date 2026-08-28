@@ -35,6 +35,31 @@ that used to live here has been removed — every `<img>` now points at a real f
 | `peter-pan.jpg` | Cathy Rigby is Peter Pan playbill |
 | `nc5-ai.jpg` | Frame from the NewsChannel 5 story |
 
+**Added 27 Aug 2026** — a batch Nathan supplied, placed where each made the
+most sense rather than all in one gallery.
+
+| File | Where | Notes |
+|---|---|---|
+| `vince-gill.jpg` | Credits, music pair | With Vince Gill, who is first on the roster line right above it |
+| `capitol-studios.jpg` | Credits, music pair | Capitol Studios LA. Pairs with the above — both ~3:4 |
+| `studio-console.jpg` | Credits, editing credit | Console with a band tracking beyond the glass |
+| `live-from-vr.jpg` | Credits | **Fills a gap** — the *Live from Virtual Reality* credit had no image at all |
+| `live-from-vr-2.jpg` | **Unused** | Second VR avatar frame, kept as an alternate |
+| `shooting-video.jpg`, `-2.jpg` | Credits pair | Current production work, both 3:2 |
+| `grammy-camp-la.jpg` | GRAMMY Camp | A Weekends lab full of students at iMacs |
+| `grammy-camp-weekend.jpg` | GRAMMY Camp pair | Group at the desk |
+| `grammy-camp-nashville.jpg` | GRAMMY Camp pair | Him at the console, students behind |
+| `grammy-camp-online.jpg` | GRAMMY Camp | Video-call grid — the COVID teaching that became the dissertation |
+| `gits-fest.jpg` | GRAMMY Camp | GITS Fest promo card. 9:16, so it stands alone at 340px — **do not pair it with a landscape shot** |
+| `tedx-talk-intro.jpg` | Speaking | Being introduced in the headset |
+| `tedx-talk-close.jpg` | **Unused** | Square crop of the talk, kept as an alternate |
+| `tedx-room-wide.jpg` | Speaking | The full room |
+| `tedx-room.jpg` | TEDx project pair | Audience in the wood-panelled room |
+| `tedx-panorama.jpg` | TEDx project band | True panorama, 4.8:1. Safe as a band *because* it was shot that way |
+| `tedx-team-2019.jpg` | TEDx project pair | The team behind Bold + Brilliant, TEDWomen 2019 |
+| `donald-miller.jpg` | TEDx project | With Donald Miller, whose talk is in the same page's grid |
+| `vision-pro.jpg` | About | Apple Vision Pro. Carries the "still buying the thing early" argument |
+
 **Speaking and venue**
 
 | File | Where |
