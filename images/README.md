@@ -10,7 +10,8 @@ that used to live here has been removed — every `<img>` now points at a real f
 | File | Where | Notes |
 |---|---|---|
 | `portrait.jpg` | Homepage hero | 2023 TEDx Nashville headshot, 1000×1249 (4:5). Shown **whole** — see the hero warning below |
-| `teaching.jpg` | Homepage | Teaching at a board in a darkened studio |
+| `nate-bargatze.jpg` | Homepage story section | With Nate Bargatze and four friends. 1200×882. Replaced `teaching.jpg` on 27 Aug 2026 at Nathan's request |
+| `teaching.jpg` | **Unused** | Teaching at a board in a darkened studio. Kept in case a teaching photo is wanted back — it's the only one of him actually mid-lesson |
 | `early-guitar.jpg` | About | Teenage Nathan with an electric guitar. Square. |
 | `console.jpg` | About | Younger, at a large analog desk. Square, pairs with the above. |
 | `grammy-camp.jpg` | About · **GRAMMY Camp band** · **Projects card** | Students around a console |
