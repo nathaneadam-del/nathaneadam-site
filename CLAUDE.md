@@ -23,13 +23,26 @@ index.html        Homepage — positioning, proof bar, story, newsletter signup
 about.html        The long story, 1999 to now
 credits.html      Production, engineering, publishing, curriculum, teaching
 speaking.html     TEDx embed, topics, talk history, press, booking
+projects.html     Index of the long-form project write-ups
 404.html          Branded not-found page. Vercel serves it automatically.
+projects/         One page per project. Same template as the top-level pages
+                  but with ../ asset paths — see CSS conventions below.
+  cost-of-valor.html
+  tedx-nashville.html
+  ma-media-entertainment.html
 css/site.css      Every style for every page
-js/nav.js         Mobile menu toggle — the only script, loaded on all four pages
-sitemap.xml       Four URLs, hand-maintained. New page means a new entry here.
+js/nav.js         Mobile menu toggle — the only script, loaded on every page
+sitemap.xml       Eight URLs, hand-maintained. New page means a new entry here.
 robots.txt        Allows everything, points at the sitemap
 images/           See images/README.md
+press-archive/    Local text captures of articles the site links to. Gitignored
+                  and never published — third-party copyright. See its README.
 ```
+
+**Pages in `projects/` are one directory down**, so their `<link>`, `<script>`
+and nav hrefs use `../`. Copying a top-level page as a starting point without
+fixing those gives an unstyled page with dead navigation. The `404.html`
+root-relative convention is a separate case — see **CSS conventions**.
 
 **The only external things the browser fetches** are the Poppins webfont from
 Google Fonts (all five pages) and the TED embed iframe on `speaking.html`. The
