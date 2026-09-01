@@ -4,7 +4,14 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 31 August 2026 (a voice pass across every page, driven by a
+Last updated: 31 August 2026, second session (the newsletter form wired to
+beehiiv and styled to match; a second voice pass across the twelve project pages
+the first one only skimmed; the Cost of Valor trailers moved to Nathan's own
+YouTube channel and that page rewritten from a press release into his voice; the
+AI models used on that film recorded; and the email-authentication job properly
+scoped for the first time — it is bigger than this file previously said).
+
+Earlier that day: a voice pass across every page, driven by a
 writing profile built from the *Multi-Platinum Pro Tools* manuscript and four
 years of sent email and saved as the `my-writing-style` skill; eight
 `TODO (Nathan)` blocks closed with sourced facts; four wrong or unsupportable
@@ -185,10 +192,16 @@ priority 1. One record works but has no failover.
 no DMARC. Since February 2024 Gmail and Yahoo require all three from bulk senders,
 and even one-to-one mail from an unauthenticated domain gets filtered hard. This
 matters right now for two reasons: the speaking page's booking CTA sends replies
-from this address, and the whole launch plan is a weekly newsletter. **Sending a
-newsletter from this domain as it stands is the most likely single cause of it
-landing in spam.** Fixing it is three DNS records at DreamHost plus turning DKIM
-on in the Workspace admin console — no code, and unrelated to Vercel.
+from this address, and the whole launch plan is a weekly newsletter.
+
+**Do not act on this paragraph alone — see "Email authentication" under the state
+section for the actual job.** The short version, corrected 31 Aug 2026: three
+records at the apex fix Nathan's *Google Workspace* mail, and one of the three
+cannot be written until a DKIM key is generated in the Workspace admin console.
+The *newsletter* is a separate path. It only needs DNS at all if it should send
+from his own domain rather than beehiiv's, and if so it is twelve records on a
+subdomain, not three at the apex. Conflating the two is how a domain ends up with
+two SPF records, which is worse than having none.
 
 `nathaneadam.com` at DreamHost is set to **DNS Only** (hosting removed 23 Aug
 2026). A pre-migration zone snapshot is in `DNS-BACKUP-before-vercel.txt`,
@@ -583,14 +596,15 @@ whatever you give it.
 The strip is text wordmarks, not logo files — no trademark assets, and every name
 is a verified appearance. Adding a name means adding a source.
 
-**The newsletter form is the last thing standing between this site and a
-launch.** The hero button, the nav link and the whole bottom section all funnel
-to `#join`, and that form still posts to `action="#"`. Worse than saving nothing:
-submitting it returns *"Preview mode — the form is not connected yet. Your
-address was not saved."* — on the live site, to a real visitor who just acted on
-the one thing the page asks for. Verified by submitting it against production on
-24 Aug 2026. See open item 4 below; it needs the beehiiv endpoint from Nathan and
-nothing else. Everything else found in that review has been fixed.
+**The newsletter form — RESOLVED 31 Aug 2026.** Recorded here because the failure
+is worth remembering. The hero button, the nav link and the whole bottom section
+all funnel to `#join`, and for a week that form posted to `action="#"`. It was
+worse than saving nothing: submitting it returned *"Preview mode — the form is
+not connected yet. Your address was not saved."* on the live site, to a real
+visitor who had just done the one thing the page asks of them. Found by actually
+submitting it against production on 24 Aug rather than by reading the markup,
+which is the only reason it was found at all. It is now wired to beehiiv — see
+"The newsletter form" below. Nothing on the page blocks a launch now.
 
 **The projects section — built 27 Aug 2026.** Four write-ups under `projects/`
 plus a card index at `projects.html`, added to the nav and footer of all six
@@ -770,6 +784,17 @@ because four entries on `credits.html` still have no page.
 
 ## State as of 31 August 2026 — read this first in a new session
 
+**If you are picking this up cold, the one-paragraph version:** the site is
+content-complete and written in Nathan's voice across all twenty pages, and the
+newsletter form is wired to beehiiv and collecting addresses. **There is no
+launch blocker left.** Email authentication was called one in this file for a
+week; that stopped being true when Nathan chose beehiiv's sending domain on
+31 Aug, because the newsletter no longer sends from `nathaneadam.com` at all.
+SPF/DKIM/DMARC remain undone by decision, not by oversight — see "Email
+authentication" above for what that actually costs (narrow: his personal mail
+and the booking CTA) and the one-record version if he ever wants it. Everything
+else on the waiting list is small.
+
 Where things actually stand, so the next session doesn't have to reconstruct it.
 
 **31 Aug was a voice pass plus a fact-gathering pass.** Two things happened, and
@@ -834,9 +859,16 @@ would also carry that argument.
 
 **Waiting on Nathan, in rough priority order:**
 
-1. **Email authentication** — no SPF, no DKIM, no DMARC. Unchanged since 24 Aug
-   and still the most consequential item here, because the whole launch plan is a
-   newsletter sent from a domain that cannot authenticate a single message.
+1. **Email authentication — DEFERRED by decision, 31 Aug 2026.** Not a blocker.
+   Nathan chose beehiiv's sending domain, so the newsletter is authenticated by
+   beehiiv and never touches this zone. The remaining SPF/DKIM/DMARC records
+   cover only his personal Workspace mail and the speaking page's booking CTA.
+   He explicitly opted out of the record changes for now, accepting that a
+   future move to his own sending domain would restart beehiiv's Smart Warming.
+   **If he ever raises it again, the single highest-value action is the SPF
+   record alone** — one TXT at the apex, no Workspace admin trip required. See
+   "Email authentication" above; the `rua` trap documented there still applies
+   if DMARC is ever added.
 2. ~~**The beehiiv endpoint.**~~ **Done 31 Aug 2026** — see "The newsletter form"
    above. This makes item 1 urgent rather than merely important: the form now
    collects addresses, and the domain still cannot authenticate a message sent
@@ -860,6 +892,118 @@ would also carry that argument.
      `about.html`, `credits.html` and the project page. Nobody has checked it
      against what else existed in 2006. It is exactly the shape of claim the
      editorial rules exist for, and it wants his own gut check.
+
+### Email authentication — NOT a launch blocker. Read before touching DNS.
+
+**Status: nothing is done, and that is now an accepted state, not an emergency.**
+`nathaneadam.com` has no SPF, no DKIM and no DMARC. Inbound mail works (the
+Google Workspace MX survived the Vercel move). Nothing outbound is authenticated.
+
+**This file called it "the launch blocker" for a week. That was wrong from the
+moment Nathan chose beehiiv's sending domain (31 Aug 2026), and the label is
+struck.** The newsletter — the thing the whole launch depends on — goes out under
+beehiiv's own authenticated domain. It does not touch `nathaneadam.com` and does
+not care what is in this zone. **The site can launch with this section entirely
+undone.**
+
+What remains unauthenticated is Nathan's *personal* Workspace mail,
+`nathan@nathaneadam.com`. The concrete cost is narrow and worth stating plainly
+rather than inflating: the speaking page's booking CTA sends replies from that
+address, and unauthenticated mail is filtered more aggressively, so a conference
+organiser's reply could land in spam. Low probability, real consequence.
+
+**The February 2024 Gmail/Yahoo requirements cited below apply to BULK senders**
+(thousands of messages a day). One-to-one mail from a professor is not that. An
+earlier version of this file used those rules to argue urgency for Nathan's
+personal mail. That was a stretch.
+
+**The cheap 80% is one record.** SPF alone needs no Workspace admin trip, no DKIM
+key, and no prerequisites — it is a single TXT at the apex and it delivers most
+of the deliverability benefit. If only one thing is ever done here, do that one.
+DKIM and DMARC are the fiddly ones and can wait indefinitely.
+
+**There are TWO separate sending paths and they need different work.** An earlier
+version of this file said "three DNS records plus a toggle in Workspace admin,"
+which only ever described the first one. Verified against beehiiv's own custom
+domain documentation, 31 Aug 2026.
+
+**Path A — Google Workspace mail.** `nathan@nathaneadam.com`, which is what the
+speaking page's booking CTA sends replies from. Three pieces:
+
+| Record | Host | Value |
+|---|---|---|
+| TXT | `@` (apex) | `v=spf1 include:_spf.google.com ~all` |
+| TXT | `google._domainkey` | generated in Workspace admin — see below |
+| TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:dmarc@nathaneadam.com` |
+
+**THE `rua` TRAP — this is why the address above is on his own domain.** Nathan
+first asked for reports at `nathaneadam@gmail.com`. That does not work. Under RFC
+7489, sending DMARC reports for `nathaneadam.com` to an address at a *different*
+domain requires the receiving domain to publish an authorization record — here,
+`nathaneadam.com._report._dmarc.gmail.com`. Gmail does not publish those for
+arbitrary domains, so most reporters silently drop the reports. The result is a
+DMARC record that looks correct and delivers no visibility whatsoever.
+
+The fix keeps what he actually wanted: point `rua` at an address on
+`nathaneadam.com`, then forward that address to his Gmail inside Workspace.
+Reports arrive in the inbox he wanted, and they are authorized to arrive.
+**`dmarc@nathaneadam.com` has to exist** (alias or group) before the record is
+worth publishing.
+
+**DKIM cannot be added from DreamHost alone.** The key is generated in the Google
+Workspace admin console (Apps → Google Workspace → Gmail → Authenticate email),
+which outputs the TXT value, and *then* it goes in DreamHost. Generate first, or
+that trip to the DNS panel only gets two of the three records in.
+
+**Start DMARC at `p=none`.** That is monitor-only. Going straight to
+`p=reject` before SPF and DKIM are confirmed passing will silently bin his own
+mail. Tighten later, once the `rua` reports come back clean.
+
+**Path B — the beehiiv newsletter. DECIDED 31 Aug 2026: not doing it.** Nathan
+chose to send from beehiiv's own subdomain for launch. beehiiv's authentication
+carries those messages, deliverability is fine, and it costs **zero DNS records**.
+This is the right call for launch and it means Path A is the entire job.
+
+Revisit only if he wants his own sending address on the newsletter later. Note
+that switching restarts Smart Warming, so it is cheaper to decide once. If it
+ever does come up, here is what it involves:
+
+- **Twelve DNS records**, generated by beehiiv, not three.
+- **DMARC is mandatory** for any beehiiv custom domain, not optional.
+- **Use a subdomain** (`newsletter.nathaneadam.com` or similar). beehiiv
+  recommends this outright when the root domain already carries regular mail,
+  which is exactly this situation.
+- **Smart Warming takes 4–8 weeks** to build sending reputation, so this wants
+  doing well before a launch, not the week of.
+- **DreamHost is supported by Entri**, beehiiv's automated DNS setup, so the
+  manual route may not be necessary.
+
+**THE TRAP: a domain may have only ONE SPF TXT record.** Two valid-looking SPF
+records do not merge — they invalidate SPF entirely and are worse than having
+none. If Path A's Google SPF is at the apex and beehiiv later wants SPF at the
+apex too, they must be merged into a single record, not both added. Keeping
+beehiiv on a subdomain sidesteps this completely, which is the other reason to
+use one.
+
+**Order of operations, as agreed 31 Aug 2026.** Path B is off the table, so this
+is now the whole job:
+
+1. **In Google Workspace admin** — create `dmarc@nathaneadam.com` (alias or
+   group) and forward it to `nathaneadam@gmail.com`. Then Apps → Google
+   Workspace → Gmail → Authenticate email, generate the DKIM key, and copy the
+   TXT value it produces. **Both of these are Nathan's clicks and both must
+   happen before the DreamHost visit.**
+2. **In DreamHost** — add the three TXT records above. Additive only. **Do not
+   touch the MX record or the `ghs.googlehosted.com` CNAMEs**; the zone table
+   under "Deployment" is what the world currently sees, and his email depends on
+   the MX surviving. Nathan logs in; Claude can fill the records.
+3. **Back in Workspace admin** — click "Start authentication" for DKIM once the
+   record has propagated. Generating the key does nothing on its own.
+4. **Wait, then verify.** Send a message to a Gmail address, open it, and check
+   "Show original" for `SPF: PASS`, `DKIM: PASS`, `DMARC: PASS`.
+5. **Leave DMARC at `p=none`.** Tighten to `quarantine` and later `reject` only
+   after the `rua` reports show weeks of clean passes. Going straight to
+   `p=reject` before SPF and DKIM are confirmed will bin his own mail.
 
 ### The newsletter form — wired 31 Aug 2026
 

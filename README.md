@@ -20,9 +20,16 @@ press-archive/    Local copies of articles the site links to. Private, never
 CLAUDE.md         Full project context, decisions, and open items
 ```
 
-Loaded from outside: the Poppins webfont from Google Fonts, and the video
-embeds on the TEDx project page. If Google is ever unreachable the pages fall
-back to the system sans and the layout is unaffected.
+Loaded from outside: the Poppins webfont from Google Fonts, the video embeds on
+the TEDx project page, and — since 31 Aug 2026 — the beehiiv subscribe form on
+the homepage. If Google is ever unreachable the pages fall back to the system
+sans and the layout is unaffected.
+
+The beehiiv form is the one deliberate exception to this site's "nothing
+third-party" habit: its loader pulls Google Tag Manager and sets a cookie. That
+was weighed and accepted in exchange for beehiiv handling double opt-in, bot
+filtering and unsubscribe. CLAUDE.md has the full reasoning and the alternative
+that was rejected.
 
 ## How to change something
 
@@ -61,6 +68,13 @@ small-screen bug that looked fine on a laptop: a portrait cropped through the
 subject's forehead, a hero that never stacked, a group photo squeezed into a
 letterbox. Resize the browser to about 390px wide before you commit.
 
+**The newsletter form is beehiiv's, not ours.** It renders inside a cross-origin
+iframe, so `site.css` cannot touch it. Its colours and font were matched by hand
+in beehiiv's builder (Subscribers → Subscribe forms). If the signup box ever
+stops matching the page, the fix is in beehiiv, not in this repo. `.beehiiv-form`
+in `site.css` reserves 52px for it — if the form's height changes there, change
+that number here too.
+
 ## Where everything lives
 
 - **Repo** — `github.com/nathaneadam/nathaneadam-site` (moved here 26 Aug 2026
@@ -68,6 +82,27 @@ letterbox. Resize the browser to about 390px wide before you commit.
 - **Host** — Vercel, deploys automatically from `main`
 - **Domain** — DNS stays at DreamHost; only the apex `A` record and `www` CNAME
   point at Vercel, so the Google Workspace email records are never touched
+- **Newsletter** — beehiiv, free Launch plan, publication "Nathan's Newsletter".
+  Form UUID `11848ad5-53ac-456d-8cec-428670527667`
+
+**Email authentication is deliberately undone.** `nathaneadam.com` has no SPF, no
+DKIM and no DMARC. Inbound mail works — the Google Workspace MX survived the
+Vercel migration — but nothing sent from the domain is authenticated.
+
+This is a decision, not an oversight, and it is **not** a launch blocker. The
+newsletter sends from beehiiv's own authenticated domain and never touches this
+zone. What stays unauthenticated is Nathan's personal Workspace mail, which
+matters mainly for replies to the speaking page's booking CTA.
+
+If it is ever revisited, the highest-value single action is the SPF record on its
+own — one TXT at the apex, no Google Workspace admin trip needed:
+
+```
+Type: TXT    Host: @    Value: v=spf1 include:_spf.google.com ~all
+```
+
+CLAUDE.md has the rest, including a trap worth knowing about if DMARC is ever
+added: pointing its `rua=` reports at a Gmail address silently does not work.
 
 **If a push doesn't show up on the live site**, check Vercel → Settings → Git
 before looking at anything in the code. Moving the repo between GitHub accounts
