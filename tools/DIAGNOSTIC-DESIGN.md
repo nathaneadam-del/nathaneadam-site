@@ -1,7 +1,16 @@
 # The career pivot diagnostic — content design
 
-Draft 1, 1 September 2026. **Nothing here is built yet. This is for Nathan's
-review before any code gets written.**
+Draft 1, 1 September 2026. **BUILT AND SHIPPED the same day.** Nathan reviewed
+this draft, said "I like it for now," and it went live as written.
+
+**This file is the reasoning, not the copy.** The words that actually render are
+in `content.js`, and that file is the one to edit. If somebody changes a read
+there and not here, `content.js` wins and this doc is just stale history. Worth
+keeping the two roughly in step, but don't treat this as the source.
+
+The open questions at the bottom were deliberately left open rather than settled,
+because they're the kind of thing that only gets properly answered once real
+people have gone through the tool.
 
 Read `CLAUDE.md` first for the editorial rules. They apply to every word below,
 and one of them is doing a lot of work here: **no invented numbers.** A tool that
@@ -372,7 +381,11 @@ keeps this honest.
 
 ---
 
-## Open questions for Nathan
+## Open questions — raised 1 Sep, deliberately NOT settled
+
+Nathan saw these and shipped anyway, which is the right call for a first
+version. They are the things to look at once real people have taken it, not
+things that were forgotten.
 
 1. **Read 3's ending.** "Same taste, better throughput" is the sharpest claim on
    the page and the one most likely to annoy an experienced reader. Keep it?

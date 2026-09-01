@@ -118,7 +118,16 @@ The six that got mats are all type or artwork, where losing an edge loses a word
 | File | Where |
 |---|---|
 | `og-card.jpg` | Homepage. Carries the hero headline. |
-| `og-card-profile.jpg` | About, Credits, Speaking, and the `Person` schema. Name and title, no campaign copy, so it doesn't go stale. |
+| `og-card-profile.jpg` | About, Credits, Speaking, every project page, `tools.html`, `tools/career-pivot.html`, and the `Person` schema. Name and title, no campaign copy, so it doesn't go stale. |
+
+**The diagnostic reuses the profile card, and probably shouldn't forever.**
+`tools/career-pivot.html` is the most shareable page on the site — it's a
+two-minute quiz, which is the thing people actually send to a colleague — and it
+currently shares as a photo of Nathan with his job title on it. A card carrying
+the tool's own question ("Which half of your work is actually at risk?") would
+almost certainly do better. Not done yet because it needs designing, not because
+it was overlooked. `tools/career-pivot-result.html` deliberately has no og tags
+at all: it's `noindex`, and there is nothing there to share.
 
 Both are 1200×630 — the size LinkedIn, X, Slack and iMessage all crop from.
 They're generated, not photographed: `portrait.jpg` flush right, a navy gradient

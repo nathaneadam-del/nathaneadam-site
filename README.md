@@ -9,9 +9,16 @@ about.html        The long story
 credits.html      Production, engineering, publishing, curriculum, teaching
 speaking.html     TEDx talk, topics, talk history, press, booking
 projects.html     Card index of the project write-ups
+tools.html        Card index of the interactive tools
 404.html          Branded not-found page
 projects/         Fourteen write-ups, one per substantive credit. These sit one
                   folder down, so their links use ../
+tools/            The interactive tools, also one folder down (so, ../ again)
+                  career-pivot.html         the diagnostic
+                  career-pivot-result.html  the full read. noindex, not in the sitemap
+                  content.js                every word the visitor reads
+                  diagnostic.js             the logic. no copy in it
+                  DIAGNOSTIC-DESIGN.md      why the questions are the questions
 css/site.css      Every style for every page
 js/nav.js         Mobile menu toggle — the only script on the site
 images/           Photos — see images/README.md
@@ -75,6 +82,19 @@ small-screen bug that looked fine on a laptop: a portrait cropped through the
 subject's forehead, a hero that never stacked, a group photo squeezed into a
 letterbox. Resize the browser to about 390px wide before you commit.
 
+**To change the diagnostic's wording, edit `tools/content.js` and nothing else.**
+Every headline, question, answer and paragraph the visitor reads is a plain
+string in that one file. `tools/diagnostic.js` is logic with no copy in it, so
+the text can be rewritten without touching any code.
+
+**The diagnostic must never start scoring people.** No percentage, no
+personality type, no "your role is 68% exposed." There is no study behind a
+number like that, and inventing one on a page about other people's careers is
+the exact failure the editorial rules below exist to catch. Every read is framed
+as Nathan's opinion, and the caveat at the bottom of every result says outright
+that it isn't research. **Don't delete that caveat** — it's the thing that makes
+the rest of the page credible.
+
 **The newsletter form is beehiiv's, not ours.** It renders inside a cross-origin
 iframe, so `site.css` cannot touch it. Its colours and font were matched by hand
 in beehiiv's builder (Subscribers → Subscribe forms). If the signup box ever
@@ -91,6 +111,16 @@ that number here too.
   point at Vercel, so the Google Workspace email records are never touched
 - **Newsletter** — beehiiv, free Launch plan, publication "Nathan's Newsletter".
   Form UUID `11848ad5-53ac-456d-8cec-428670527667`
+
+**The diagnostic's email gate is currently soft**, meaning the subscribe form
+shows with a visible "no thanks, show me anyway" link under it. Turning on the
+real gate needs a **second** beehiiv form whose post-subscribe redirect points at
+`/tools/career-pivot-result.html`; its UUID then goes into `GATE.formUuid` in
+`tools/diagnostic.js` and `GATE.mode` flips to `"beehiiv"`. It has to be a second
+form because the redirect belongs to the form, not to the link — reusing the
+homepage UUID would send homepage subscribers to a diagnostic results page.
+Never flip that switch before the redirect exists, and never fake it with an
+unlock button that works whether or not somebody subscribed.
 
 **Email authentication is deliberately undone.** `nathaneadam.com` has no SPF, no
 DKIM and no DMARC. Inbound mail works — the Google Workspace MX survived the

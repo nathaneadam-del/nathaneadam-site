@@ -4,7 +4,16 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 1 September 2026 (the Cost of Valor stand-in image replaced with a
+Last updated: 1 September 2026, later session — **the site got its first
+interactive tool.** `tools.html` plus a ten-question career diagnostic at
+`tools/career-pivot.html`, Tools in every nav and footer, twenty-one sitemap
+URLs, and two pre-existing broken footers fixed on the way past. Committed as
+`44d1a24`. **Nobody has seen it rendered on a phone yet** — that is the first
+job in a new session. See "The tools section" below before touching any of it,
+especially the two rules that are easy to undo by accident: the copy all lives
+in `tools/content.js`, and the thing must never start scoring people.
+
+Earlier the same day (the Cost of Valor stand-in image replaced with a
 real frame, so nothing on the site depicts something it isn't; both
 bio-correction emails drafted and waiting on addresses; the two Amazon book
 listings read, which closed three open questions and turned up two 2007 trade
@@ -75,7 +84,8 @@ projects/         One page per project. Same template as the top-level pages
   landr-pro-tools.html            ┘
 css/site.css      Every style for every page
 js/nav.js         Mobile menu toggle — the only script, loaded on every page
-sitemap.xml       Eight URLs, hand-maintained. New page means a new entry here.
+sitemap.xml       Twenty-one URLs, hand-maintained. New page means a new entry
+                  here. career-pivot-result.html is deliberately absent.
 robots.txt        Allows everything, points at the sitemap
 images/           See images/README.md
 press-archive/    Local text captures of articles the site links to. Gitignored
@@ -763,7 +773,8 @@ pairing Nathan's name with any of those speakers.
 
 **The credits build-out — 27 Aug 2026.** Ten more project pages, one per
 substantive entry on `credits.html`, so every credit title on that page now
-links somewhere. Nineteen sitemap URLs.
+links somewhere. Nineteen sitemap URLs at the time; twenty-one now, after the
+tools section.
 
 Three things about this batch that matter more than the pages themselves:
 
@@ -932,7 +943,34 @@ because four entries on `credits.html` still have no page.
 
 ## State as of 1 September 2026 — read this first in a new session
 
-**One-paragraph version:** unchanged from 31 Aug in the ways that matter — the
+### The very latest: the tools section shipped
+
+Built in the last session of 1 Sep and committed as `44d1a24`. Nathan pushed it
+himself to check on his phone. **The one open loop is that phone check** — the
+whole thing was verified logically (jsdom, every branch) and never verified
+visually, because Chrome was not running and the built-in browser cannot open
+`file://`. Ask him how it looked before building anything else.
+
+Two follow-ons already queued, in order:
+
+1. **The email gate is soft and wants a second beehiiv form** to become real.
+   Details under "The gate" in the tools section above. This is Nathan's click,
+   not a code change, and the tool is correct as-is until he makes it.
+2. **The assignment redesign helper**, the second tool, was agreed but not
+   started. Same shell and styling as the diagnostic, grounded in the MEIEA 2026
+   assessment paper: the teacher says what their assignment currently asks
+   students to hand in, and gets back a version built around process artifacts
+   and defence instead of the final deliverable. Output is a copyable brief plus
+   a rubric. `tools.html` already promises it in the "More coming" section, so
+   either build it or edit that paragraph.
+
+**A rejected idea worth not re-proposing.** The strongest tool on the original
+shortlist was a client-side LUFS meter. Nathan killed it, correctly: visitors
+arrive on phones and nobody moves a mix to a phone to check its loudness. That
+objection also kills the delivery-spec checker and most of the BPM calculator.
+Any tool that needs a file on a desktop is the wrong shape for this audience.
+
+**One-paragraph version of everything before that:** unchanged from 31 Aug in the ways that matter — the
 site is content-complete, in Nathan's voice, the newsletter form is collecting,
 and there is no launch blocker. What changed on 1 Sep: **every image on the site
 now depicts what it claims to** (the Cost of Valor stand-in is gone), **the two
@@ -1141,7 +1179,8 @@ several of those facts corrected things the site was getting wrong. See
 "Verified facts" above — the new entries are marked 31 Aug.
 
 **Live and verified:** all six top-level pages plus **fourteen** project pages,
-the Projects link in every nav and footer, nineteen sitemap URLs, and — new on
+the Projects link in every nav and footer, nineteen sitemap URLs (twenty-one
+since the tools section), and — new on
 31 Aug — an "Archived copy" link on **every** press source, not just six of
 them. Every substantive credit title on `credits.html` links to a write-up.
 
@@ -1175,6 +1214,12 @@ the folder if that ever wants reverting, and `vision-pro.jpg` (now on About)
 would also carry that argument.
 
 **Waiting on Nathan, in rough priority order:**
+
+0. **Look at the diagnostic on a phone.** Added 1 Sep, top of the list because
+   it is the only thing about the tools build that was never checked. Everything
+   else about it was verified headlessly. See "The tools section" above.
+0b. **A second beehiiv subscribe form**, if he wants the hard email gate rather
+   than the soft one currently shipping. His click, not a code change.
 
 1. **Email authentication — DEFERRED by decision, 31 Aug 2026.** Not a blocker.
    Nathan chose beehiiv's sending domain, so the newsletter is authenticated by
@@ -1446,14 +1491,22 @@ list of what he did; voice belongs in the project write-ups they link to.
 roughly one per piece. That page is about dead helicopter pilots. Tone beats
 the checklist.
 
-**Good next moves if he asks what's worth doing — revised 1 Sep 2026.** Both
-items this paragraph originally named are settled: the newsletter form was
-wired on 31 Aug, and SPF/DKIM/DMARC is a deliberate deferral rather than a task.
-The Cost of Valor links stopped being fragile when the trailers moved to
-Nathan's own channel. What is actually left is small and mostly his: send the
-two bio-correction emails once he has the addresses, get a still from the
-*Learn & Master Guitar* shoot, and either source or drop the unsourced
-"more than 100,000 students" figure on that page.
+**Good next moves if he asks what's worth doing — revised again 1 Sep 2026,
+after the tools build.** In rough order:
+
+1. **Hear how the diagnostic looked on his phone**, and fix whatever he says.
+   The `.q-card` `min-height` is the most likely offender.
+2. **The second beehiiv form**, if he still wants the hard gate. His click.
+3. **The assignment redesign helper**, which `tools.html` currently promises.
+4. Then the small pre-existing items: send the two bio-correction emails once he
+   has the addresses, get a still from the *Learn & Master Guitar* shoot, and
+   either source or drop the unsourced "more than 100,000 students" figure on
+   that page.
+
+Everything above the line items is settled: the newsletter form was wired on
+31 Aug, SPF/DKIM/DMARC is a deliberate deferral rather than a task, and the Cost
+of Valor links stopped being fragile when the trailers moved to Nathan's own
+channel.
 
 ---
 
