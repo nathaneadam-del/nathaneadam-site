@@ -4,10 +4,16 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 27 August 2026 (projects section — four write-ups, embedded TEDx
-talk grid, card index; a twenty-image photo batch placed across the site;
-Wayback archive links; the repo move that silently broke Vercel and how it was
-actually fixed).
+Last updated: 31 August 2026 (a voice pass across every page, driven by a
+writing profile built from the *Multi-Platinum Pro Tools* manuscript and four
+years of sent email and saved as the `my-writing-style` skill; eight
+`TODO (Nathan)` blocks closed with sourced facts; four wrong or unsupportable
+claims corrected; every press source finally archived; five more photos placed;
+and the discovery that the old DreamHost files are gone).
+
+**If you are starting a new session, read "State as of 31 August 2026" near the
+bottom first, then "Editorial rules". Load the `my-writing-style` skill before
+drafting any copy.**
 
 ---
 
@@ -185,9 +191,25 @@ landing in spam.** Fixing it is three DNS records at DreamHost plus turning DKIM
 on in the Workspace admin console — no code, and unrelated to Vercel.
 
 `nathaneadam.com` at DreamHost is set to **DNS Only** (hosting removed 23 Aug
-2026). His old files still sit in `/home/adnstudios/nathaneadam` including a
-`projects/` folder that is no longer served. A pre-migration zone snapshot is in
-`DNS-BACKUP-before-vercel.txt`, gitignored on purpose.
+2026). A pre-migration zone snapshot is in `DNS-BACKUP-before-vercel.txt`,
+gitignored on purpose.
+
+**The old site's files are gone — verified 31 Aug 2026.** An earlier version of
+this file said his old files "still sit in `/home/adnstudios/nathaneadam`
+including a `projects/` folder". That is no longer true, and anyone planning to
+recover an asset from there should stop. Checked directly in the DreamHost panel
+(Websites → SFTP Users & Files): **the user list is empty.** There is no
+`adnstudios` user, only the Shared Unlimited plan card for `pdx1-shared-a4-04`,
+which serves the two `thetorchbearer.org` subdomains. Removing hosting from the
+domain took the SFTP user and its home directory with it.
+
+Two follow-ons. **The "rotate the plaintext SFTP password" item is moot** — that
+user no longer exists; it is struck from the list below. And **anything that
+only existed on the old site is now only recoverable** from Nathan's own local
+backups, from `web.archive.org` (blocked from the Cowork sandbox, so he has to
+check it himself), or from a DreamHost support ticket if their backup retention
+window is still open. The known casualty is a photo of Nathan with Cathy Rigby
+that `projects/peter-pan.html` wants — see its TODO.
 
 ---
 
@@ -319,6 +341,56 @@ Hold the line.
 - **GRAMMY Camp Weekends 2017** ran in San Antonio, San Diego and Los Angeles,
   with Best Buy Teen Tech Centers and the Boys and Girls Club, 80+ students
   across three tracks. Source: the 2017 Belmont News piece. Not yet on the site.
+
+### Added 31 Aug 2026 — all confirmed by Nathan directly
+
+- **Presleys' Country Jubilee: 2009–2015, episodes 1 through 142**, all cut by
+  him personally, no post team. The site previously said the vague "140+"; use
+  the exact 142. The show has since run twelve seasons, so his were the first
+  six years, not the whole run. Official page: `presleys.com/rfd-tv`.
+- **Peter Pan: 2009**, Mansion Theater, Branson. He **recorded, edited and
+  mixed** the orchestral score — the site had said only "mixed" in one place and
+  "recorded and mixed" in another, both underselling it. Tracked at the Mansion
+  Studios on site. Orchestra size still unknown.
+- **Gibson's Learn & Master Guitar: produced 2005–06. Ten discs, fourteen hours.**
+  He shot *and* edited the whole series. Steve Krenz taught on camera.
+  **TRAP:** `learnandmaster.com/guitar` currently advertises **20 DVDs, 40+
+  hours, two Tellys and an AEGIS Award** — that is the CURRENT expanded edition,
+  not his. Never import those numbers onto his pages.
+- **The Telly is not a conflict.** The award was for educational video
+  production; Nathan produced the entire series; Legacy Learning Systems
+  submitted the entry and therefore holds the award. His 2023 CV's "Telly Award
+  Winning Audio & Video Producer" is accurate and needs no correction. Both
+  halves are now stated together on `credits.html` and the project page —
+  either alone misleads.
+- **Live from Virtual Reality: a Facebook Live series, 2017–2018, produced
+  inside Facebook Spaces.** Two different products: Spaces is where it was made,
+  Live is where it went out. Facebook Spaces shut down in 2019.
+- **The LANDR course is one course, renamed.** It launched as *Producing
+  Electronic Music in Pro Tools* (the CV title) and LANDR retitled it *Getting
+  Started with Pro Tools* (the live title). Corroborated by LANDR's own preview
+  URL, which still carries `courseid=edm-pro-tools`. Co-taught with Anthony
+  Falcone, 102 lessons, ~4 hours. Production year still unknown.
+- **The Jubilee guest artists were guests on the show**, not separate
+  engineering credits. Nathan's 2011 author bio lists them as "albums, tracks,
+  TV and radio spots for artists including…", which reads as separate session
+  work and is misleading. They live on the Presleys page with the distinction
+  stated outright. See open item 7 above re: "Carrie Tillis".
+- **Both books' publisher pages** are now the citation of record, replacing
+  ISBN-only references: `shop.elsevier.com/books/multi-platinum-pro-tools/adam/978-0-240-52023-0`
+  and `shop.elsevier.com/books/pro-tools-9-the-mixers-toolkit/adam/978-0-240-81870-2`.
+  *Multi-Platinum Pro Tools*: 8 chapters, 300+ colour illustrations, DVD with a
+  real Nashville session in both pre-edited and final-mix form. *The Mixer's
+  Toolkit*: 19 April 2011, 12 chapters, garage demo to radio-ready rock mix,
+  with an interactive companion **website** rather than a disc. That
+  DVD-to-website shift between the two books is a real argument and is now a
+  section on the Mixer's Toolkit page.
+- **Elsevier's own TOC misspells chapter 8 of the Mixer's Toolkit as "Vical
+  Mixing".** Their typo, in print since 2011. Not ours to replicate.
+- **The dissertation's method**, from the TSU repository abstract: a qualitative
+  study, online survey of **25 faculty** plus follow-up focus groups, spanning
+  spring and fall 2020, framed with **Community of Inquiry** (teaching, social
+  and cognitive presence). The findings themselves are still not public.
 
 ---
 
@@ -549,17 +621,49 @@ fill these in by inference.** The reason the editorial rules exist is that
 Nathan's published bios already contain numbers nobody can trace; a plausible
 paragraph on this site becomes the next bio's wrong fact.
 
-The three most valuable to close, in order:
+**The three most valuable — all closed 31 Aug 2026.** Kept here because the
+resolutions record facts, not just status.
 
-1. **`covid-dissertation.html` — a link to the dissertation.** The site asserts
-   a doctorate with nothing clickable. The JSON-LD `Person` block on
-   `index.html` omits the institution for the same reason. One URL (TSU
-   repository or the ProQuest record) fixes both at once.
-2. **`deborah-norville.html` — a link to the segment.** "820,000+ views" is
-   quoted on `credits.html` and now on its own page, and there is nothing to
-   click. It is the most-cited number on the site with no source attached.
-3. **`multi-platinum-com.html` — what happened to the company.** The page
-   currently stops mid-story, which reads as evasive rather than modest.
+1. ~~**`covid-dissertation.html` — a link.**~~ **Done.** The record is
+   `digitalscholarship.tnstate.edu/dissertations/AAI29256098/`. Its abstract also
+   supplied the method the page had been missing: a qualitative study, online
+   survey of **25 faculty** plus follow-up focus groups, spanning spring and fall
+   2020, framed with **Community of Inquiry** (teaching, social and cognitive
+   presence). `index.html`'s JSON-LD now carries Tennessee State in `alumniOf`;
+   the "institution deliberately omitted" note is gone with it. Still open on
+   that page: the findings themselves (the published abstract states none) and
+   the committee chair.
+2. ~~**`deborah-norville.html` — a link to the segment.**~~ **Closed as
+   unresolvable.** Nathan confirms the segment aired ~22 years ago and is no
+   longer online; the YouTube upload carrying the 820,000 count was taken down.
+   Per his decision the figure is **kept but qualified** in all three places it
+   appears — "a YouTube upload of the segments passed 820,000 views before it
+   came down." `images/norville.jpg` is now the only evidence of it we hold, and
+   the figcaption says so. Do not restore the bare number.
+3. ~~**`multi-platinum-com.html` — what happened to the company.**~~ **Done.**
+   Still live and selling on Thinkific with no new products in several years;
+   `multi-platinum.com` redirects to `multi-platinum.thinkific.com` (**note the
+   hyphen** — `multiplatinum.com` is a different, dead address). The page now has
+   a "Where it is now" section. **Founded 2006.** Nathan first said 2005, tying
+   it to the book's publication; the book is confirmed as **2006** (Focal Press,
+   ISBN 9780240520230), and shown that, he confirmed 2006 for the company as
+   well. Do not revert this to 2005 without asking him again. The "50+ courses
+   produced" figure reconciles with the 33 currently listed — older courses have
+   been retired, and the page now says so.
+
+   **The month is genuinely unsettled — don't pin it.** Elsevier's own page
+   headers the book "1st Edition, 28 July 2006" and then says "Published:
+   13 October 2009" in its product details (almost certainly the ebook
+   reissue); the Amazon listing is dated 2006-08-10. An earlier note in this
+   file said "August 2006" with more confidence than the sources support. The
+   site claims the year only, which is all that is defensible.
+
+**One claim that is now checkable and wasn't before.** Pinning the founding year
+at 2006 makes *"one of the first online training companies in music production"*
+— which appears on `index.html`, `about.html`, `credits.html` and the project
+page — a dateable claim rather than a vague one. Nobody has verified it against
+what else existed in 2006. Worth Nathan's own gut check before the site gets more
+traffic, since it is exactly the shape of claim the editorial rules exist for.
 
 **`mixers-toolkit.html` is deliberately the thinnest page on the site.** The
 repo has only ever recorded a title, a co-author, a publisher, a year and an
@@ -602,14 +706,24 @@ because four entries on `credits.html` still have no page.
    YouTube channel and brand. When that happens, swap the links: LinkedIn post
    URLs are fragile, tied to someone else's account, and the Wayback Machine
    handles them poorly. This is the single most at-risk link on the new pages.
-7. **Three press URLs have no Wayback snapshot** and need submitting by hand at
-   `web.archive.org/save` — the save endpoint is blocked from the Cowork
-   sandbox, so this can't be automated from here. In priority order:
-   NewsChannel 5 (unarchived, on a local TV CMS, and the proof bar leans on it),
-   the MEIEA 2026 proceedings PDF, and the Belmont M.A. program page. A TODO in
-   `speaking.html` marks where the NewsChannel 5 archive link goes. The other six
-   sources are archived and already carry "Archived copy" links; the full table
-   is in `press-archive/README.md`.
+7. ~~**Three press URLs have no Wayback snapshot.**~~ **Done, 31 Aug 2026.**
+   Nathan submitted all three by hand and every press source on the site now
+   carries an "Archived copy" link. Captures: NewsChannel 5
+   `web/20260901002048`, Belmont M.A. program page `web/20260901002027`, MEIEA
+   2026 proceedings `web/20260901002025`. All eight archive links were also
+   normalised from `http://` to `https://` in the same pass.
+
+   **Note the save endpoint — and now the whole of `web.archive.org` — is
+   blocked from the Cowork sandbox**, so archiving can never be automated from
+   here and can't even be verified from here. It is always Nathan's click.
+
+   **One loose end on the MEIEA capture.** It is keyed to the *wildapricot CDN*
+   address the PDF redirects to, not to the `meiea.org` URL the site actually
+   links and that any citation would use. Wayback replays fine, but a future
+   lookup of the meiea.org address may find nothing. Worth resubmitting the
+   clean `meiea.org/resources/Proceedings/2026/...` URL. The submitted URL also
+   carried a ~1400-character signed AWS policy; the markup uses the truncated
+   form, which resolves identically because Wayback serves its own stored bytes.
 8. `projects.html` — the **Cost of Valor card uses `nc5-ai.jpg`**, which is a
    frame from the NewsChannel 5 story, not from the film. It's a stand-in because
    that project has no photography of its own. Replace it with a still from one
@@ -647,20 +761,55 @@ because four entries on `credits.html` still have no page.
   `github.com/nathaneadam/nathaneadam-site`. The side effect was breaking
   Vercel's Git link — see "The repo move broke Vercel" under **Deployment**.
 
-## State as of 27 August 2026 — read this first in a new session
+## State as of 31 August 2026 — read this first in a new session
 
 Where things actually stand, so the next session doesn't have to reconstruct it.
 
-**Deployment is working again.** It was broken for most of 27 Aug — see "The repo
-move broke Vercel" under **Deployment** for the full diagnosis. Both faults are
-fixed. Pushes deploy normally.
+**31 Aug was a voice pass plus a fact-gathering pass.** Two things happened, and
+the second matters more than the first.
+
+**1. The site is now written in Nathan's voice, not in generic personal-brand
+prose.** A writing profile was built from two real corpora — the *Multi-Platinum
+Pro Tools* manuscript and roughly four years of his sent email — and saved as a
+skill called `my-writing-style`. **Load it before drafting anything he will
+publish or send.** It is the ground truth, not this file and not the site copy.
+
+The short version of what makes his voice his: he overstates and then plainly
+admits he overstated ("Ok, that's overstating things a bit" — his own
+correction, not a paraphrase); he uses ellipses as a drumroll; he names a
+rhetorical device while using it ("I'm known as the king of bad analogies"); he
+frames rules as preference, never law; and he writes `:)`, never a unicode
+emoji, in both a published Focal Press textbook and 2026 email. He also names
+products rather than categories — "Pro Tools LE", not "an audio card" — which is
+the correction he made to the first draft and the fastest way to spot copy that
+has drifted off-voice.
+
+**Do not use the pre-31-Aug site copy as a style reference.** Most of it was
+AI-drafted. The book and his email are the sources.
+
+**2. Eight `TODO (Nathan)` blocks were closed with facts from Nathan**, and
+several of those facts corrected things the site was getting wrong. See
+"Verified facts" above — the new entries are marked 31 Aug.
 
 **Live and verified:** all six top-level pages plus **fourteen** project pages,
-the Projects link in every nav and footer, nineteen sitemap URLs, and "Archived
-copy" links on the six press sources that have Wayback snapshots. Every
-substantive credit title on `credits.html` now links to a write-up — see "The
-credits build-out" above, and read the caveat there before adding to any of
-those pages.
+the Projects link in every nav and footer, nineteen sitemap URLs, and — new on
+31 Aug — an "Archived copy" link on **every** press source, not just six of
+them. Every substantive credit title on `credits.html` links to a write-up.
+
+**Four claims were corrected on 31 Aug. Do not reintroduce them:**
+
+- **"a mortgage" → "a house."** Nathan's house is paid off. The word "mortgage"
+  had been on `index.html` and `about.html` as a plausible-sounding stand-in for
+  real-life obligation that nobody had checked. This is the exact failure mode
+  the editorial rules exist to prevent, sitting on his own site.
+- **"three decades in" → "twenty-five years in"** on `about.html`. The old
+  phrasing contradicted the site's own proof bar, which counts 25 years from
+  Labette in 2001.
+- **The 820,000 Norville views are now qualified** everywhere. See open item 2
+  under "The credits build-out".
+- **An unsourced date was removed** from `speaking.html` — the AI-in-music topic
+  had said "the Autotune fight of 2003", which nothing supports. The sentence
+  works without a year.
 
 **The photography is no longer thin.** Twenty images were added and placed on
 27 Aug — see "Photography" below. Every `<img>` on every page carries width and
@@ -678,33 +827,69 @@ would also carry that argument.
 
 **Waiting on Nathan, in rough priority order:**
 
-1. **Email authentication** — no SPF, no DKIM, no DMARC. Unchanged and still the
-   most consequential item here, because the whole launch plan is a newsletter.
+1. **Email authentication** — no SPF, no DKIM, no DMARC. Unchanged since 24 Aug
+   and still the most consequential item here, because the whole launch plan is a
+   newsletter sent from a domain that cannot authenticate a single message.
 2. **The beehiiv endpoint** — `index.html` still posts to `action="#"` and tells
    real visitors their address wasn't saved. The last thing between this site and
    a launch.
-3. **Three Wayback submissions** — NewsChannel 5 first; it's unarchived and the
-   proof bar leans on it.
+3. ~~Three Wayback submissions~~ **Done 31 Aug.** All press sources archived.
 4. **The two bio corrections** — `BIO-CORRECTIONS.md` has the drafted emails.
 5. **Cost of Valor trailers on his own channel**, which then fixes both the
    fragile LinkedIn links and the stand-in card image.
-6. **The ten `TODO (Nathan)` blocks on the new project pages.** Grep for the
-   string. Most are one fact or one URL each. The three highest-value ones are
-   listed under "The credits build-out" above.
+6. **Eleven `TODO (Nathan)` blocks remain** (down from fifteen). Grep for the
+   string. None are claims the site is making without support — they are a photo,
+   a course year, an orchestra size. The site no longer asserts anything it
+   cannot point at.
+7. **Two small factual questions raised 31 Aug and not yet answered:**
+   - `"Carrie Tillis"` appears in Nathan's 2011 author bio among the Jubilee
+     guests. It does not resolve to any findable artist and may be a
+     transcription slip. It is **omitted** from the guest list on
+     `projects/presleys-country-jubilee.html` until he confirms.
+   - **Is *"one of the first online training companies in music production"*
+     actually true?** Pinning Multi-Platinum.com's founding at 2006 turned this
+     from a vague claim into a dateable one. It appears on `index.html`,
+     `about.html`, `credits.html` and the project page. Nobody has checked it
+     against what else existed in 2006. It is exactly the shape of claim the
+     editorial rules exist for, and it wants his own gut check.
 
-**Good next moves if he asks what's worth doing:** the project pages now exist
-but half of them are shells waiting on facts only he has — a pass through the
-TODO blocks would do more for the site than another new page. The GRAMMY Camp
-page is still the model: specific, sourced, and built from detail that had been
-sitting unused in this file.
+**Good next moves if he asks what's worth doing:** the fact-gathering pass on
+31 Aug closed most of what was blocking, so the honest answer is now the
+newsletter form and SPF/DKIM/DMARC — neither of which is a content problem. If
+he wants content work, the remaining TODO blocks are small, and
+`projects/cost-of-valor.html` is the one page whose links are actively fragile.
 
 ---
 
-## Photography — status after the 27 Aug batch
+## Photography — status after the 27 Aug and 31 Aug batches
 
-Nathan supplied twenty images on 27 Aug. They were placed by what each actually
-evidences rather than collected into a gallery; the full table of what went
-where is in `images/README.md`.
+Nathan supplied twenty images on 27 Aug and five more on 31 Aug. They were placed
+by what each actually evidences rather than collected into a gallery; the full
+table of what went where is in `images/README.md`.
+
+**The 31 Aug five closed three real gaps**, and arrived with spaces in their
+filenames, about to be committed unreferenced. Renamed to the convention,
+`-sm` variants generated, placed:
+
+- `mansion-studios-gatlin.jpg` → `projects/peter-pan.html`. The room the 2009
+  score was tracked in, with Larry Gatlin. That page had wanted a session photo
+  since it was written. The caption says it is **the room**, not that the frame
+  is from the Peter Pan sessions — nobody has confirmed that.
+- `multi-platinum-dave-aron.jpg` → `projects/multi-platinum-com.html`. Shooting
+  a hip-hop mixing course with Dave Aron, Snoop Dogg's engineer. That page
+  claims it put working engineers on camera; this is the claim, pictured.
+- `grammy-camp-haywood-sanders.jpg` → `projects/grammy-camp.html`. With Shannon
+  Sanders and Dave Haywood of Lady Antebellum. The page had many
+  students-at-consoles and nothing showing the industry guests.
+- `walnut-control-room.jpg` and `walnut-live-room.jpg` → `about.html`,
+  **stacked as two solo plates, deliberately not a pair.** 2.25:1 against
+  4.78:1 would run the columns ragged.
+
+**Two pre-existing pairs are marginally ragged** and were left alone: the TEDx
+pair on `speaking.html` (1.77 vs 1.68) and one on
+`projects/tedx-nashville.html` (1.42 vs 1.50). Both are ~5% off, which is a
+10–15px step at phone width. Fixing means cropping, which changes what the
+photos show, so it wants a human eye rather than a script.
 
 **Gaps that closed:**
 

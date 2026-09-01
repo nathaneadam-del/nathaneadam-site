@@ -28,9 +28,11 @@
      name search, which is where most of this site's traffic will come from.
      Editorial rules apply here as much as to visible copy: every field below
      traces to a source (see CLAUDE.md). Do not add a claim here that isn't
-     already on the site. Deliberately absent: the doctorate's institution,
-     which isn't documented anywhere I could point at, and any camp or student
-     count, which belong in prose where they can be qualified. -->
+     already on the site. Tennessee State was added to alumniOf on 31 Aug 2026,
+     once the dissertation record gave it a citable source:
+     digitalscholarship.tnstate.edu/dissertations/AAI29256098/
+     Still deliberately absent: any camp or student count, which belong in prose
+     where they can be qualified. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,11 +48,18 @@
     "name": "Belmont University",
     "url": "https://www.belmont.edu/"
   },
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "Pittsburg State University",
-    "url": "https://www.pittstate.edu/"
-  },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Tennessee State University",
+      "url": "https://www.tnstate.edu/"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Pittsburg State University",
+      "url": "https://www.pittstate.edu/"
+    }
+  ],
   "homeLocation": {
     "@type": "Place",
     "address": {
@@ -161,7 +170,7 @@
       </figure>
 
       <p>So I'm doing what I did the last time. Figuring it out in the open, and teaching it as I go.</p>
-      <p>Let me be clear about what I'm not. I'm not a 25-year-old guru who cracked the code last Tuesday and has a course to sell you. I'm a professor with a doctorate in education, kids, a mortgage, and a career I'm reinventing in public at an age where that's supposed to be a bad idea.</p>
+      <p>Let me be clear about what I'm not. I'm not a 25-year-old guru who cracked the code last Tuesday and has a course to sell you. I'm a professor with a doctorate in education, kids, a house, and a career I'm reinventing in public at an age where that's supposed to be a bad idea.</p>
       <p>If I can do this at my age, so can you. Which is either encouraging or mildly insulting, depending on how you took it. :)</p>
       <p class="sig">— Nathan</p>
       <div class="cta-row">
@@ -183,12 +192,12 @@
         <div class="pillar">
           <div class="num">Two</div>
           <h3>The How</h3>
-          <p>Hands-on tutorials of doing real things with AI: building the site, writing with Claude, vibe-coding an app, automating career drudgery. Twenty-five years of teaching means these are simply better taught.</p>
+          <p>Hands-on builds, not think pieces. This site. Writing with Claude. Vibe-coding an app. Automating the tedious parts of a career. Twenty-five years of teaching means I know where you're going to get stuck, mostly because I've watched a few thousand people get stuck in exactly that spot.</p>
         </div>
         <div class="pillar">
           <div class="num">Three</div>
           <h3>The Professor's Take</h3>
-          <p>Calm, credentialed judgment on what's real and what's hype — and what actually deserves your time at 50.</p>
+          <p>What's real, what's hype, and what actually deserves your time at 50. I have tenure and nothing to sell you, which makes me harder to bribe than most people writing about this.</p>
         </div>
       </div>
     </div>
@@ -197,7 +206,7 @@
   <section id="join" class="signup">
     <div class="wrap">
       <h2>One honest email a week</h2>
-      <p>What I tried with AI that week, what it cost me, and what worked. Written for experienced professionals. No hype, no income claims, no "10x your life."</p>
+      <p>What I tried with AI that week, what it cost me, and what actually worked. Written for people with a career already behind them. No hype, no income screenshots, no promises to 10x your life.</p>
       <!-- TODO: replace action="#" with the beehiiv form endpoint in Work Package 3, Step 3.1 -->
       <form id="signup-form" action="#" method="post" novalidate>
         <label for="email" style="position:absolute;left:-9999px;">Email address</label>

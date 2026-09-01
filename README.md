@@ -10,9 +10,8 @@ credits.html      Production, engineering, publishing, curriculum, teaching
 speaking.html     TEDx talk, topics, talk history, press, booking
 projects.html     Card index of the project write-ups
 404.html          Branded not-found page
-projects/         One page per project — Cost of Valor, TEDxNashville,
-                  GRAMMY Camp, the M.A. programme. These sit one folder down,
-                  so their links use ../
+projects/         Fourteen write-ups, one per substantive credit. These sit one
+                  folder down, so their links use ../
 css/site.css      Every style for every page
 js/nav.js         Mobile menu toggle — the only script on the site
 images/           Photos — see images/README.md
@@ -87,11 +86,28 @@ Written down because they were expensive to work out.
 - Conservative numbers. "50+ GRAMMY Camps" (real count 53), "25 years" of teaching
   from 2001. Bios elsewhere say 60+ and 100+ — those are wrong and should be
   corrected at the source.
-- Awards attributed precisely. The Telly for *Learn & Master Guitar* belongs to
-  Legacy Learning Systems.
-- No unlinked press claims.
+- Awards attributed precisely — **both halves**. The Telly for *Learn & Master
+  Guitar* was for educational video production. Nathan produced the entire
+  series; Legacy Learning Systems submitted the entry and therefore holds the
+  award. State both. Either one alone misleads, and an earlier version of this
+  file gave only Legacy's half, which undersold him.
+- No unlinked press claims. Every press source on the site now carries an
+  "Archived copy" link as well as a live one.
 - Photographers credited by name.
+- Never invent a plausible-sounding detail. Two got caught on 31 Aug that
+  nobody had ever checked: a "mortgage" (his house is paid off) and "three
+  decades" of teaching (it is 25 years, and the site's own proof bar said so).
 
 Open questions are marked `TODO (Nathan)` in the HTML. `CLAUDE.md` has the full
 list plus what's worth fixing on the Belmont faculty page and in the bio sent to
 conferences.
+
+## Writing anything in Nathan's voice
+
+There is a saved skill called **`my-writing-style`**, built from the
+*Multi-Platinum Pro Tools* manuscript and four years of his sent email. Load it
+before drafting copy, a newsletter issue, a post or an email.
+
+**Do not use this site's copy as a style reference.** Much of it was AI-drafted
+before the 31 Aug voice pass, and even the rewritten copy is downstream of the
+profile rather than a source for it. The book and his email are the sources.

@@ -121,6 +121,26 @@ Regenerate only if the hero headline changes. Keep the filenames — platforms
 cache aggressively by URL, and a new name means every previously shared link
 keeps the old card.
 
+## The 31 Aug 2026 batch
+
+Five photographs Nathan added. They arrived with spaces in the filenames and
+were about to be committed unreferenced; renamed to the convention below and
+placed by what each actually evidences.
+
+| File | Dimensions | Where it went and why |
+|---|---|---|
+| `mansion-studios-gatlin.jpg` | 640×480 | `projects/peter-pan.html`. The Mansion Studios room where the 2009 orchestral score was tracked, with Larry Gatlin. The page had asked for a session photo since it was written. Caption says it is the room — **not** that the frame is from the Peter Pan sessions, which nobody has confirmed. Under 780px, so no `-sm`. |
+| `multi-platinum-dave-aron.jpg` | 1280×853 | `projects/multi-platinum-com.html`. Shooting a hip-hop mixing course with Dave Aron, Snoop Dogg's engineer. That page claims it put working engineers on camera; this is the claim, pictured. |
+| `grammy-camp-haywood-sanders.jpg` | 1008×575 | `projects/grammy-camp.html`. With Shannon Sanders and Dave Haywood of Lady Antebellum. The page had plenty of students-at-consoles and nothing showing the industry guests. |
+| `walnut-control-room.jpg` | 1200×533 | `about.html`, Walnut House section. |
+| `walnut-live-room.jpg` | 1300×272 | `about.html`, below it. |
+
+**The two Walnut House shots are deliberately not a `.plate-pair`.** Control room
+is 2.25:1 and the live room is 4.78:1 — nowhere near matching, and pairing them
+would run the columns ragged. They are stacked as two solo `.plate` figures
+instead. If a third Walnut House image ever arrives, check its ratio before
+pairing it with either.
+
 ## Conventions
 
 **`-sm` variants** are 700px wide, quality 80, referenced via `srcset`. Generate
