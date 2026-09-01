@@ -48,6 +48,15 @@ credits.html      Production, engineering, publishing, curriculum, teaching
 speaking.html     TEDx embed, topics, talk history, press, booking
 projects.html     Index of the long-form project write-ups
 404.html          Branded not-found page. Vercel serves it automatically.
+tools.html        Index of the interactive tools. Added 1 Sep 2026.
+tools/            Interactive tools. Same ../ asset convention as projects/.
+  career-pivot.html         The diagnostic: questions + the free read
+  career-pivot-result.html  The gated full read. NOINDEX, and absent from
+                            sitemap.xml on purpose — it is meaningless
+                            without the answers in the visitor's own browser.
+  content.js                EVERY WORD the visitor reads. Edit text here.
+  diagnostic.js             Logic only. No copy in it.
+  DIAGNOSTIC-DESIGN.md      Why the questions are the questions.
 projects/         One page per project. Same template as the top-level pages
                   but with ../ asset paths — see CSS conventions below.
   cost-of-valor.html
@@ -551,6 +560,107 @@ Pillow at quality 80. Phone page weight is roughly half desktop. Skip the varian
 when the full file is already under ~780px — pointless bytes.
 
 ---
+
+## The tools section — built 1 Sep 2026
+
+`tools.html` plus `tools/career-pivot.html`, a ten-question diagnostic. Twenty-one
+sitemap URLs. "Tools" is now in the nav and footer of every page.
+
+**Phone-first is why this tool and not a better one.** The first shortlist led
+with a LUFS meter: drop in a mix, get integrated loudness and a verdict against
+Spotify and Apple targets, all client-side via Web Audio. Higher search volume
+and harder to fake than anything here. Nathan killed it on one observation, which
+was right: **most visitors arrive on a phone, and nobody transfers a mix to their
+phone to check its loudness.** Same objection removes the delivery-spec checker
+and most of the BPM calculator. Anything requiring a file on a desktop is the
+wrong shape for this audience. Re-read that before proposing tool ideas again.
+
+**No backend, so no model.** Static site, no build step, no API keys. The tool
+cannot read what somebody types and reason about it. It asks good questions and
+uses a decision tree. That limit is stated here so nobody "fixes" it later by
+adding a serverless function and an API key to a site whose whole premise is that
+Nathan is never blocked by a toolchain that rotted.
+
+**IT DOES NOT SCORE ANYBODY, AND MUST NOT START.** No percentage, no personality
+type, no "your role is 68% exposed." There is no study behind a number like that
+and inventing one is exactly the failure the editorial rules exist to prevent —
+on a page whose whole subject is other people's careers. Every read is framed as
+Nathan's opinion, and the caveat at the bottom of every result says outright that
+it is not research. **Do not remove that caveat.** It uses the Mixer's Toolkit
+against him (he was pleased to drop the DVD for a companion website; the website
+is long gone and the DVD still works in every copy sold), which is what makes the
+rest of the page credible.
+
+**The framework**, for anyone extending it. Work is exposed when it is executing
+somebody else's spec, judged on technical criteria, sourced through a
+marketplace, priced per deliverable, and describable in words. It is durable when
+it involves deciding what good means, being trusted by name, being accountable or
+present, and being teachable. Six of the nine track-A questions score against
+that. `middle` answers count for neither side on purpose, so a fence-sitter lands
+in the middle read.
+
+**Nobody is told they're fine.** The low-exposure read names a different risk
+(somebody with the same taste and faster execution underneath, who says yes to
+three times the work) rather than congratulating them. A diagnostic that pats
+two-thirds of its takers on the head is a horoscope.
+
+**Track B is deliberately unscored.** Every early-career visitor gets the same
+read, because the diagnosis genuinely is the same for all of them: the bottom
+rung was the *learning* rung. Only the 90-day move changes, and that comes off
+the AI-adoption question. Do not add scoring to track B to make it feel fancier.
+
+### The gate — currently SOFT, and that is not an accident
+
+Nathan chose a real email gate. The honest mechanism needs one thing that does
+not exist yet, so `GATE.mode` in `diagnostic.js` ships as `"soft"`: the subscribe
+form shows, with a visible "no thanks, show me the rest anyway" link under it.
+
+**To switch on the real gate, Nathan needs to create a SECOND beehiiv subscribe
+form** and set its post-subscribe redirect to
+`https://www.nathaneadam.com/tools/career-pivot-result.html`, then paste that
+form's UUID into `GATE.formUuid` and flip `GATE.mode` to `"beehiiv"`.
+
+**It must be a second form, not the homepage one.** The redirect is a property of
+the form, not of the link, so reusing UUID `11848ad5-…` would send homepage
+subscribers to the diagnostic's results page as well. That would be nonsense.
+
+**Never ship `mode:"beehiiv"` before that redirect is configured** — every person
+who subscribed would dead-end on beehiiv with no way back to their result, which
+is worse than no gate. And never fake it: an unlock button that works whether or
+not somebody subscribed is the same species of lie as the old `action="#"` form
+that told real visitors their address wasn't saved.
+
+Whether a Launch-plan form supports a custom redirect at all is **unverified**.
+If it doesn't, the soft gate is the answer and the tool is already correct.
+
+**One good property of the current build:** the beehiiv loader, and therefore the
+site's only third-party tracking, is injected only when somebody reaches the end
+of the diagnostic. A visitor who reads the intro and leaves is never tracked. The
+homepage cannot say that.
+
+### Two footer bugs fixed in passing
+
+`projects/cost-of-valor.html` and `projects/ma-media-entertainment.html` had
+footers with **no Projects link at all**, unlike the other twelve project pages.
+Pre-existing, unrelated to this work, found by a coverage count rather than by
+looking. Both now carry Projects and Tools like everything else.
+
+### What was verified
+
+The logic was exercised headlessly with jsdom, not by reading it: every read
+branch, all seven craft substitutions, all three 90-day variants, both tracks,
+the back button, the empty-result state, and a browser with `localStorage`
+throwing on access. All 23 HTML files parse under a strict non-recovering lxml
+parse. Every class the script emits has a CSS rule. All 39 selectors in the tools
+CSS block are scoped to `.q-` or `.tool-`, so none of it can reach the other
+twenty pages. Prose em dashes introduced: zero.
+
+**Not verified: how any of it actually looks.** Chrome was not running, and the
+built-in browser cannot open `file://`. Nobody has seen this rendered at 390px.
+That is the first thing to do next session, and the `.q-card` `min-height` is the
+thing most likely to be wrong — it exists so the card does not jump between
+questions of different lengths and slide the buttons out from under a moving
+thumb.
 
 ## Open items
 
