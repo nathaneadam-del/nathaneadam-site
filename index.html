@@ -207,13 +207,33 @@
     <div class="wrap">
       <h2>One honest email a week</h2>
       <p>What I tried with AI that week, what it cost me, and what actually worked. Written for people with a career already behind them. No hype, no income screenshots, no promises to 10x your life.</p>
-      <!-- TODO: replace action="#" with the beehiiv form endpoint in Work Package 3, Step 3.1 -->
-      <form id="signup-form" action="#" method="post" novalidate>
-        <label for="email" style="position:absolute;left:-9999px;">Email address</label>
-        <input id="email" type="email" name="email" placeholder="you@example.com" required autocomplete="email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <p class="formnote" id="formnote" role="status"></p>
+      <!-- beehiiv subscribe form, wired 31 Aug 2026. Replaces the old action="#"
+           placeholder, which told real visitors their address was not saved.
+
+           This is a cross-origin IFRAME, not markup we control — site.css cannot
+           reach inside it. The form was styled to match in beehiiv's own builder
+           (Subscribers > Subscribe forms). Verified against the live render:
+             input   #0E2131 bg, #40586C border 1px, #FFF text, Poppins 17px, r5
+             button  #EF8C1F bg, #1B1206 text, Poppins 17px, weight 600, r5
+           The button text is deliberately DARK. White on #EF8C1F is ~2.9:1 and
+           fails contrast — see CLAUDE.md. beehiiv's builder defaults to white,
+           so re-check this if the form is ever rebuilt there.
+
+           Its own title and subtitle are switched OFF, because the <h2> and <p>
+           above already say it. Turning them back on duplicates the copy.
+
+           TWO KNOWN COSTS, accepted deliberately (see CLAUDE.md):
+           1. The loader pulls Google Tag Manager and sets a bhv_attribution
+              cookie. This is the site's only third-party tracking. It was
+              accepted in exchange for beehiiv handling double opt-in, bot
+              filtering and unsubscribe.
+           2. The iframe sizes itself AFTER load, so it cannot hold the site's
+              0px layout shift on its own. .beehiiv-form reserves 52px — the
+              measured height of the rendered form — which absorbs nearly all of
+              it. If beehiiv changes the form's height, update that number. -->
+      <div class="beehiiv-form">
+        <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="11848ad5-53ac-456d-8cec-428670527667"></script>
+      </div>
       <p class="fineprint">One email a week. Unsubscribe any time. I don't sell or share your address.</p>
     </div>
   </section>
@@ -242,14 +262,8 @@
 <script src="js/nav.js" defer></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
-  // Placeholder handler — replaced when the real newsletter endpoint is wired up (Step 3.1).
-  document.getElementById('signup-form').addEventListener('submit', function(e){
-    e.preventDefault();
-    var note = document.getElementById('formnote');
-    var val = document.getElementById('email').value.trim();
-    if (!val || val.indexOf('@') < 1) { note.textContent = 'Please enter a valid email address.'; return; }
-    note.textContent = 'Preview mode — the form is not connected yet. Your address was not saved.';
-  });
+  // The newsletter signup is beehiiv's iframe now — it handles its own validation,
+  // submission and success toast. The old placeholder handler is gone with it.
 </script>
 </body>
 </html>

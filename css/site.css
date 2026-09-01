@@ -178,6 +178,14 @@ button:hover{background:#fff;}
 .fineprint{font-size:14px;color:#9fb0bd;margin-top:16px;}
 .formnote{font-size:15px;margin-top:14px;color:#c3cdd6;min-height:1.2em;}
 
+/* Wrapper for the beehiiv subscribe iframe on index.html. The iframe measures
+   itself after load and reports its height back by postMessage, so it cannot
+   reserve its own space the way the rest of the site's <img> width/height pairs
+   do. min-height is the measured height of the rendered form (52px input/button
+   row) and is what keeps the footer from jumping when the form arrives.
+   If the form's height changes in beehiiv's builder, change this to match. */
+.beehiiv-form{margin-top:28px;max-width:520px;min-height:52px;}
+
 /* ---------- footer ---------- */
 footer{padding:46px 0 60px;font-size:16px;color:var(--ink-soft);}
 .flinks{display:flex;flex-wrap:wrap;gap:10px 24px;margin-bottom:22px;}

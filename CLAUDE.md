@@ -696,16 +696,23 @@ because four entries on `credits.html` still have no page.
    courses.
 3. `speaking.html` — the *Nashville Ledger* mention is in his Belmont bio, absent
    from his CV, and no article was findable. Off the site until it has a link.
-4. `index.html` — newsletter form posts to `action="#"`. Needs the beehiiv
-   endpoint. The JS handler is a placeholder that saves nothing.
+4. ~~`index.html` — newsletter form posts to `action="#"`.~~ **Done, 31 Aug 2026.
+   Wired to beehiiv.** See "The newsletter form" below.
 5. `index.html` — YouTube link held back until episode 1. The handle
    `@nathaneadam` was **not** claimed as of August 2026; an unrelated account sits
    at `@nathanadam1156`.
-6. `projects/cost-of-valor.html` — the two trailers currently link to **LinkedIn
-   posts on Gary Garrison's account**. Nathan plans to post the films to his own
-   YouTube channel and brand. When that happens, swap the links: LinkedIn post
-   URLs are fragile, tied to someone else's account, and the Wayback Machine
-   handles them poorly. This is the single most at-risk link on the new pages.
+6. ~~`projects/cost-of-valor.html` — the two trailers link to LinkedIn posts on
+   Gary Garrison's account.~~ **Done, 31 Aug 2026.** Both films are on Nathan's
+   own YouTube channel and the page now points there:
+   cinematic `youtu.be/BFTz21YJnBk`, documentary `youtu.be/OrWVRhjSDMM`.
+   The LinkedIn URLs are gone. **One new TODO opened on that page in exchange:**
+   which image and video models the team actually used. That is the single
+   detail that would make the page useful to other people doing this work, and
+   it was left out rather than guessed.
+
+   YouTube descriptions for both videos were drafted in Nathan's voice on
+   31 Aug and are in the chat transcript, not in the repo. If they need
+   editing later, the facts in them all come from this page.
 7. ~~**Three press URLs have no Wayback snapshot.**~~ **Done, 31 Aug 2026.**
    Nathan submitted all three by hand and every press source on the site now
    carries an "Archived copy" link. Captures: NewsChannel 5
@@ -830,14 +837,15 @@ would also carry that argument.
 1. **Email authentication** — no SPF, no DKIM, no DMARC. Unchanged since 24 Aug
    and still the most consequential item here, because the whole launch plan is a
    newsletter sent from a domain that cannot authenticate a single message.
-2. **The beehiiv endpoint** — `index.html` still posts to `action="#"` and tells
-   real visitors their address wasn't saved. The last thing between this site and
-   a launch.
+2. ~~**The beehiiv endpoint.**~~ **Done 31 Aug 2026** — see "The newsletter form"
+   above. This makes item 1 urgent rather than merely important: the form now
+   collects addresses, and the domain still cannot authenticate a message sent
+   to any of them.
 3. ~~Three Wayback submissions~~ **Done 31 Aug.** All press sources archived.
 4. **The two bio corrections** — `BIO-CORRECTIONS.md` has the drafted emails.
 5. **Cost of Valor trailers on his own channel**, which then fixes both the
    fragile LinkedIn links and the stand-in card image.
-6. **Eleven `TODO (Nathan)` blocks remain** (down from fifteen). Grep for the
+6. **Ten `TODO (Nathan)` blocks remain** (down from fifteen). Grep for the
    string. None are claims the site is making without support — they are a photo,
    a course year, an orchestra size. The site no longer asserts anything it
    cannot point at.
@@ -852,6 +860,119 @@ would also carry that argument.
      `about.html`, `credits.html` and the project page. Nobody has checked it
      against what else existed in 2006. It is exactly the shape of claim the
      editorial rules exist for, and it wants his own gut check.
+
+### The newsletter form — wired 31 Aug 2026
+
+`index.html` posts to beehiiv now. The old `action="#"` placeholder is gone,
+along with the JS handler that told real visitors their address wasn't saved.
+
+**Form UUID `11848ad5-53ac-456d-8cec-428670527667`**, publication "Nathan's
+Newsletter", free Launch plan. Builder path is **Subscribers → Subscribe forms**
+(not "Grow" — that menu does not exist).
+
+**It is a cross-origin iframe, not our markup.** `site.css` cannot style it. It
+was matched by hand in beehiiv's builder and verified against the live render at
+`subscribe-forms.beehiiv.com/<uuid>`:
+
+| | value |
+|---|---|
+| input bg / border | `#0E2131` / `#40586C` 1px |
+| input text / placeholder | `#FFFFFF` / `#8BA0B1` |
+| button bg / text | `#EF8C1F` / `#1B1206` |
+| font, size, radius | Poppins, 17px, 5px |
+| button weight | 600 (Semi Bold) |
+| measured height | 52px |
+
+**The button text is dark on purpose.** White on `#EF8C1F` is ~2.9:1 and fails
+contrast; beehiiv's builder defaults to white. Check this first if the form is
+ever rebuilt there.
+
+**The form's own title and subtitle are switched OFF.** The `<h2>` and `<p>`
+above it already say that. Turning them on duplicates the copy.
+
+**Two costs accepted deliberately, after weighing them with Nathan:**
+
+1. **The loader pulls Google Tag Manager and sets a `bhv_attribution` cookie.**
+   This is the only third-party tracking on the site and it breaks the stated
+   "no analytics, no tag manager" policy above. Accepted in exchange for beehiiv
+   handling double opt-in, bot filtering and unsubscribe — none of which we
+   would want to rebuild and maintain on a site whose whole premise is that
+   Nathan is never blocked by a toolchain that rotted.
+2. **It cannot hold 0px layout shift on its own**, because the iframe measures
+   itself after load and reports height back by `postMessage`. `.beehiiv-form`
+   in `site.css` reserves **52px** to absorb it. **If the form's height changes
+   in beehiiv, change that number too.**
+
+**The alternative that was rejected**, and why it may still be worth revisiting:
+a Vercel serverless function at `/api/subscribe.js` calling beehiiv's API with a
+key in an env var. API access **is** included on the free Launch plan (verified
+against beehiiv's own pricing page, 31 Aug 2026 — "API access, Launch: Yes"; the
+Launch exclusion is only the *Send* API, which is unrelated). That route keeps
+the styling native, adds no tracking and no cookie, and holds layout shift at
+zero. It was rejected because it means owning custom code that can break
+silently, and rebuilding the opt-in plumbing. Revisit only if the tag manager
+becomes a real objection.
+
+**Free-plan branding: there is none on the form.** Checked the live render
+directly — no "powered by beehiiv" in the DOM text. The Max-only "Remove beehiiv
+Branding" feature covers the hosted newsletter and website, not the embed.
+
+**Still required before launch:** SPF, DKIM and DMARC. See item 1 under "Waiting
+on Nathan". A working form pointed at a domain that cannot authenticate a single
+message is the most likely cause of the first issue landing in spam.
+
+### The second voice pass — 31 Aug 2026, later the same day
+
+The first pass that day covered `index` and `about` properly and touched the
+project pages lightly. A measurement showed how lightly. First-person density
+per 100 words of body prose, which is the fastest proxy for whether a page
+sounds like him:
+
+| | before | after |
+|---|---|---|
+| `index.html` | 4.9 | 4.9 (benchmark, untouched) |
+| `about.html` | 3.8 | 3.8 (benchmark, untouched) |
+| `projects/mixers-toolkit.html` | **0.1** | 1.6 |
+| `projects/cost-of-valor.html` | **0.0** | 1.6 |
+| `projects/peter-pan.html` | 0.7 | 1.4 |
+| `projects/ma-media-entertainment.html` | 0.9 | 1.5 |
+| `projects/multi-platinum-pro-tools.html` | 0.9 | 1.5 |
+
+`cost-of-valor.html` was the worst on the site: 577 words about his own project
+with **zero** first-person pronouns in them, written like a press release. It
+was fully rewritten.
+
+**Three cautions for anyone repeating this measurement.**
+
+1. **The obvious regex undercounts.** These pages use `&rsquo;` for
+   apostrophes, so `I've` and `I'm` do not match a naive pattern. Decode the
+   entities and strip HTML comments before counting, or the first run will
+   badly misreport. It did here, and nearly sent a rewrite at pages that were
+   already fine.
+2. **Density is a smell test, not a target.** `projects/tedx-nashville.html`
+   and `projects/live-from-virtual-reality.html` still read at 0.5, and both
+   are fine — the first is 34 speaker names and the second is caption-heavy.
+   The prose in them is his. Do not pad a page to move a number.
+3. **Em dash counts over-report the same way.** Most em dashes on the site are
+   in `<cite>` separators, `<title>` tags, footers and list dividers, which are
+   legitimate typography. Only prose em dashes are the style violation. Filter
+   to `<p>` before judging. After this pass, prose em dashes across all twenty
+   pages number **zero**.
+
+**One invented detail was written and caught before it shipped.** A draft of
+`peter-pan.html` said the walk from the console to the stage "was about ninety
+seconds." Nothing supports that. The page now says only that tracking happened
+in the same building, which is sourced. Recording it here because it is exactly
+the failure mode the editorial rules exist to prevent, and it happened on the
+same day the rules were being applied on purpose.
+
+**What was deliberately not done.** `credits.html` stays a roster at Nathan's
+explicit direction — 0.0 first person, and correct that way. The entries are a
+list of what he did; voice belongs in the project write-ups they link to.
+
+**No `:)` on `cost-of-valor.html`, on purpose.** The style profile calls for
+roughly one per piece. That page is about dead helicopter pilots. Tone beats
+the checklist.
 
 **Good next moves if he asks what's worth doing:** the fact-gathering pass on
 31 Aug closed most of what was blocking, so the honest answer is now the
