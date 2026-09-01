@@ -118,7 +118,8 @@ The six that got mats are all type or artwork, where losing an edge loses a word
 | File | Where |
 |---|---|
 | `og-card.jpg` | Homepage. Carries the hero headline. |
-| `og-card-profile.jpg` | About, Credits, Speaking, every project page, `tools.html`, `tools/career-pivot.html`, and the `Person` schema. Name and title, no campaign copy, so it doesn't go stale. |
+| `og-card-profile.jpg` | About, Credits, Speaking, every project page, `tools.html`, and the `Person` schema. Name and title, no campaign copy, so it doesn't go stale. |
+| `og-card-diagnostic.jpg` | `tools/career-pivot.html` only. The question on the left, the same TEDx portrait on the right, built from `og-card.jpg` with Pillow on 1 Sep 2026. This is the URL Nathan shares, so it gets its own card. |
 
 **The diagnostic reuses the profile card, and probably shouldn't forever.**
 `tools/career-pivot.html` is the most shareable page on the site — it's a

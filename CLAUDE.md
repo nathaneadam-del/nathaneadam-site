@@ -4,7 +4,20 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 1 September 2026, later session — **the site got its first
+Last updated: 1 September 2026, third session — **the site was turned into a
+funnel for the diagnostic, and student testimonials went on.** Every one of
+the 23 pages now asks the same thing in the same words, "Take the AI Career
+Diagnostic"; the email became the second ask; five "nothing to sell" lines
+were rewritten so they stay true the day a course exists; student voices
+from thirteen years of course evaluations went on `index.html`, `about.html`
+and the gate. See "The funnel" below, and `FUNNEL-PLAN.md`. **Two rules from
+that section are the easy ones to break: the testimonials carry NO names,
+on purpose, and the callout copy lives in exactly two places.** Still
+unverified visually — Chrome will not open `file://` and the built-in
+browser cannot either — so the phone check now covers the homepage and the
+callouts as well as the diagnostic.
+
+Earlier that day: **the site got its first
 interactive tool.** `tools.html` plus a ten-question career diagnostic at
 `tools/career-pivot.html`, Tools in every nav and footer, twenty-one sitemap
 URLs, and two pre-existing broken footers fixed on the way past. Committed as
@@ -672,6 +685,73 @@ thing most likely to be wrong — it exists so the card does not jump between
 questions of different lengths and slide the buttons out from under a moving
 thumb.
 
+## The funnel — built 1 Sep 2026
+
+Nathan intends to offer coaching or courses on AI fluency eventually, so the
+site's job changed from "professor with a newsletter" to "get people to take
+the diagnostic, which collects the email." The plan and the reasoning are in
+`FUNNEL-PLAN.md`; the model was grahamcochrane.com, copied for four things
+only: one ask in the same words everywhere, a free *thing* rather than "join
+my list", the email captured inside the thing, and every page ending on the
+ask. Not copied: the offer grid, scarcity, countdowns. **Coaching and
+courses stay off the site until something is actually for sale.**
+
+What changed:
+
+- **The nav button on all 23 pages** is `Take the AI Career Diagnostic`
+  (`class="nav-cta"`), pointing at `tools/career-pivot.html` with the right
+  relative path per directory. Nathan chose that label over the shorter
+  "Take the diagnostic". Do not vary the words page to page.
+- **The homepage hero's orange button is the diagnostic**; the email is the
+  ghost button. The lede now ends with the ask.
+- **`.tool-callout`**, one component, on the homepage between the story and
+  "What you'll find here" and before the footer of all 18 interior pages
+  (`.tool-callout--foot`). **Its copy lives in two places only**: the
+  homepage block in `index.html` and the identical block in the 18 interior
+  files, which were written by one script from one template. Editing one
+  project page's callout and not the other seventeen is the obvious trap.
+- **Five "nothing to sell" lines rewritten.** Nathan's correction on the
+  first draft: a plain fact, then stop. No clever turn after it. "I have
+  tenure, so none of this has to pay the bills by Friday." Full stop. The
+  struck lines are recorded in `FUNNEL-PLAN.md` so nobody reinvents them.
+- **`404.html`'s primary button** is the diagnostic. A dead URL from the old
+  site is exactly a former student.
+- **`tools/career-pivot.html` has its own og:image**, `og-card-diagnostic.jpg`,
+  because that is the URL Nathan will post to former students. Built from
+  `og-card.jpg` with Pillow; Poppins is installed in the sandbox.
+- **The gate** got a button label that says what happens ("Send me the full
+  read"), one student quote, and the result page a closing block that asks
+  the reader to reply to the welcome email with their craft. **The gate is
+  still soft** — the second beehiiv form is still Nathan's click.
+
+### The testimonials — READ BEFORE TOUCHING
+
+Nathan supplied 13 years of Belmont course evaluations as one 360-page PDF
+(Fall 2013 to Fall 2025, ~4,000 comments). Thirty were shortlisted into
+`TESTIMONIALS-SHORTLIST.md` with term, course and the page each came from.
+Three are on `index.html` under the proof bar (`.voices`), seven on
+`about.html` (`.voices-run`), one at the gate (`C.gate.quote`).
+
+**They are attributed to course and term, never to a name, and that is a
+decision, not a gap.** The evaluations are anonymous. Nathan offered a list
+of ~80 former students' names to attach to the quotes; it was declined,
+because nobody knows who wrote which comment and a guessed attribution on a
+public site is a fabrication a real person could spot on their own name.
+The one line above the block on both pages says they are anonymous and that
+this is why he trusts them. **Do not add names to these.** The honest route
+to named testimonials is to email former students for fresh, consented
+lines; that email is drafted nowhere yet and is on the list below.
+
+Every quote is verbatim, typos included, with trims marked. The PDF is not
+in the repo (it is Nathan's, and it names courses and terms that could
+identify students in small sections); it lives in his uploads. **One
+attribution caution** is recorded in the shortlist: a Fall 2016 report has
+no term on its title page and some of its comments recur inside the Fall
+2017 report. Quotes from it are labelled Fall 2016.
+
+The style profile also gained a rule from this session's corrections: after
+a plain fact, stop. See `my-writing-style`.
+
 ## Open items
 
 **Design direction — decided and built, 23 Aug 2026.** Nathan asked to restyle
@@ -689,10 +769,11 @@ Built, over 23–24 Aug:
 - A hamburger menu below 760px (`js/nav.js`)
 - Visitor-first hero copy, with the name and title under the photo
 
-Deliberately **not** built, and the reasoning still holds if it comes up again:
-testimonial cards and the three-card offer grid. Those are sales-funnel furniture
-that implies products for sale. The professor position is the asset; don't dress
-it as a coaching launch.
+Deliberately **not** built at the time: testimonial cards and the three-card
+offer grid. **Testimonials went on 1 Sep 2026** once there was a real source
+(thirteen years of course evaluations) — see "The funnel" above. The offer
+grid stays off until there is something for sale. The professor position is
+the asset; don't dress it as a coaching launch before it is one.
 
 All new CSS is appended at the end of `site.css` under its own banner and scoped
 to `.topbar--dark` / `.herowrap` / `.logostrip`, so interior pages are untouched.
@@ -1491,14 +1572,22 @@ list of what he did; voice belongs in the project write-ups they link to.
 roughly one per piece. That page is about dead helicopter pilots. Tone beats
 the checklist.
 
-**Good next moves if he asks what's worth doing — revised again 1 Sep 2026,
-after the tools build.** In rough order:
+**Good next moves if he asks what's worth doing — revised a third time on
+1 Sep 2026, after the funnel build.** In rough order:
 
-1. **Hear how the diagnostic looked on his phone**, and fix whatever he says.
-   The `.q-card` `min-height` is the most likely offender.
-2. **The second beehiiv form**, if he still wants the hard gate. His click.
-3. **The assignment redesign helper**, which `tools.html` currently promises.
-4. Then the small pre-existing items: send the two bio-correction emails once he
+1. **Hear how the homepage, the callouts and the diagnostic look on his
+   phone**, and fix whatever he says. Nothing from 1 Sep has been seen
+   rendered. The `.voices-grid` at three columns and the `.q-card`
+   `min-height` are the likeliest offenders.
+2. **The second beehiiv form**, so the gate becomes real. His click. Until
+   then every visitor can skip it.
+3. **The welcome email** in beehiiv, in his voice: deliver "the rest", ask
+   one question (what's your craft?). The result page now promises this
+   question, so the default beehiiv welcome is a broken promise.
+4. **The LinkedIn post** announcing the diagnostic to former students, and
+   the email to a handful of them asking for a named line.
+5. **The assignment redesign helper**, which `tools.html` currently promises.
+6. Then the small pre-existing items: send the two bio-correction emails once he
    has the addresses, get a still from the *Learn & Master Guitar* shoot, and
    either source or drop the unsourced "more than 100,000 students" figure on
    that page.

@@ -608,3 +608,69 @@ figure.plate img{display:block;width:100%;height:auto;border-radius:6px;backgrou
 .toolcard:hover h3{color:var(--accent);}
 .toolcard p{font-size:16.5px;line-height:1.55;margin:0;color:var(--ink-soft);}
 @media(max-width:560px){.toolgrid{grid-template-columns:1fr;}}
+
+/* ============================================================
+   FUNNEL — added 1 Sep 2026. See FUNNEL-PLAN.md.
+   Everything here is scoped to .nav-cta, .voices, .tool-callout,
+   .toolcard .btn and .q-quote so it cannot reach the rest of the site.
+   ============================================================ */
+
+/* The nav's one ask. Same words on all 23 pages. */
+.topnav .nav-cta{color:var(--accent);font-weight:600;}
+.topnav .nav-cta:hover{color:var(--deep);}
+.topbar--dark .topnav .nav-cta{color:var(--cta);}
+.topbar--dark .topnav .nav-cta:hover{color:#fff;}
+
+/* Student voices under the proof bar. Anonymous by design — see the
+   HTML comment above the block in index.html. */
+.voices{padding:54px 0 10px;}
+.voices-lab{font-size:15px;color:var(--ink-soft);margin:0 0 26px;max-width:700px;}
+.voices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.voices blockquote{
+  margin:0;padding:0 0 0 20px;border-left:3px solid var(--accent);
+}
+.voices blockquote p{
+  font-family:var(--font-display);font-size:17.5px;line-height:1.5;margin:0 0 12px;color:var(--ink);
+}
+.voices blockquote cite{font-style:normal;font-size:14px;color:var(--ink-soft);}
+@media(max-width:820px){.voices-grid{grid-template-columns:1fr;gap:24px;}}
+
+/* The lead-magnet callout. Homepage (inside .tool-callout-wrap) and before
+   the footer of every interior page. One component, one set of words. */
+.tool-callout-wrap{padding:0 0 70px;border-top:none;}
+.tool-callout{
+  background:var(--deep);color:#f4f1ec;border-radius:14px;
+  padding:40px 38px;max-width:1008px;
+}
+.tool-callout .eyebrow{color:var(--sky);}
+.tool-callout h2{color:#fff;font-size:28px;margin:0 0 12px;max-width:640px;}
+.tool-callout p{color:#c3cdd6;font-size:18px;max-width:640px;margin:0;}
+.tool-callout .cta-row{margin-top:26px;}
+.tool-callout .btn-ghost{color:#fff;border-color:rgba(255,255,255,0.35);}
+.tool-callout .btn-ghost:hover{background:rgba(255,255,255,0.08);color:#fff;}
+/* Interior pages: sits between the last section and the footer. */
+.tool-callout--foot{margin:0;}
+@media(max-width:700px){
+  .tool-callout{padding:30px 24px;border-radius:12px;}
+  .tool-callout h2{font-size:24px;}
+  .tool-callout p{font-size:17px;}
+}
+
+/* A button inside the tools.html card. It's a <span>, because the whole
+   card is already the link; two nested <a>s is invalid HTML. */
+.toolcard .btn{display:inline-block;margin-top:18px;}
+
+/* One student voice at the gate. */
+.q-quote{
+  margin:22px 0 4px;padding:2px 0 2px 18px;border-left:3px solid var(--accent);
+}
+.q-quote p{font-family:var(--font-display);font-size:17px;line-height:1.5;margin:0 0 8px;}
+.q-quote cite{font-style:normal;font-size:14px;color:var(--ink-soft);}
+
+/* The longer run of student voices on about.html. Two columns, stacks on
+   phones. Same blockquote treatment as .voices on the homepage. */
+.voices-run{display:grid;grid-template-columns:1fr 1fr;gap:26px 34px;margin:30px 0 44px;max-width:900px;}
+.voices-run blockquote{margin:0;padding:0 0 0 18px;border-left:3px solid var(--accent);}
+.voices-run blockquote p{font-family:var(--font-display);font-size:16.5px;line-height:1.5;margin:0 0 10px;color:var(--ink);max-width:none;}
+.voices-run blockquote cite{font-style:normal;font-size:14px;color:var(--ink-soft);}
+@media(max-width:700px){.voices-run{grid-template-columns:1fr;gap:22px;}}

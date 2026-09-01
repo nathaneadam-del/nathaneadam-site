@@ -275,7 +275,21 @@ window.PIVOT_CONTENT = {
   gate: {
     heading: "The rest of it",
     body: "There&rsquo;s more to this one, and it&rsquo;s the useful half: what&rsquo;s actually durable in your work and why, the one move I&rsquo;d make in the next 90 days, and the list of things I&rsquo;d ignore completely. It comes with the weekly email, which is where I write about this properly.",
-    buttonLabel: "Show me the rest",
-    footnote: "One email a week. Unsubscribe whenever, no hard feelings."
+    buttonLabel: "Send me the full read",
+    footnote: "One email a week. Unsubscribe whenever, no hard feelings.",
+    /* One student voice at the gate, verbatim from a Fall 2024 course
+       evaluation. Anonymous by design; attribute to course and term only.
+       See TESTIMONIALS-SHORTLIST.md. */
+    quote: "Dr. Adam also took the time to have a phone call with me outside of class when I had a time-pertinent question. Not a single prof I&rsquo;ve had will do this. Only professionals in the field do this.",
+    quoteCite: "Student, Remote Video Production, Fall 2024"
+  },
+
+  /* ---------- the close, on the result page ---------- */
+  close: {
+    heading: "One more thing",
+    body: [
+      "The welcome email asks you one question: what&rsquo;s your craft? Reply to it. I read every one, and it&rsquo;s how I decide what to write about next.",
+      "If you know somebody whose work is changing under them, send them the diagnostic. It&rsquo;s the fastest way I&rsquo;ve found to start that conversation without it turning into a lecture."
+    ]
   }
 };

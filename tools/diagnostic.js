@@ -222,6 +222,12 @@
       var gate = el("div", "q-gate");
       gate.appendChild(el("h2", null, C.gate.heading));
       gate.appendChild(el("p", null, C.gate.body));
+      if (C.gate.quote) {
+        var bq = el("blockquote", "q-quote");
+        bq.appendChild(el("p", null, C.gate.quote));
+        bq.appendChild(el("cite", null, C.gate.quoteCite));
+        gate.appendChild(bq);
+      }
 
       if (GATE.mode === "beehiiv" && GATE.formUuid) {
         var a = el("a", "btn btn-cta", C.gate.buttonLabel);
@@ -273,7 +279,7 @@
       var miss = el("div", "q-card");
       miss.appendChild(el("h1", null, "Nothing to show yet"));
       miss.appendChild(el("p", null, "I don&rsquo;t have your answers. They&rsquo;re kept in your own browser and never sent anywhere, so if you switched devices or cleared your history they&rsquo;re gone. It&rsquo;s two minutes to do again."));
-      var a = el("a", "btn btn-cta", "Take the diagnostic");
+      var a = el("a", "btn btn-cta", "Take the AI Career Diagnostic");
       a.href = QUIZ_URL;
       miss.appendChild(el("div", "cta-row").appendChild(a).parentNode);
       root.appendChild(miss);
@@ -300,6 +306,11 @@
     cav.appendChild(el("h2", null, C.caveat.heading));
     paras(cav, C.caveat.body);
     box.appendChild(cav);
+
+    if (C.close) {
+      box.appendChild(el("h2", "q-h", C.close.heading));
+      paras(box, C.close.body);
+    }
 
     var again = el("a", "btn btn-ghost", "Take it again");
     again.href = QUIZ_URL;

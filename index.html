@@ -98,7 +98,7 @@
       <a href="speaking.html">Speaking</a>
       <a href="projects.html">Projects</a>
       <a href="tools.html">Tools</a>
-      <a href="index.html#join">Get the weekly email</a>
+      <a href="tools/career-pivot.html" class="nav-cta">Take the AI Career Diagnostic</a>
     </nav>
   </div>
 </header>
@@ -110,10 +110,14 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <h1>It's <span class="hl">not too late</span> to reinvent your career with AI.</h1>
-          <p class="lede">For experienced professionals who suspect the AI wave already came and went without them. It didn't. I'm proving that in public, one week at a time.</p>
+          <p class="lede">For experienced professionals who suspect the AI wave already came and went without them. It didn't. Start with ten questions about how you actually get paid, and I'll tell you which half of your work is exposed and which half isn't. About two minutes.</p>
           <div class="cta-row">
-            <a class="btn btn-cta" href="#join">Get the weekly email</a>
-            <a class="btn btn-ghost" href="about.html">Read the story</a>
+            <!-- The primary ask on every page is the diagnostic, not the email.
+                 The email is captured inside the diagnostic (the gate), so
+                 pointing people at the tool collects the address AND gives them
+                 something first. Changed 1 Sep 2026; see FUNNEL-PLAN.md. -->
+            <a class="btn btn-cta" href="tools/career-pivot.html">Take the AI Career Diagnostic</a>
+            <a class="btn btn-ghost" href="#join">Get the weekly email</a>
             <!-- NOTE: a "Watch the show" button goes here the day Episode 1 publishes.
                  Held back deliberately — no link to an empty channel at launch. -->
           </div>
@@ -159,6 +163,33 @@
     </div>
   </div>
 
+  <!-- Student voices. These are verbatim from Belmont's own course
+       evaluations (Fall 2013 to Fall 2025), which are anonymous by design,
+       so they are attributed to the course and term and NOT to a name.
+       Do not attach names to these: nobody knows who wrote which one, and
+       a guessed attribution on a public site is the exact failure the
+       editorial rules exist to prevent. The full shortlist, with the page
+       each came from, is TESTIMONIALS-SHORTLIST.md. Trims are marked. -->
+  <section class="voices">
+    <div class="wrap">
+      <p class="voices-lab">From Belmont's course evaluations, 2013 to 2025. They're anonymous, which is why I trust them.</p>
+      <div class="voices-grid">
+        <blockquote>
+          <p>I had no idea what it even was before I started the class. It is amazing what Professor Adam got out of me in such a short time. I never thought I'd be able to understand technology as well as I do now.</p>
+          <cite>Student, Basic Training: DAW, Fall 2015</cite>
+        </blockquote>
+        <blockquote>
+          <p>I learned more about Pro Tools in 8 weeks than I did about Logic from researching YouTube for 4 years. Those many years of confusion and failing were easily taught and made clear by Professor Adam in eight weeks.</p>
+          <cite>Student, Basic Training: DAW, Fall 2016</cite>
+        </blockquote>
+        <blockquote>
+          <p>This class will change your life. Even if you don't continue with Pro Tools or music at all, you will learn skills that will make you more efficient in nearly all computer processes.</p>
+          <cite>Student, Basic Training: DAW, Spring 2016</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
   <section id="story" class="story">
     <div class="wrap">
       <h2>Why I'm doing this</h2>
@@ -171,12 +202,27 @@
       </figure>
 
       <p>So I'm doing what I did the last time. Figuring it out in the open, and teaching it as I go.</p>
-      <p>Let me be clear about what I'm not. I'm not a 25-year-old guru who cracked the code last Tuesday and has a course to sell you. I'm a professor with a doctorate in education, kids, a house, and a career I'm reinventing in public at an age where that's supposed to be a bad idea.</p>
+      <p>Let me be clear about what I'm not. I'm not a 25-year-old guru who cracked the code last Tuesday. I'm a professor with a doctorate in education, kids, a house, and a career I'm reinventing in public at an age where that's supposed to be a bad idea.</p>
       <p>If I can do this at my age, so can you. Which is either encouraging or mildly insulting, depending on how you took it. :)</p>
       <p class="sig">— Nathan</p>
       <div class="cta-row">
         <a class="btn btn-ghost" href="about.html">The longer version</a>
         <a class="btn btn-ghost" href="credits.html">The credits</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- The lead-magnet block. Same .tool-callout component the interior pages
+       carry before their footers, so the ask reads the same everywhere. -->
+  <section class="tool-callout-wrap">
+    <div class="wrap">
+      <div class="tool-callout">
+        <div class="eyebrow">Free &middot; about two minutes &middot; no email needed to start</div>
+        <h2>Which half of your work is actually at risk?</h2>
+        <p>Ten questions about how you actually get paid, then my read on which part of what you do is exposed and which part isn't. No score and no personality type. Both of those would be numbers I made up.</p>
+        <div class="cta-row">
+          <a class="btn btn-cta" href="tools/career-pivot.html">Take the AI Career Diagnostic</a>
+        </div>
       </div>
     </div>
   </section>
@@ -198,7 +244,7 @@
         <div class="pillar">
           <div class="num">Three</div>
           <h3>The Professor's Take</h3>
-          <p>What's real, what's hype, and what actually deserves your time at 50. I have tenure and nothing to sell you, which makes me harder to bribe than most people writing about this.</p>
+          <p>What's real, what's hype, and what actually deserves your time at 50. I have tenure, so none of this has to pay the bills by Friday.</p>
         </div>
       </div>
     </div>
@@ -208,6 +254,7 @@
     <div class="wrap">
       <h2>One honest email a week</h2>
       <p>What I tried with AI that week, what it cost me, and what actually worked. Written for people with a career already behind them. No hype, no income screenshots, no promises to 10x your life.</p>
+      <p>Already took the diagnostic? This is where the rest of it lives.</p>
       <!-- beehiiv subscribe form, wired 31 Aug 2026. Replaces the old action="#"
            placeholder, which told real visitors their address was not saved.
 
