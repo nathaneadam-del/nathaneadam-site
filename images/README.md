@@ -67,7 +67,21 @@ most sense rather than all in one gallery.
 | `tedx-stage.jpg` | Onstage in the VR headset |
 | `tedx-letters.jpg` | The red TEDx letters. Also the TEDx project page band and its Projects card |
 | `walnut-house.jpg`, `walnut-house-2.jpg` | The Walnut House, both 4:3 |
-| `nc5-ai.jpg` | Frame from the NewsChannel 5 story. **Also standing in as the Cost of Valor card** — see the warning below |
+| `nc5-ai.jpg` | Frame from the NewsChannel 5 story. **Speaking page only now** — it stopped standing in for Cost of Valor on 1 Sep 2026 |
+
+**Added 1 Sep 2026 — Cost of Valor**
+
+Pulled from the two trailers on Nathan's own YouTube channel, which is what
+finally made this possible. Both are 1280×720, so they pair with no ragged
+columns, and both have `-sm` variants at 700×394.
+
+| File | Where | Notes |
+|---|---|---|
+| `cost-of-valor-cinematic.jpg` | **Projects card** · `projects/cost-of-valor.html` pair | Helicopter crew chief in a flight helmet. Source: `youtu.be/BFTz21YJnBk`. Chosen for the card because the subject sits centre-frame and survives the 3:2 crop |
+| `cost-of-valor-documentary.jpg` | `projects/cost-of-valor.html` pair | Gun crew at a treeline. Source: `youtu.be/OrWVRhjSDMM`. **Do not use this one in a card** — there is a face hard against the right edge that a 3:2 crop takes off |
+
+Before this, `projects/cost-of-valor.html` had no images at all, which was the
+only project page on the site in that state.
 
 **Derived files, added 27 Aug 2026** with the ten new project pages. Nothing
 here is a new photograph — each one is a crop or a mat of a file already listed
@@ -178,12 +192,15 @@ same either way: **pick card images whose subject sits away from the frame
 edges.** `students-studio.jpg` is safe in a card because the card is 3:2 and so
 is the file; a 4:5 portrait in that slot would lose its top and bottom.
 
-**The one dishonest image on the site, flagged deliberately.** The Cost of Valor
-card on `projects.html` uses `nc5-ai.jpg`, a frame from the NewsChannel 5 story
-— not from the film. That project has no photography of its own yet. It reads as
-thematically right and is captioned generically, but it does not depict what the
-card is about. Replace it with a still from one of the trailers once they're on
-Nathan's own channel. Every other image on the site shows what it claims to.
+**RESOLVED 1 Sep 2026 — every image on the site now shows what it claims to.**
+The Cost of Valor card used to use `nc5-ai.jpg`, a frame from the NewsChannel 5
+story rather than from the film, because that project had no photography of its
+own. It now uses `cost-of-valor-cinematic.jpg`, an actual frame from the
+cinematic reel. `nc5-ai.jpg` stays where it belongs, on `speaking.html`.
+
+Worth keeping the general warning even though the specific case closed: a card
+image that is thematically right and factually wrong is very easy to ship,
+because nothing about it looks broken. It survived five days here.
 
 **Rules of thumb**
 

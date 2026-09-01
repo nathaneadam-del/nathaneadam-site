@@ -400,6 +400,29 @@ Hold the line.
   section on the Mixer's Toolkit page.
 - **Elsevier's own TOC misspells chapter 8 of the Mixer's Toolkit as "Vical
   Mixing".** Their typo, in print since 2011. Not ours to replicate.
+
+### Added 1 Sep 2026 — from the two Amazon listings
+
+- **Page counts:** *Multi-Platinum Pro Tools* **320 pages**; *The Mixer's
+  Toolkit* **260 pages**. Both paperback, both Focal Press 1st editions.
+- **The Mixer's Toolkit ISBN-13 is 978-0-240-81870-2.** The site had
+  **978-0-240-81871-9** in two places and both were wrong; corrected 1 Sep.
+- **Neither book is in print.** Both are used-only on Amazon. The first goes
+  from **$3.02**; the second from **$48.82** with "only 1 left in stock". That
+  inversion — shorter, newer book worth fifteen times the older one — is now a
+  section on each page, with the probable dull explanation (smaller print run)
+  stated rather than a flattering one.
+- **Ratings:** 4.9 from 10 for the first, 4.6 from 38 for the second.
+- **Two 2007 press notices, both about the FIRST book:** Barry Rudolph's *New
+  Toys* column (April 2007) and *Lighting & Sound* (January 2007).
+  **TRAP: Amazon files both blurbs under BOTH books.** They cannot be about the
+  Mixer's Toolkit, which came out four years later, and the Rudolph one names
+  *Multi-Platinum Pro Tools* outright. They live on
+  `projects/multi-platinum-pro-tools.html` and both pages carry a comment
+  saying not to move them.
+- **`web_fetch` returns an empty shell on Amazon** and Chrome timed out on it.
+  The built-in browser read both listings without trouble. Worth knowing before
+  anyone spends time debugging the fetch.
 - **The dissertation's method**, from the TSU repository abstract: a qualitative
   study, online survey of **25 faculty** plus follow-up focus groups, spanning
   spring and fall 2020, framed with **Community of Inquiry** (teaching, social
@@ -745,12 +768,15 @@ because four entries on `credits.html` still have no page.
    clean `meiea.org/resources/Proceedings/2026/...` URL. The submitted URL also
    carried a ~1400-character signed AWS policy; the markup uses the truncated
    form, which resolves identically because Wayback serves its own stored bytes.
-8. `projects.html` — the **Cost of Valor card uses `nc5-ai.jpg`**, which is a
-   frame from the NewsChannel 5 story, not from the film. It's a stand-in because
-   that project has no photography of its own. Replace it with a still from one
-   of the trailers when they go up on Nathan's channel (see item 6). This is the
-   only image on the site that doesn't depict what its caption implies, which is
-   why it's flagged rather than left to be discovered.
+8. ~~`projects.html` — the **Cost of Valor card uses `nc5-ai.jpg`**, a frame
+   from the NewsChannel 5 story rather than from the film.~~ **Done, 1 Sep
+   2026.** The card now uses `cost-of-valor-cinematic.jpg`, a real frame from
+   the cinematic reel, and `projects/cost-of-valor.html` gained a `.plate-pair`
+   of both trailer frames — it had been the only project page with no images at
+   all. `nc5-ai.jpg` stays on `speaking.html`, where it belongs. **Every image
+   on the site now depicts what it claims to.**
+   Do not put the *documentary* frame in a card: a face sits hard against the
+   right edge and the 3:2 crop removes it.
 9. `projects/grammy-camp.html` — the **2017 GRAMMY Camp Weekends** detail (San
    Antonio, San Diego, Los Angeles; Best Buy Teen Tech Centers and the Boys and
    Girls Club; 80+ students) is now used here and sourced to the 2017 Belmont
@@ -782,7 +808,114 @@ because four entries on `credits.html` still have no page.
   `github.com/nathaneadam/nathaneadam-site`. The side effect was breaking
   Vercel's Git link — see "The repo move broke Vercel" under **Deployment**.
 
-## State as of 31 August 2026 — read this first in a new session
+## State as of 1 September 2026 — read this first in a new session
+
+**One-paragraph version:** unchanged from 31 Aug in the ways that matter — the
+site is content-complete, in Nathan's voice, the newsletter form is collecting,
+and there is no launch blocker. What changed on 1 Sep: **every image on the site
+now depicts what it claims to** (the Cost of Valor stand-in is gone), **the two
+bio-correction emails are drafted and waiting in Gmail** for addresses, and a
+pass over the two Amazon book listings closed three open questions and turned up
+**two press notices and one wrong ISBN nobody had caught**.
+
+### What happened on 1 September 2026
+
+**1. The Cost of Valor card image — closed.** `projects.html` used `nc5-ai.jpg`,
+a frame from the NewsChannel 5 story, as the card for a film it is not from.
+That was the only image on the site that lied, and it is now
+`cost-of-valor-cinematic.jpg`, a real frame from the cinematic reel. Both
+trailer thumbnails were pulled at 1280×720 from Nathan's own channel
+(`img.youtube.com/vi/<id>/maxresdefault.jpg` — reachable from the sandbox,
+unlike `web.archive.org`).
+
+`projects/cost-of-valor.html` had **no images at all**, the only project page in
+that state, and now carries both frames as a `.plate-pair`. They are both 16:9,
+so the pair measures 0.0% off.
+
+**The documentary frame must never go in a card.** There is a face hard against
+the right edge that the 3:2 `object-fit:cover` crop takes off. The cinematic
+frame is centre-weighted and survives it. That is why the card got the one it
+got, and it is recorded in `images/README.md` too.
+
+**2. The two bio-correction emails are drafted.** Both sit in Gmail as drafts,
+written in his voice from `BIO-CORRECTIONS.md`. **Neither has a recipient** —
+Jamie Dunham's address is nowhere in his mail, and no Belmont marketing or
+communications contact was identified. He fills in the To field and sends. The
+Belmont one still has a `[name]` placeholder in the greeting.
+
+**3. Four questions Nathan answered, all now written into the site:**
+
+- **Multi-Platinum.com is "co-founder", not "Founder".** Changed in six places
+  across four files, plus "the one I started" → "the one we started" in the body
+  prose of the project page. **Who the co-founder is remains unknown** and
+  nothing on the site names anyone. The obvious guess is Brady Barnett; it is a
+  guess. Do not write it down.
+- **"One of the first online training companies in music production" stands.**
+  Nathan confirmed it holds. It stays on `index.html`, `about.html`,
+  `credits.html` and the project page unchanged. This closes the open question
+  raised on 31 Aug; do not reopen it.
+- **"Carrie Tillis" is correct as written.** It was omitted from the Presleys
+  guest list because it resolves to no findable artist and looked like a
+  transcription slip. Nathan confirmed the name. It is now on
+  `projects/presleys-country-jubilee.html` and `credits.html`. **Do not
+  "correct" it to Pam or Mel Tillis.** The same 2006 author bio appears verbatim
+  on the Amazon listing, so the spelling is at least consistent across sources.
+- **The Mixer's Toolkit gets to keep its own page.** Nathan supplied the Amazon
+  listing instead of choosing to fold it into the first book, which was the
+  right answer — see below.
+
+**4. The Amazon listings were worth reading, and here is what came off them.**
+Checked 1 Sep 2026 via the browser (`web_fetch` returns an empty shell on
+Amazon; Chrome timed out; the built-in browser read both pages fine).
+
+| | *Multi-Platinum Pro Tools* | *The Mixer's Toolkit* |
+|---|---|---|
+| Pages | 320 | 260 |
+| Published | 10 Aug 2006 (Amazon) | 19 April 2011 |
+| Rating | 4.9 from 10 | 4.6 from 38 |
+| Amazon rank that day | #9,564,148 | #5,307,573 |
+| In print? | **No** | **No** |
+| Used price | **from $3.02**, 7 sellers | **from $48.82**, 7 sellers, "1 left" |
+
+**The price inversion is real and is now a section on both pages.** The older,
+longer book with a DVD in it goes for three dollars; the shorter, newer one
+sells used for more than fifteen times that, fifteen years after publication.
+The pages say so and explicitly decline to draw a flattering conclusion from it
+— the likely explanation is a smaller print run. **These are prices and they
+date fast.** Both pages name September 2026 on purpose. If anyone refreshes
+them, move the date with the number or drop both.
+
+**A WRONG ISBN was on the site in two places.** `projects/mixers-toolkit.html`'s
+meta description and `credits.html` both said **978-0-240-81871-9**. The correct
+print ISBN is **978-0-240-81870-2** — it matches Amazon's ISBN-13 and the
+Elsevier URL the same pages were already linking. Both corrected. Worth noting
+how it survived: the right value was sitting in the adjacent `<a href>` on the
+same line.
+
+**TWO PRESS NOTICES, and a trap in how Amazon serves them.** Amazon shows two
+editorial-review blurbs on **both** book listings. They belong to the **first**
+book only:
+
+- **Barry Rudolph**, *New Toys* column, **April 2007** — names
+  "Multi-Platinum Pro Tools by Nathan Adam and Brady Barnett" outright.
+- ***Lighting & Sound***, **January 2007** — "Well recommended for those serious
+  about software."
+
+Both predate the Mixer's Toolkit (2011) by four years. They are now a section on
+`projects/multi-platinum-pro-tools.html`, with HTML comments on **both** pages
+warning against moving them. This is the site's first named trade-press notice
+for either book.
+
+**5. Verification run.** All **83** `<img>` elements checked against the actual
+files: every one has `width`/`height` and every declared pair matches the file's
+intrinsic size. All eleven `.plate-pair` groups measured; the only two above 6%
+are the pre-existing TEDx pairs (5.4% and 5.3%) that CLAUDE.md already says to
+leave alone. All eight edited pages parse clean under a strict (non-recovering)
+lxml parse. No stray uploads in `images/`.
+
+**Nine `TODO (Nathan)` blocks remain** (down from ten), and two of them shrank.
+
+### State as of 31 August 2026
 
 **If you are picking this up cold, the one-paragraph version:** the site is
 content-complete and written in Nathan's voice across all twenty pages, and the
@@ -874,24 +1007,31 @@ would also carry that argument.
    collects addresses, and the domain still cannot authenticate a message sent
    to any of them.
 3. ~~Three Wayback submissions~~ **Done 31 Aug.** All press sources archived.
-4. **The two bio corrections** — `BIO-CORRECTIONS.md` has the drafted emails.
-5. **Cost of Valor trailers on his own channel**, which then fixes both the
-   fragile LinkedIn links and the stand-in card image.
-6. **Ten `TODO (Nathan)` blocks remain** (down from fifteen). Grep for the
+4. **The two bio corrections — drafted 1 Sep 2026, waiting on addresses.**
+   Both are in Gmail: *"Quick correction to my bio on the Brand Wise post?"* and
+   *"Bio update for my faculty profile"*. Neither has a recipient, because Jamie
+   Dunham's address is nowhere in his mail and no Belmont comms contact was
+   found. He adds the To field, fills the `[name]` placeholder in the Belmont
+   one, and sends. This is the last thing on the list actively pointing wrong
+   facts at other people.
+5. ~~**Cost of Valor trailers on his own channel**~~ **Done 31 Aug (links) and
+   1 Sep (the card image and the page's first photographs).**
+6. **Nine `TODO (Nathan)` blocks remain** (down from fifteen). Grep for the
    string. None are claims the site is making without support — they are a photo,
    a course year, an orchestra size. The site no longer asserts anything it
    cannot point at.
-7. **Two small factual questions raised 31 Aug and not yet answered:**
-   - `"Carrie Tillis"` appears in Nathan's 2011 author bio among the Jubilee
-     guests. It does not resolve to any findable artist and may be a
-     transcription slip. It is **omitted** from the guest list on
-     `projects/presleys-country-jubilee.html` until he confirms.
-   - **Is *"one of the first online training companies in music production"*
-     actually true?** Pinning Multi-Platinum.com's founding at 2006 turned this
-     from a vague claim into a dateable one. It appears on `index.html`,
-     `about.html`, `credits.html` and the project page. Nobody has checked it
-     against what else existed in 2006. It is exactly the shape of claim the
-     editorial rules exist for, and it wants his own gut check.
+7. ~~**Two small factual questions raised 31 Aug.**~~ **Both answered 1 Sep
+   2026 by Nathan. Do not reopen either.**
+   - `"Carrie Tillis"` is **correct as written** and is now in the guest list on
+     `projects/presleys-country-jubilee.html` and `credits.html`. Do not
+     "correct" it to Pam or Mel Tillis.
+   - *"One of the first online training companies in music production"* **holds**
+     and stays as written on all four pages.
+
+   **One new question opened in exchange:** if Multi-Platinum.com had a
+   co-founder, **who was it?** Nathan chose "co-founder" over "Founder" on
+   1 Sep but did not name the other person, and nothing on the site names
+   anyone. Brady Barnett is the obvious guess and is only a guess.
 
 ### Email authentication — NOT a launch blocker. Read before touching DNS.
 
@@ -1175,7 +1315,12 @@ itself as a document (as opposed to the teaching it studied).
 **Two frames deliberately unused**, held as alternates: `live-from-vr-2.jpg` and
 `tedx-talk-close.jpg`.
 
-**The one image that lies:** `nc5-ai.jpg` doubles as the Cost of Valor card on
-`projects.html` and is a frame from the NewsChannel 5 story, not the film. See
-open item 8 and the warning in `images/README.md`. Everything else on the site
-depicts what it claims to.
+~~**The one image that lies:** `nc5-ai.jpg` doubles as the Cost of Valor card.~~
+**Closed 1 Sep 2026 — nothing on the site lies now.** The card is a real frame
+from the cinematic reel and `nc5-ai.jpg` is back to being only the NewsChannel 5
+still on `speaking.html`. See open item 8.
+
+Worth keeping the lesson even though the case closed: a card image that is
+thematically right and factually wrong is easy to ship, because nothing about
+it looks broken. This one survived five days and was only caught because it had
+been written down.
