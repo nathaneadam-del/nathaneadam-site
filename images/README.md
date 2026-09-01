@@ -45,7 +45,7 @@ most sense rather than all in one gallery.
 | `studio-console.jpg` | Credits, editing credit | Console with a band tracking beyond the glass |
 | `live-from-vr.jpg` | Credits | **Fills a gap** — the *Live from Virtual Reality* credit had no image at all |
 | `live-from-vr-2.jpg` | **Live from Virtual Reality** project pair | Second VR avatar frame. Was held as an alternate; placed 27 Aug 2026 — it and `live-from-vr.jpg` are both 1400×788, so they pair exactly |
-| `shooting-video.jpg`, `-2.jpg` | Credits pair | Current production work, both 3:2 |
+| `shooting-video.jpg`, `shooting-video-2.jpg` | Credits pair | Current production work, both 3:2 |
 | `grammy-camp-la.jpg` | GRAMMY Camp | A Weekends lab full of students at iMacs |
 | `grammy-camp-weekend.jpg` | GRAMMY Camp pair | Group at the desk |
 | `grammy-camp-nashville.jpg` | GRAMMY Camp pair | Him at the console, students behind |

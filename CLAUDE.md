@@ -4,21 +4,29 @@ Read this before changing anything. It records decisions that were expensive to
 reach, facts that were verified against primary sources, and a few traps in the
 local setup.
 
-Last updated: 31 August 2026, second session (the newsletter form wired to
-beehiiv and styled to match; a second voice pass across the twelve project pages
-the first one only skimmed; the Cost of Valor trailers moved to Nathan's own
-YouTube channel and that page rewritten from a press release into his voice; the
-AI models used on that film recorded; and the email-authentication job properly
-scoped for the first time — it is bigger than this file previously said).
+Last updated: 1 September 2026 (the Cost of Valor stand-in image replaced with a
+real frame, so nothing on the site depicts something it isn't; both
+bio-correction emails drafted and waiting on addresses; the two Amazon book
+listings read, which closed three open questions and turned up two 2007 trade
+notices and one wrong ISBN; and a second round of answers from Nathan that
+named Brady Barnett as the Multi-Platinum.com co-founder and dated the LANDR
+course and the Norville segment).
 
-Earlier that day: a voice pass across every page, driven by a
+31 August, second session: the newsletter form wired to beehiiv and styled to
+match; a second voice pass across the twelve project pages the first one only
+skimmed; the Cost of Valor trailers moved to Nathan's own YouTube channel and
+that page rewritten from a press release into his voice; the AI models used on
+that film recorded; and the email-authentication job properly scoped for the
+first time.
+
+31 August, first session: a voice pass across every page, driven by a
 writing profile built from the *Multi-Platinum Pro Tools* manuscript and four
 years of sent email and saved as the `my-writing-style` skill; eight
 `TODO (Nathan)` blocks closed with sourced facts; four wrong or unsupportable
 claims corrected; every press source finally archived; five more photos placed;
-and the discovery that the old DreamHost files are gone).
+and the discovery that the old DreamHost files are gone.
 
-**If you are starting a new session, read "State as of 31 August 2026" near the
+**If you are starting a new session, read "State as of 1 September 2026" near the
 bottom first, then "Editorial rules". Load the `my-writing-style` skill before
 drafting any copy.**
 
@@ -649,14 +657,18 @@ links somewhere. Nineteen sitemap URLs.
 
 Three things about this batch that matter more than the pages themselves:
 
-**These pages are mostly TODO, and that is the honest state of them.** Each one
-carries a `TODO (Nathan)` block naming exactly what is missing. The site had a
-one-line credit for each of these and nothing else — no dates, no links, no
-outcome. Rather than write around the gaps convincingly, each page argues from
-what is actually sourced and then says, in the markup, what it needs. **Do not
-fill these in by inference.** The reason the editorial rules exist is that
-Nathan's published bios already contain numbers nobody can trace; a plausible
-paragraph on this site becomes the next bio's wrong fact.
+**These pages started out mostly TODO, and that was the honest state of them.**
+Every one carried a `TODO (Nathan)` block naming exactly what was missing. The
+site had a one-line credit for each of these and nothing else — no dates, no
+links, no outcome. Rather than write around the gaps convincingly, each page
+argues from what is actually sourced and then says, in the markup, what it
+needs. **Do not fill these in by inference.** The reason the editorial rules
+exist is that Nathan's published bios already contain numbers nobody can trace;
+a plausible paragraph on this site becomes the next bio's wrong fact.
+
+*Status as of 1 Sep 2026: most of those blocks are closed. Seven remain across
+the whole site — the current list is under "Waiting on Nathan" below. Grep for
+the string rather than trusting any count in this file, including that one.*
 
 **The three most valuable — all closed 31 Aug 2026.** Kept here because the
 resolutions record facts, not just status.
@@ -847,9 +859,10 @@ Belmont one still has a `[name]` placeholder in the greeting.
 
 - **Multi-Platinum.com is "co-founder", not "Founder".** Changed in six places
   across four files, plus "the one I started" → "the one we started" in the body
-  prose of the project page. **Who the co-founder is remains unknown** and
-  nothing on the site names anyone. The obvious guess is Brady Barnett; it is a
-  guess. Do not write it down.
+  prose of the project page. Who the co-founder was is **no longer open** —
+  Nathan named **Brady Barnett** later the same day, and the project page now
+  names him in the prose. See item 6 below; treat this as settled fact, not the
+  guess it was for a few hours.
 - **"One of the first online training companies in music production" stands.**
   Nathan confirmed it holds. It stays on `index.html`, `about.html`,
   `credits.html` and the project page unchanged. This closes the open question
@@ -1077,10 +1090,14 @@ would also carry that argument.
    facts at other people.
 5. ~~**Cost of Valor trailers on his own channel**~~ **Done 31 Aug (links) and
    1 Sep (the card image and the page's first photographs).**
-6. **Nine `TODO (Nathan)` blocks remain** (down from fifteen). Grep for the
-   string. None are claims the site is making without support — they are a photo,
-   a course year, an orchestra size. The site no longer asserts anything it
-   cannot point at.
+6. **Seven `TODO (Nathan)` blocks remain**, verified by grep on 1 Sep 2026 —
+   down from nine that morning and fifteen a week earlier. They sit in
+   `projects/multi-platinum-pro-tools.html`, `learn-master-guitar.html`,
+   `deborah-norville.html`, `peter-pan.html`, `covid-dissertation.html`,
+   `live-from-virtual-reality.html` and `speaking.html`. None are claims the
+   site is making without support — they are a photograph, a credit's exact
+   scope, the dissertation findings, a collaborator list and the Nashville
+   Ledger item. The site no longer asserts anything it cannot point at.
 7. ~~**Two small factual questions raised 31 Aug.**~~ **Both answered 1 Sep
    2026 by Nathan. Do not reopen either.**
    - `"Carrie Tillis"` is **correct as written** and is now in the guest list on
@@ -1319,11 +1336,14 @@ list of what he did; voice belongs in the project write-ups they link to.
 roughly one per piece. That page is about dead helicopter pilots. Tone beats
 the checklist.
 
-**Good next moves if he asks what's worth doing:** the fact-gathering pass on
-31 Aug closed most of what was blocking, so the honest answer is now the
-newsletter form and SPF/DKIM/DMARC — neither of which is a content problem. If
-he wants content work, the remaining TODO blocks are small, and
-`projects/cost-of-valor.html` is the one page whose links are actively fragile.
+**Good next moves if he asks what's worth doing — revised 1 Sep 2026.** Both
+items this paragraph originally named are settled: the newsletter form was
+wired on 31 Aug, and SPF/DKIM/DMARC is a deliberate deferral rather than a task.
+The Cost of Valor links stopped being fragile when the trailers moved to
+Nathan's own channel. What is actually left is small and mostly his: send the
+two bio-correction emails once he has the addresses, get a still from the
+*Learn & Master Guitar* shoot, and either source or drop the unsourced
+"more than 100,000 students" figure on that page.
 
 ---
 

@@ -40,7 +40,7 @@ There's no framework here on purpose. Any text editor works. Nothing to install,
 nothing to keep updated, nothing that breaks in eighteen months when a dependency
 goes stale.
 
-## Five things that are easy to get wrong
+## Things that are easy to get wrong
 
 **One stylesheet, every page.** `css/site.css` is shared. Changing a colour or a
 base style hits every page at once — that's the point, but check more than one
@@ -62,6 +62,13 @@ after adding photos, since a ragged pair isn't always obvious on a wide screen.
 with no navigation at all — so the collapsed state only applies once the script
 has run. If the script fails the menu simply stays visible. Don't rewrite that as
 a plain `display:none`.
+
+**An image has to depict what it claims.** For five days the *Cost of Valor*
+card on `projects.html` used a frame from the NewsChannel 5 story about a
+different subject entirely. Nothing about it looked broken, which is exactly why
+it survived — a picture that is thematically right and factually wrong reads as
+fine on the page. Every image on the site was checked on 1 Sep 2026 and they all
+now show what their caption says. Adding one means checking that again.
 
 **Always look at a phone.** Every layout bug this site has shipped was a
 small-screen bug that looked fine on a laptop: a portrait cropped through the
@@ -132,6 +139,12 @@ Written down because they were expensive to work out.
 - Never invent a plausible-sounding detail. Two got caught on 31 Aug that
   nobody had ever checked: a "mortgage" (his house is paid off) and "three
   decades" of teaching (it is 25 years, and the site's own proof bar said so).
+- Check a number even when it looks copied rather than invented. The Mixer's
+  Toolkit ISBN was wrong in two places until 1 Sep 2026 — one digit off, and
+  the correct value was sitting in the `<a href>` on the same line.
+- Dated facts need their date written down. The used book prices on both book
+  pages say "September 2026" on purpose. If anyone refreshes them, move the date
+  with the number or drop both.
 
 Open questions are marked `TODO (Nathan)` in the HTML. `CLAUDE.md` has the full
 list plus what's worth fixing on the Belmont faculty page and in the bio sent to
