@@ -913,7 +913,68 @@ are the pre-existing TEDx pairs (5.4% and 5.3%) that CLAUDE.md already says to
 leave alone. All eight edited pages parse clean under a strict (non-recovering)
 lxml parse. No stray uploads in `images/`.
 
-**Nine `TODO (Nathan)` blocks remain** (down from ten), and two of them shrank.
+**6. A second round of answers, later the same day. Five more items closed.**
+
+- **The Multi-Platinum.com co-founder is Brady Barnett.** Same partner and same
+  year as the first book. `projects/multi-platinum-com.html` now names him in
+  the prose and links his section on the book page. The question opened earlier
+  that day is closed; do not treat it as a guess any more.
+- **The LANDR course is "around 2018".** Given by Nathan as *"I believe 2018"*.
+  LANDR's own page states no date and nothing else found does either, so this
+  is recollection, not a document — which is exactly why the eyebrow hedges and
+  no argument on the page rests on the year. **If a dated source turns up and
+  disagrees, the source wins.**
+- **The Norville segment was 2004**, given as *"I believe 2004"*. This one is
+  sturdier than the LANDR date because the page's existing inference — "about
+  22 years ago", and the MSNBC run — already pointed at 2004, so two
+  independent routes agree. It also settles the old item 3: the segment came
+  **two years before** the 2006 book, and the page now makes that its point.
+- **The Peter Pan orchestra size is closed without an answer.** Asked directly;
+  Nathan said it doesn't matter. The page never claimed one and still doesn't.
+  Do not re-ask, and do not infer a number from a typical Branson pit.
+- **The Mixer's Toolkit companion website is gone.** His words: *"the Mixers
+  toolkit site is long gone."* That is now on the page rather than buried in a
+  comment, because it sharpens the format argument the page already makes — the
+  website died and the first book's DVD still works in every copy ever sold.
+  **`projects/mixers-toolkit.html` now has no TODO blocks at all.**
+
+**A stale TODO was deleted from `projects/learn-master-guitar.html`.** It asked
+for the production years, the disc count and whether he shot the whole series —
+all three answered on 31 Aug, on the page, and in the eyebrow. The block had
+just survived the edit that answered it. Worth checking for this pattern
+elsewhere: a TODO that outlives its answer is worse than no TODO, because it
+sends the next session to ask a question that has already been asked.
+
+**He declined the rest, and that is recorded rather than left hanging.** Asked
+on 1 Sep about the remaining open items — the dissertation findings and
+committee chair, who else worked on *Live from Virtual Reality*, the
+Multi-Platinum Pro Tools print runs and whether the DVD material survives — his
+answer was that these are ages ago. **Do not re-ask them in a new session.**
+They stay in the markup as honest gaps, not as pending questions.
+
+**One claim nobody has ever sourced, noticed 1 Sep and left alone.**
+`projects/learn-master-guitar.html`'s lede says Learn & Master Guitar "reached
+more than 100,000 students". That figure appears nowhere in this file's verified
+facts and no source for it was found. It is pre-existing and was not touched,
+but it is exactly the shape the editorial rules exist to catch, and it wants
+either a source or Nathan's confirmation.
+
+**Seven `TODO (Nathan)` blocks remain** (down from nine at the start of the day
+and fifteen a week ago): a photograph on three pages, the Norville credit's
+exact scope, the dissertation findings and committee chair, the *Live from
+Virtual Reality* collaborators, and the Nashville Ledger item on
+`speaking.html`. None is a claim the site is making without support.
+
+**A note for whoever next runs the em-dash check.** It reported 24 prose em
+dashes, which looks alarming and is almost entirely noise: 22 of them are the
+`<p class="fmeta">` footer that appears on every page ("Dr. Nathan Adam —
+professor of media production…") plus two "— Nathan" sign-offs. Those are
+separators, not the style violation. **The check must exclude the footer, not
+just filter to `<p>`** — the 31 Aug caution in this file said to filter to `<p>`
+and stop there, which is not enough. After excluding it, exactly two real ones
+existed on 1 Sep: one introduced that day on `projects/mixers-toolkit.html` and
+fixed immediately, and one pre-existing on
+`projects/ma-media-entertainment.html` that was left alone.
 
 ### State as of 31 August 2026
 
@@ -1028,10 +1089,10 @@ would also carry that argument.
    - *"One of the first online training companies in music production"* **holds**
      and stays as written on all four pages.
 
-   **One new question opened in exchange:** if Multi-Platinum.com had a
-   co-founder, **who was it?** Nathan chose "co-founder" over "Founder" on
-   1 Sep but did not name the other person, and nothing on the site names
-   anyone. Brady Barnett is the obvious guess and is only a guess.
+   ~~**One new question opened in exchange:** who was the co-founder?~~
+   **Answered the same day: Brady Barnett.** Confirmed by Nathan, and now named
+   in the prose on `projects/multi-platinum-com.html`. Same partner and same
+   year as the first book.
 
 ### Email authentication — NOT a launch blocker. Read before touching DNS.
 
