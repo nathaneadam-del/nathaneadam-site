@@ -632,7 +632,43 @@ read, because the diagnosis genuinely is the same for all of them: the bottom
 rung was the *learning* rung. Only the 90-day move changes, and that comes off
 the AI-adoption question. Do not add scoring to track B to make it feel fancier.
 
-### The gate — currently SOFT, and that is not an accident
+### The gate — HARD as of 1 Sep 2026
+
+**The second beehiiv form exists and the real gate is live.** `GATE.mode` is
+`"beehiiv"` and `GATE.formUuid` is `712946f7-3291-4efe-b002-6c65f0458621`.
+The form is named **"Diagnostic gate - career pivot result"**, is separate
+from the homepage form (`11848ad5-...`), and its post-subscribe redirect
+points at `https://www.nathaneadam.com/tools/career-pivot-result.html`.
+**The "Remove emails from the redirect URL" toggle is ON** — beehiiv would
+otherwise append the subscriber's address to that URL as a query parameter.
+Leave it on.
+
+**The skip link is gone, and it went for the right reason.** In beehiiv mode
+subscribing *is* how you reach the result, so nobody dead-ends. If this ever
+reverts to `soft`, the skip link comes back with it: a gate that cannot be
+enforced must not pretend otherwise.
+
+**Two things settled that this file recorded as unknown.** A Launch-plan form
+*can* take a custom redirect (the option is "Redirect to an external website"
+under the form's Settings tab) — though note the account was on a **Max
+trial, day 2 of 14** when this was checked, so if the redirect option
+disappears after the trial that is the reason, and the answer is the soft
+gate again rather than a broken one. And beehiiv's menu now *does* have a
+**Grow** section; the note below saying it does not is stale.
+
+**An unplanned privacy win.** In beehiiv mode the diagnostic no longer embeds
+beehiiv's loader at all — it links out to the hosted form instead. So the
+tool now loads **zero** third-party scripts and sets no cookie. Only the
+homepage does.
+
+Styling notes, since the gate sits on the light `--paper-2` card and NOT on
+the navy band the homepage form lives in: field is white with an `#E0D9CF`
+border, `#141618` text, Poppins 17px, radius 5; button is `#EF8C1F` with
+`#1B1206` text, Poppins Bold 17px, radius 5. Form width is **Fill**, not the
+400px default, so it behaves on a phone. Title and subtitle are switched off,
+because `C.gate.heading` and `C.gate.body` already say it.
+
+### The old soft-gate note, kept for the reasoning
 
 Nathan chose a real email gate. The honest mechanism needs one thing that does
 not exist yet, so `GATE.mode` in `diagnostic.js` ships as `"soft"`: the subscribe
@@ -1299,8 +1335,10 @@ would also carry that argument.
 0. **Look at the diagnostic on a phone.** Added 1 Sep, top of the list because
    it is the only thing about the tools build that was never checked. Everything
    else about it was verified headlessly. See "The tools section" above.
-0b. **A second beehiiv subscribe form**, if he wants the hard email gate rather
-   than the soft one currently shipping. His click, not a code change.
+0b. ~~A second beehiiv subscribe form.~~ **Done 1 Sep 2026.** The hard gate
+   is live; see "The gate" in the tools section. **Nathan has not submitted a
+   test address**, so the redirect is configured but unproven end to end.
+   That is the one thing left to check on this.
 
 1. **Email authentication — DEFERRED by decision, 31 Aug 2026.** Not a blocker.
    Nathan chose beehiiv's sending domain, so the newsletter is authenticated by
@@ -1465,8 +1503,10 @@ is now the whole job:
 along with the JS handler that told real visitors their address wasn't saved.
 
 **Form UUID `11848ad5-53ac-456d-8cec-428670527667`**, publication "Nathan's
-Newsletter", free Launch plan. Builder path is **Subscribers → Subscribe forms**
-(not "Grow" — that menu does not exist).
+Newsletter". Builder path is **Subscribers → Subscribe forms**
+(`/subscribe_forms`, with an underscore; `/subscribe-forms` 404s). An earlier
+note here said the "Grow" menu does not exist — **it does**, as of 1 Sep 2026.
+There is a second form now; see "The gate" above.
 
 **It is a cross-origin iframe, not our markup.** `site.css` cannot style it. It
 was matched by hand in beehiiv's builder and verified against the live render at
@@ -1579,15 +1619,13 @@ the checklist.
    phone**, and fix whatever he says. Nothing from 1 Sep has been seen
    rendered. The `.voices-grid` at three columns and the `.q-card`
    `min-height` are the likeliest offenders.
-2. **The second beehiiv form**, so the gate becomes real. His click. Until
-   then every visitor can skip it.
-3. **The welcome email** in beehiiv, in his voice: deliver "the rest", ask
+2. **The welcome email** in beehiiv, in his voice: deliver "the rest", ask
    one question (what's your craft?). The result page now promises this
    question, so the default beehiiv welcome is a broken promise.
-4. **The LinkedIn post** announcing the diagnostic to former students, and
+3. **The LinkedIn post** announcing the diagnostic to former students, and
    the email to a handful of them asking for a named line.
-5. **The assignment redesign helper**, which `tools.html` currently promises.
-6. Then the small pre-existing items: send the two bio-correction emails once he
+4. **The assignment redesign helper**, which `tools.html` currently promises.
+5. Then the small pre-existing items: send the two bio-correction emails once he
    has the addresses, get a still from the *Learn & Master Guitar* shoot, and
    either source or drop the unsourced "more than 100,000 students" figure on
    that page.

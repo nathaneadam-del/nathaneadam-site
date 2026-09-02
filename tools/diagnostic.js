@@ -30,6 +30,18 @@
                     form, separate from the homepage one, with its
                     post-subscribe redirect pointed at RESULT_URL.
 
+     LIVE SINCE 1 Sep 2026. The second form exists and is named
+     "Diagnostic gate - career pivot result". Its redirect is set to
+     https://www.nathaneadam.com/tools/career-pivot-result.html and
+     "Remove emails from the redirect URL" is ON, so the subscriber's
+     address is not appended to that URL as a query parameter. Leave
+     that toggle on.
+
+     There is no skip link in this mode, deliberately: subscribing IS
+     how you reach the result, so nobody dead-ends. If this ever goes
+     back to 'soft', the skip link comes back with it — a gate that
+     cannot be enforced must not pretend otherwise.
+
      WHY A SECOND FORM: the redirect is a property of the form, not of
      the link. Reusing the homepage form's UUID would send homepage
      subscribers to this tool's results page too, which would be
@@ -41,8 +53,8 @@
      person who subscribes, which is worse than no gate at all.
      ------------------------------------------------------------ */
   var GATE = {
-    mode: "soft",
-    formUuid: "",
+    mode: "beehiiv",
+    formUuid: "712946f7-3291-4efe-b002-6c65f0458621",
     hostedFormBase: "https://subscribe-forms.beehiiv.com/"
   };
 
