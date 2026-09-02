@@ -785,8 +785,24 @@ attribution caution** is recorded in the shortlist: a Fall 2016 report has
 no term on its title page and some of its comments recur inside the Fall
 2017 report. Quotes from it are labelled Fall 2016.
 
-The style profile also gained a rule from this session's corrections: after
-a plain fact, stop. See `my-writing-style`.
+**The style profile gained three things from this session**, all saved into
+the `my-writing-style` skill (which is the ground truth, not this file):
+
+- **Move 1b, "after a plain fact, stop."** The corollary to the overstate-
+  then-walk-it-back move, and the failure that actually happens in practice.
+  Overstatement earns a walk-back; a fact that is already carrying the point
+  earns silence. Both struck lines are recorded there as examples.
+- **Disclosure has to survive its own expiry date.** "Nothing to sell you"
+  was struck not because it was false but because it was going to become
+  false. The durable version names a structural fact (tenure) instead of
+  making a promise about the future.
+- **Attribution is a biographical fact.** Do not put a name on words unless
+  you know that person said them; the testimonials decision is the worked
+  example.
+
+The old stale line in that profile — quoting "I have tenure and nothing to
+sell you, which makes me harder to bribe" as live site copy — was corrected
+in the same pass.
 
 ## Open items
 

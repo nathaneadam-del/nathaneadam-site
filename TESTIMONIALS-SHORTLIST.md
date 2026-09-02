@@ -5,9 +5,19 @@ Pulled 1 September 2026 from *Nathan Adam Course Evaluations 2013-2026.pdf*
 is verbatim from the PDF except where marked `[…]` for a trim. Typos are left
 as the student wrote them; say if you want them cleaned.
 
-The evaluations are anonymous, so each one needs a name from you before it
-goes on the site. Term and course are given so you can place them. One
-student signed his: Steven Kim, Spring 2015.
+**DECIDED 1 Sep 2026: these go on the site with NO names.** The evaluations
+are anonymous — nobody knows which student wrote which comment. Nathan
+offered a roster of ~80 former students' names to attach; that was declined,
+because a guessed attribution on a public site is a fabrication a real person
+could spot on their own name. Each quote is credited to its course and term
+instead, under one line saying they are anonymous and that this is why he
+trusts them. **Do not add names to these later.**
+
+The honest route to named testimonials is separate and still worth doing:
+email former students Nathan actually remembers and ask for a fresh,
+consented line. Not drafted yet.
+
+One student did sign his: Steven Kim, Spring 2015.
 
 **One attribution caution.** The PDF includes a Fall 2016 report with no term
 on its title page (creation date 23 Dec 2016), and several of its comments
@@ -137,9 +147,13 @@ These are the ones for the homepage. Every one is somebody who started scared.
 
 **Tools page, one:** "0% fat."
 
-## What I need from you
+## What is live, as of 1 Sep 2026
 
-A name for each one you approve, in whatever form the student is comfortable with: full name, or first name and graduation year. If you can only place some of them, the homepage three matter most. Anything you can't attribute stays off the site, per the editorial rules.
+- **`index.html`**, under the proof bar (`.voices`): the Fall 2015 "never thought I'd be able to understand technology", the Fall 2016 "YouTube for 4 years", and the Spring 2016 "This class will change your life".
+- **`about.html`**, section "What they said afterward" (`.voices-run`): seven, from groups 1 and 4 — Fall 2014 intimidated, Fall 2016 horror stories, Fall 2018 without crying, Spring 2015 alternate solutions, Fall 2024 outside a classroom, Spring 2016 not an easy A, Fall 2025 camera on the back of my phone.
+- **The gate** (`C.gate.quote` in `tools/content.js`): the Fall 2024 "Not a single prof I've had will do this."
+
+The rest of this file is the bench. If a quote gets swapped in later, keep the course-and-term credit format and check the Fall 2016 caution above.
 
 ## Left out on purpose
 
